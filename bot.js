@@ -6,30 +6,41 @@ client.on('ready',() => {
 	console.log('Ready.');
 });
 
-var prefix = "-"
+const prefix = settings.prefix;
+
 client.on('message', message => {
+  if (message.author.bot) return;
   if (!message.content.startsWith(prefix)) return;
+
+  let command = message.content.split(' ')[0];
+  command = command.slice(prefix.length);
+
   let args = message.content.split(' ').slice(1);
 	var result = args.join(' ');
-	if (message.author.bot) return;
 
-
-	if (message.content.startsWith(prefix + 'ping')) {
+	if (command === 'ping') {
 		message.channel.sendMessage(`Pong! \`${Date.now() - message.createdTimestamp} ms\``);
 	} else
 
-  if (message.content.startsWith(prefix + 'send')) {
+  if (command === 'send') {
     client.channels.get('255819057616519169').sendMessage('different channel message concept (hardcoded)')
   } else
 
-  if (message.content.startsWith(prefix + 'setgame')) {
+  if (command === 'setgame') {
 		if (!result) {
 			result = null;
 		}
 		client.user.setGame(result);
-  }
+  } else
 
-  if (message.content.startsWith(prefix + 'foo')) {
+  if (command === 'setstatus') {
+  		if (!result) {
+  			result = 'online';
+  		}
+  		client.user.setStatus(result);
+  } else
+
+  if (command === 'foo') {
       message.channel.sendMessage('bar');
   }
 });
