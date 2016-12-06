@@ -1,0 +1,22 @@
+{
+  "name": "chopbot",
+  "version": "0.0.1",
+  "description": "ChopBot, a Discord bot for the RT Family Discord servers.",
+  "main": "bot.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raaaasmus/ChopBot.git"
+  },
+  "author": "Rasmus Gerdin, Tim Laster, Killian Higgins",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/raaaasmus/ChopBot/issues"
+  },
+  "homepage": "https://github.com/raaaasmus/ChopBot#readme",
+  "dependencies": {
+    "discord.js": "^10.0.1"
+  }
+}
