@@ -21,7 +21,7 @@ client.on('message', message => {
 	} else
 
   if (command === 'send') {
-    client.channels.get('255819057616519169').sendMessage('different channel message concept (hardcoded)')
+    client.channels.get('255819057616519169').sendMessage('different channel message concepterino (hardcoded)')
   } else
 
   if (command === 'setgame') {
