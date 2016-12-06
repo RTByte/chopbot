@@ -6,14 +6,12 @@ client.on('ready',() => {
 	console.log('Ready.');
 });
 
-const prefix = settings.prefix;
-
 client.on('message', message => {
   if (message.author.bot) return;
-  if (!message.content.startsWith(prefix)) return;
+  if (!message.content.startsWith(settings.prefix)) return;
 
   let command = message.content.split(' ')[0];
-  command = command.slice(prefix.length);
+  command = command.slice(settings.prefix.length);
 
   let args = message.content.split(' ').slice(1);
 	var result = args.join(' ');
