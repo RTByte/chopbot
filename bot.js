@@ -48,7 +48,30 @@ client.on('message', message => {
   } else
 
   if (command === 'foo') {
-    message.channel.sendMessage('bar');
+    message.channel.sendMessage('Bar');
+  } else
+  if (command === 'roll'){
+		if (args == "") {
+			var onetoonehundred = Math.floor((Math.random() * 100) + 1);
+			message.channel.sendMessage("Rolling between 1 and 100");
+			message.channel.sendMessage(onetoonehundred);
+		} else {
+			var onetosomething = Math.floor((Math.random() * args) + 1);
+			message.channel.sendMessage("Rolling between 1 and " + args);
+			message.channel.sendMessage(onetosomething);
+		}
+
+  } else
+	if (command === 'coinflip'){
+		var oneortwo = Math.floor((Math.random() * 2) + 1);
+		message.channel.sendMessage("Flipping a coin...");
+		if (oneortwo == 1) {
+			message.channel.sendMessage("Heads!");
+		} else {
+			message.channel.sendMessage("Tails!");
+		}
+
+
   }
 });
 
