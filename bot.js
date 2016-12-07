@@ -1,21 +1,21 @@
 const Discord = require('discord.js');
-const client = new Discord.Client();
+const bot = new Discord.Client();
 const settings = require('./settings.json');
 
-client.on('ready',() => {
+bot.on('ready',() => {
 	console.log('Ready.');
 });
 
-client.on('guildMemberAdd', member => {
+bot.on('guildMemberAdd', member => {
   let guild = member.guild;
   guild.defaultChannel.sendMessage(`Welcome, ${member.user}!`);
 });
 
-client.on('guildCreate', guild => {
+bot.on('guildCreate', guild => {
   console.log(`Connected to new guild: ${guild.name}, owned by ${guild.owner.user.username}`);
 });
 
-client.on('message', message => {
+bot.on('message', message => {
   if (message.author.bot) return;
   if (!message.content.startsWith(settings.prefix)) return;
 
@@ -30,27 +30,27 @@ client.on('message', message => {
 	} else
 
   if (command === 'send') {
-    client.channels.get('255819057616519169').sendMessage('different channel message concepterino (hardcoded)')
+    bot.channels.get('255819057616519169').sendMessage('different channel message concepterino (hardcoded)')
   } else
 
   if (command === 'setgame') {
 		if (!result) {
 			result = null;
 		}
-		client.user.setGame(result);
+		bot.user.setGame(result);
   } else
 
   if (command === 'setstatus') {
   		if (!result) {
   			result = 'online';
   		}
-  		client.user.setStatus(result);
+  		bot.user.setStatus(result);
   } else
 
   if (command === 'foo') {
     message.channel.sendMessage('Bar');
   } else
-	
+
   if (command === 'roll'){
 		if (args == "") {
 			var onetoonehundred = Math.floor((Math.random() * 100) + 1);
@@ -76,4 +76,4 @@ client.on('message', message => {
   }
 });
 
-client.login(settings.token);
+bot.login(settings.token);
