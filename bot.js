@@ -80,4 +80,8 @@ bot.on('message', message => {
   }
 });
 
+process.on("unhandledRejection", err => {
+  console.error("Uncaught Promise Error: \n" + err.stack);
+});
+
 bot.login(settings.token);
