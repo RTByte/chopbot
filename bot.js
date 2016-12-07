@@ -6,6 +6,15 @@ client.on('ready',() => {
 	console.log('Ready.');
 });
 
+client.on('guildMemberAdd', member => {
+  let guild = member.guild;
+  guild.defaultChannel.sendMessage(`Welcome, ${member.user}!`);
+});
+
+client.on('guildCreate', guild => {
+  console.log(`Connected to new guild: ${guild.name}, owned by ${guild.owner.user.username}`);
+});
+
 client.on('message', message => {
   if (message.author.bot) return;
   if (!message.content.startsWith(settings.prefix)) return;
@@ -39,7 +48,7 @@ client.on('message', message => {
   } else
 
   if (command === 'foo') {
-      message.channel.sendMessage('bar');
+    message.channel.sendMessage('bar');
   }
 });
 
