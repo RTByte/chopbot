@@ -54,13 +54,17 @@ bot.on("message", message => {
 
   if (command === "roll"){
 		if (args == "") {
-			var onetoonehundred = Math.floor((Math.random() * 100) + 1);
-			message.channel.sendMessage("Rolling between 1 and 100...*drumroll*");
+			let msg = "Rolling between 1 and 100...*drumroll*"
+			let onetoonehundred = Math.floor((Math.random() * 100) + 1);
+			let response = message.channel.sendMessage(msg);
 			setTimeout(function (){
-				message.channel.sendMessage(onetoonehundred);
-  		}, 1000);
+				console.log(response);
+				message.channel.sendMessage(response);
+				message.edit(response,"Rolling between 1 and 100..." + onetoonehundred)
+				.catch(console.error);
+				}, 1000);
 		} else {
-			var onetosomething = Math.floor((Math.random() * args) + 1);
+			let onetosomething = Math.floor((Math.random() * args) + 1);
 			message.channel.sendMessage("Rolling between 1 and " + args + "...*drumroll*");
 			setTimeout(function (){
 				message.channel.sendMessage(onetosomething);
@@ -70,7 +74,7 @@ bot.on("message", message => {
   } else
 
 	if (command === "coinflip"){
-		var oneortwo = Math.floor((Math.random() * 2) + 1);
+		let oneortwo = Math.floor((Math.random() * 2) + 1);
 		message.channel.sendMessage("Flipping a coin...");
 		if (oneortwo == 1) {
 			message.channel.sendMessage("Heads!");
