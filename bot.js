@@ -54,12 +54,16 @@ bot.on('message', message => {
   if (command === 'roll'){
 		if (args == "") {
 			var onetoonehundred = Math.floor((Math.random() * 100) + 1);
-			message.channel.sendMessage("Rolling between 1 and 100");
-			message.channel.sendMessage(onetoonehundred);
+			message.channel.sendMessage("Rolling between 1 and 100...*drumroll*");
+			setTimeout(function (){
+				message.channel.sendMessage(onetoonehundred);
+  		}, 1000);
 		} else {
 			var onetosomething = Math.floor((Math.random() * args) + 1);
-			message.channel.sendMessage("Rolling between 1 and " + args);
-			message.channel.sendMessage(onetosomething);
+			message.channel.sendMessage("Rolling between 1 and " + args + "...*drumroll*");
+			setTimeout(function (){
+				message.channel.sendMessage(onetosomething);
+  		}, 1000);
 		}
 
   } else
