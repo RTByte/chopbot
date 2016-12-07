@@ -50,6 +50,7 @@ client.on('message', message => {
   if (command === 'foo') {
     message.channel.sendMessage('Bar');
   } else
+	
   if (command === 'roll'){
 		if (args == "") {
 			var onetoonehundred = Math.floor((Math.random() * 100) + 1);
