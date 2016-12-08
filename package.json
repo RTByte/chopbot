@@ -3,27 +3,13 @@
   "version": "0.0.1",
   "description": "ChopBot, a Discord bot for the RT Family Discord servers.",
   "main": "bot.js",
+  "dependencies": {
+    "komada": "^0.10.0"
+  },
+  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/raaaasmus/ChopBot.git"
-  },
-  "author": "Rasmus Gerdin, Tim Laster, Killian Higgins",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/raaaasmus/ChopBot/issues"
-  },
-  "homepage": "https://github.com/raaaasmus/ChopBot#readme",
-  "dependencies": {
-    "rethinkdb": "^2.3.2",
-    "performance-now": "^0.2.0",
-    "winston": "^2.2.0",
-    "request": "^2.72.0",
-    "node-schedule": "^1.1.0",
-    "moment": "^2.13.0",
-    "chalk": "^1.1.3",
-    "discord.js": "^10.0.1"
-  }
+  "author": "Rasmus Gerdin",
+  "license": "ISC"
 }
