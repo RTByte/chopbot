@@ -19,7 +19,7 @@ exports.conf = {
 };
 
 exports.help = {
-  name: "magic8",
+  name: "8ball",
   description: "Magic 8-Ball, does exactly what the toy does. (Results may vary)",
   usage: "<query:str>",
   usageDelim: "",
