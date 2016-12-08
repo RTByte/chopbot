@@ -1,7 +1,7 @@
 exports.run = (client, msg) => {
   msg.channel.sendMessage("Ping?")
     .then((message) => {
-      message.edit(`Pong! \`${message.createdTimestamp - msg.createdTimestamp} ms\``);
+      message.edit(`PONG! \`${message.createdTimestamp - msg.createdTimestamp} ms\``);
     });
 };
 
