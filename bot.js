@@ -5,6 +5,8 @@ const Discord = require('discord.js'),
 const util = require( "util" );
 const request = require("request");
 
+const  r = require('rethinkdbdash')({servers: [{db: ""}]});
+
 // Get DB and logger paths
 const Constants = require('./constants.js');
 const config = require(Constants.Util.CONFIG);
@@ -78,11 +80,11 @@ bot.on('message', msg => {
 								return;
 				}
 
-conf.i18n = I18n.use(langsetup[conf.lang]);
+	conf.i18n = I18n.use(langsetup[conf.lang]);
 
-	var prefix = conf.prefix;
+			var prefix = conf.prefix;
 
-	if(msg.content.startsWith(prefix)) {
+			if(msg.content.startsWith(prefix)) {
 					var command  = msg.content.substring(prefix.length).split(" ")[0].toLowerCase();
 					var suffix   = msg.content.substring(command.length + 2).trim();
 					var username = msg.server && msg.server.detailsOf(msg.author).nick ? msg.server.detailsOf(msg.author).nick : msg.author.username;
@@ -122,11 +124,115 @@ conf.i18n = I18n.use(langsetup[conf.lang]);
 			}
 });
 
+bot.on('presence', (o, n) => {
+		var query = {id: n.id};
 
+		if(n.status === "offline") {
+				query.last_seen = r.now();
+				r.table("users").insert(query, {conflict:"update"}).run();
+		}
 
-bot.on("guildCreate", guild => {
-  console.log(`Connected to new guild: ${guild.name}, owned by ${guild.owner.user.username}`);
+		bot.servers.map(s => {
+			var conf = serverconf.get(s.id);
+			if(!conf) {
+				console.log(`Presence Change: Could not get configuration for server ${s.name}`);
+				return;
+			}
+			if(conf.streaming_role) {
+				var role = s.roles.get(conf.streaming_role);
+				if(n.game && s.members.has("id", n.id) && n.game.type === 1) {
+					var twitchUser = n.game.url.split("/").slice(-1)[0];
+					request("https://api.twitch.tv/kraken/streams/"+twitchUser, (err, response, body) => {
+							if(err) { log.error(err) }
+							let twitch_info = JSON.parse(body).stream;
+							try {
+						if(twitch_info && twitch_info.game && twitch_info.game === "Overwatch") {
+						  bot.addMemberToRole(n, role, (err) => {
+											if (err) log.error(`Could not add Streamer to server role on ${s.name} because of:\n${err}`);
+											query.last_streamed = r.now();
+											query.twitch_user = twitchUser;
+								  r.table("users").insert(query, {conflict:"update"}).run();
+								});
+						}
+								} catch (e) {
+											console.log(`Error while attempting to check stream and game:\n` + twitch_info)
+								}
+						});
+
+					} else if(bot.memberHasRole(n, role)) {
+								bot.removeMemberFromRole(n, role).catch(log.error);
+					}
+			}
+	});
 });
+
+bot.on("serverNewMember", (server, user) => {
+
+	log.info(`${user.username} has joined ${server.name}`);
+
+	var conf = serverconf.get(server.id);
+	if(!conf) {
+		console.log(`New member on server: Could not get configuration for server ${server.name}`);
+		return;
+	}
+
+	if(conf.log_channel) {
+		bot.sendMessage(conf.log_channel, `New user: ${user.username} (${user.id})`);
+	}
+
+	if(conf.welcome_count) {
+		r.table("new_users").insert({id: user.id, mention: user.mention(), server: server.id, joined: r.now()}).run();
+
+				r.table("new_users").filter({server: server.id}).run().then( (results) => {
+						return results;
+				})
+				.then( (users) => {
+	if(users.length >= conf.welcome_count) {
+						bot.sendMessage(server.defaultChannel, `Welcome to our newest members!\n ${users.map(user => user.mention).join(", ")}`);
+		r.table("new_users").filter({server: server.id}).delete().run();
+	}
+			});
+	}
+
+	if(conf.welcome_message) {
+			let channel = conf.private_welcome ? user : config.log_channel;
+			if(!channel) return;
+			bot.sendMessage(channel, conf.welcome_message).catch(log.error);
+	}
+
+	if(server.id === "225963025348296705") {
+		// DEPRECATED: see previous condition on welcome_message
+		//var message = util.format(config.welcome.message, user.username);
+		//var messageRecipient = (config.welcome.inPrivate ? user : server.channels.get("name", config.welcome.channel));
+		//bot.sendMessage(messageRecipient, message);
+
+		// TODO: Add milestone to DB as config.
+		var milestoneStep = config.milestone.step;
+		var milestoneMessage = config.milestone.message;
+		if(server.members.length % milestoneStep == 0) {
+				bot.sendMessage(server.defaultChannel, util.format(milestoneMessage, server.members.length));
+		}
+	}
+});
+
+bot.on("serverMemberRemoved", (server, user) => {
+		log.leave(`${user.username} (${server.detailsOfUser(user).nick}) has left ${server.name}`);
+
+		var conf = serverconf.get(server.id);
+		if(!conf) {
+				console.log(`Member left: Could not get configuration for server ${server.name}`);
+				return;
+		}
+
+		if(conf.log_channel) {
+				bot.sendMessage(conf.log_channel, `User has left: ${user.username} (${user.id})`);
+		}
+
+		if(conf.welcome_count) {
+				r.table("new_users").filter({id: user.id, server: server.id}).delete().run();
+		}
+});
+
 
 bot.on("message", message => {
   if (message.author.bot) return;
