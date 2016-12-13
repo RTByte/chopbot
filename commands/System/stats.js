@@ -7,7 +7,7 @@ exports.run = (client, msg) => {
   const duration = moment.duration(client.uptime).format(" D [days], H [hrs], m [mins], s [secs]");
 
   msg.channel.sendMessage("", {embed: {
-    color: 3447003,
+    color: 13505053,
     author: {
       name: 'ChopBot Statistics',
       icon_url: client.user.avatarURL
