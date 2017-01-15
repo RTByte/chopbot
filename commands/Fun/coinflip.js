@@ -1,5 +1,5 @@
 exports.run = (client, msg) => {
-  msg.reply(`flips a coin. It lands on ${Math.random() > 0.5 ? '**heads**' : '**tails**'}.`);
+  msg.reply(`💰 ${Math.random() > 0.5 ? 'heads' : 'tails'}.`);
 };
 
 exports.conf = {

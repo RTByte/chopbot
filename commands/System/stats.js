@@ -24,8 +24,8 @@ exports.run = (client, msg) => {
     {
       name: 'Servers, Channels & Users',
       value: `${client.guilds.size} servers,
-      ${client.channels.size} channels,
-      ${client.users.size} users.`
+    ${client.channels.size} channels,
+    ${client.users.size} users.`
     },
     {
       name: "Versions",
