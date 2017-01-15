@@ -21,7 +21,7 @@ exports.conf = {
   enabled: true,
   guildOnly: false,
   selfbot: false,
-  aliases: [],
+  aliases: ["prune"],
   permLevel: 2,
   botPerms: ["MANAGE_MESSAGES"],
   requiredFuncs: [],

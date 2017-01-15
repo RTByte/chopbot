@@ -7,7 +7,7 @@ exports.run = (client, msg) => {
   const duration = moment.duration(client.uptime).format(" D [days], H [hrs], m [mins], s [secs]");
 
   msg.channel.sendMessage("", {embed: {
-    color: 13505053,
+    color: 16645629,
     author: {
       name: 'ChopBot Statistics',
       icon_url: client.user.avatarURL
@@ -23,14 +23,11 @@ exports.run = (client, msg) => {
     },
     {
       name: 'Servers, Channels & Users',
-      value: `${client.guilds.size} servers,
-    ${client.channels.size} channels,
-    ${client.users.size} users.`
+      value: `• ${client.guilds.size} servers, \n• ${client.channels.size} channels, \n• ${client.users.size} users.`
     },
     {
       name: "Versions",
-      value: `[Komada](): ${komada.version}
-      [Discord.js](): v${Discord.version}`
+      value: `[Komada](): ${komada.version} \n[Discord.js](): v${Discord.version}`
     }
   ],
   timestamp: new Date(),
@@ -44,7 +41,7 @@ exports.run = (client, msg) => {
 exports.conf = {
   enabled: true,
   guildOnly: false,
-  aliases: ["details", "what"],
+  aliases: ["details", "statistics"],
   permLevel: 2,
   botPerms: [],
   requiredFuncs: [],
