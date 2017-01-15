@@ -1,0 +1,10 @@
+{
+  "modRole": {
+    "data": "Server Staff",
+    "type": "String"
+  },
+  "adminRole": {
+    "data": "Senior Staff",
+    "type": "String"
+  }
+}

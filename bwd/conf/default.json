@@ -9,10 +9,10 @@
   },
   "modRole": {
     "type": "String",
-    "data": "Mods"
+    "data": "Server Staff"
   },
   "adminRole": {
     "type": "String",
-    "data": "Devs"
+    "data": "Senior Staff"
   }
 }

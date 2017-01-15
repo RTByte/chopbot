@@ -1,5 +1,5 @@
 exports.run = (client, msg) => {
-  msg.channel.sendMessage(`ChopBot, a Discord bot built for the RT Family Discord servers. Coded by <@106061111605878784>, <@212020454653689856> & <@171366637969211392>.`);
+  msg.channel.sendMessage(`ChopBot, a Discord bot built for the RT Family Discord servers. Coded by <@106061111605878784>, <@171366637969211392> & <@212020454653689856>.`);
 };
 
 exports.conf = {
