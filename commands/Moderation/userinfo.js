@@ -20,7 +20,6 @@ exports.run = (client, msg) => {
         },
         {
           name: "Nickname",
-          value `${}`
         }
       ],
       thumbnail: {
