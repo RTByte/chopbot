@@ -4,7 +4,7 @@ exports.run = (client, msg, choices) => {
   if (validChoices.length === 1) {
     msg.channel.sendMessage('You only gave me one choice, dummy.');
   } else {
-    msg.reply(`🤔 I choose "${choices[Math.floor(Math.random() * choices.length)]}".`);
+    msg.reply(`🤔 ${choices[Math.floor(Math.random() * choices.length)]}.`);
   }
 };
 
