@@ -6,36 +6,43 @@ require("moment-duration-format");
 exports.run = (client, msg) => {
   const duration = moment.duration(client.uptime).format(" D [days], H [hrs], m [mins], s [secs]");
 
-  msg.channel.sendMessage("", {embed: {
-    color: 16645629,
-    author: {
-      name: 'ChopBot Statistics',
-      icon_url: client.user.avatarURL
-  },
-  fields: [
-    {
-      name: 'Memory Usage',
-      value: `${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} MB`
-    },
-    {
-      name: 'Uptime',
-      value: `${duration}`
-    },
-    {
-      name: 'Servers, Channels & Users',
-      value: `• ${client.guilds.size} servers, \n• ${client.channels.size} channels, \n• ${client.users.size} users.`
-    },
-    {
-      name: "Versions",
-      value: `[Komada](): ${komada.version} \n[Discord.js](): v${Discord.version}`
+  msg.channel.sendMessage('', {
+    embed: {
+      title: "ChopBot Statistics",
+      color: 16645629,
+      fields: [{
+          name: "Memory Usage",
+          value: `${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} MB`,
+          inline: true
+        },
+        {
+          name: "Uptime",
+          value: `${duration}`,
+          inline: true
+        },
+        {
+          name: "Servers, Channels & Users",
+          value: `• ${client.guilds.size} servers, \n• ${client.channels.size} channels, \n• ${client.users.size} users.`,
+          inline: true
+        },
+        {
+          name: "Versions",
+          value: `[Komada](): ${komada.version} \n[Discord.js](): v${Discord.version}`,
+          inline: true
+        }
+      ],
+      thumbnail: {
+        url: "http://i.imgur.com/7lSighC.png",
+        height: 50,
+        width: 50
+      },
+      timestamp: new Date(),
+      footer: {
+        icon_url: msg.author.avatarURL,
+        text: `Requested by ${msg.author.username}#${msg.author.discriminator}`
+      }
     }
-  ],
-  timestamp: new Date(),
-  footer: {
-    icon_url: client.user.avatarURL,
-    text: 'ChopBot'
-  }
-}});
+  });
 };
 
 exports.conf = {
