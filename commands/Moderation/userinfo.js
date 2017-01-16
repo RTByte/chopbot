@@ -1,6 +1,6 @@
 // NEEDS SUPPORT FOR OTHER USERS
 
-exports.run = (client, msg) => {
+exports.run = (client, msg, [user]) => {
   msg.channel.sendMessage('', {
     embed: {
       author: {
