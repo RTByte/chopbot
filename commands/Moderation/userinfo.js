@@ -19,7 +19,8 @@ exports.run = (client, msg, [user]) => {
           inline: true
         },
         {
-          name: "Nickname",
+          name: "Created on",
+          value: `${msg.author.createdAt}`
         }
       ],
       thumbnail: {
@@ -48,6 +49,6 @@ exports.conf = {
 exports.help = {
   name: "userinfo",
   description: "Displays user information.",
-  usage: "",
+  usage: "<user:user>",
   usageDelim: ""
 };
