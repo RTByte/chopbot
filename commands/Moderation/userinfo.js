@@ -49,6 +49,6 @@ exports.conf = {
 exports.help = {
   name: "userinfo",
   description: "Displays user information.",
-  usage: "<user:user>",
+  usage: "[user:user]",
   usageDelim: ""
 };
