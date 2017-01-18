@@ -20,10 +20,11 @@ exports.run = (client, msg, [user]) => {
         },
         {
           name: "Status",
-          value: `${target.presence.status}`
+          value: `${target.presence.status}`,
+          inline: true
         },
         {
-          name: "Bot Account?",
+          name: "Bot Account",
           value: `${target.bot}`,
           inline: true
         },
