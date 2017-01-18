@@ -1,5 +1,6 @@
 const komada = require('komada');
-komada.start({
+
+const client = komada.start({
   "botToken": "",
   "ownerid" : "106061111605878784",
   "clientID": "270329625626935297",
@@ -7,4 +8,10 @@ komada.start({
   "clientOptions": {
     "fetchAllMembers": true
   }
+});
+
+const { DMManager } = require('yamdbf-addon-dm-manager');
+// ...
+client.once('ready', () => {
+    client.dmManager = new DMManager(client, '271111564826902528');
 });

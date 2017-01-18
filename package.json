@@ -5,7 +5,8 @@
   "main": "bot.js",
   "dependencies": {
     "discord.js": "^11.0.0",
-    "komada": "^0.10.0"
+    "komada": "^0.10.0",
+    "yamdbf-addon-dm-manager": "^0.1.2"
   },
   "devDependencies": {},
   "scripts": {
