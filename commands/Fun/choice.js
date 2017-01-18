@@ -22,5 +22,5 @@ exports.help = {
   name: 'choice',
   description: 'Makes a decision for you given some choices.',
   usage: '<choices:str> [...]',
-  usageDelim: '|',
+  usageDelim: ', ',
 };

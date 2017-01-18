@@ -1,26 +1,35 @@
-// NEEDS SUPPORT FOR OTHER USERS
-
 exports.run = (client, msg, [user]) => {
+  const target = msg.mentions.users.first() || msg.author;
+
   msg.channel.sendMessage('', {
     embed: {
       author: {
-        name: `${msg.author.username}`,
-        icon_url: msg.author.avatarURL
+        name: `${target.username}`,
+        icon_url: target.avatarURL
       },
       color: 16645629,
       fields: [{
           name: "ID",
-          value: `${msg.author.id}`,
+          value: `${target.id}`,
           inline: true
         },
         {
           name: "Name & Discriminator",
-          value: `${msg.author.username}#${msg.author.discriminator}`,
+          value: `${target.username}#${target.discriminator}`,
+          inline: true
+        },
+        {
+          name: "Status",
+          value: `${target.presence.status}`
+        },
+        {
+          name: "Bot Account?",
+          value: `${target.bot}`,
           inline: true
         },
         {
           name: "Created on",
-          value: `${msg.author.createdAt}`
+          value: `${target.createdAt}`
         }
       ],
       thumbnail: {
@@ -40,7 +49,7 @@ exports.run = (client, msg, [user]) => {
 exports.conf = {
   enabled: true,
   guildOnly: true,
-  aliases: [],
+  aliases: ["whois"],
   permLevel: 2,
   botPerms: [],
   requiredFuncs: []
