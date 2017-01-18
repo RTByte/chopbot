@@ -10,7 +10,7 @@ exports.run = (client, msg) => {
         },
         {
           name: "Libraries",
-          value: "[Discord.js](https://discord.js.org/#/)\n[Komada](https://github.com/eslachance/komada)",
+          value: "[Discord.js](https://discord.js.org/#/) v11\n[Komada](https://github.com/eslachance/komada) v0.12.4",
           inline: true
         },
         {
