@@ -10,7 +10,7 @@ exports.run = (client, msg) => {
         },
         {
           name: "Libraries",
-          value: "[Discord.js](https://discord.js.org/#/) v11\n[Komada](https://github.com/eslachance/komada) v0.12.4",
+          value: "[Discord.js](https://discord.js.org/#/) v11\n[Komada](https://www.npmjs.com/package/komada) v0.12.4\n[YAMDBF DM Manager](https://www.npmjs.com/package/yamdbf-addon-dm-manager) v0.1.3",
           inline: true
         },
         {
@@ -44,7 +44,7 @@ exports.conf = {
 
 exports.help = {
   name: "info",
-  description: "Provides some information about this bot.",
+  description: "Provides some information about the bot.",
   usage: "",
   usageDelim: "",
 };
