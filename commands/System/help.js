@@ -46,7 +46,7 @@ exports.run = (client, msg, [cmd]) => {
         },
         color: 16645629,
         title: `${cmd.help.description}`,
-        description: `${client.funcs.fullUsage(client, cmd)}`
+        description: `\`${client.funcs.fullUsage(client, cmd)}\``
       }
     });
     msg.reply("Sent you a DM with information.")
