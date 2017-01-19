@@ -21,6 +21,10 @@ exports.run = (client, msg, [cmd]) => {
             value: 'Kicks mentioned user and logs reason.\n\nAliases: *"k"*'
           },
           {
+            name: "-mute <@user> <...reason>",
+            value: 'Mutes mentioned user and logs reason.\n\nAliases: *"m"*'
+          },
+          {
             name: "-purge [@user] <amount>",
             value: 'Removes specified amount of messages from a channel, by user, if specified.\n\nAliases: *"prune", "p"*'
           },
