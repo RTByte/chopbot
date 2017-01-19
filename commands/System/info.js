@@ -9,13 +9,13 @@ exports.run = (client, msg) => {
           inline: true
         },
         {
-          name: "Libraries",
-          value: "[Discord.js](https://discord.js.org/#/) v11\n[Komada](https://www.npmjs.com/package/komada) v0.12.4\n[YAMDBF DM Manager](https://www.npmjs.com/package/yamdbf-addon-dm-manager) v0.1.3",
+          name: "Authors",
+          value: "• <@106061111605878784> \n• <@171366637969211392> \n• <@212020454653689856>",
           inline: true
         },
         {
-          name: "Authors",
-          value: "• <@106061111605878784> \n• <@171366637969211392> \n• <@212020454653689856>",
+          name: "Libraries",
+          value: "[Discord.js](https://discord.js.org/#/) v11\n[Komada](https://www.npmjs.com/package/komada) v0.12.4\n[YAMDBF DM Manager](https://www.npmjs.com/package/yamdbf-addon-dm-manager) v0.1.3",
           inline: true
         }
       ],
