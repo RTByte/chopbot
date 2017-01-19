@@ -21,7 +21,7 @@ exports.conf = {
   enabled: true,
   guildOnly: false,
   selfbot: false,
-  aliases: ["prune"],
+  aliases: ["prune", "p"],
   permLevel: 2,
   botPerms: ["MANAGE_MESSAGES"],
   requiredFuncs: [],
@@ -29,7 +29,7 @@ exports.conf = {
 
 exports.help = {
   name: "purge",
-  description: "This will remove X amount of messages sent in a channel, or by Y user.",
+  description: "Removes specified amount of messages from a channel, by user, if specified.",
   usage: "[user:mention] <amount:int{1,100}>",
   usageDelim: " ",
 };

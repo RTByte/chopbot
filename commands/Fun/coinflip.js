@@ -14,7 +14,7 @@ exports.conf = {
 
 exports.help = {
   name: 'coinflip',
-  description: 'Flips a (pseudo) fair coin.',
+  description: 'Flips a (pseudo) coin. 🙂 for heads, 🙃 for tails.',
   usage: '',
   usageDelim: '',
 };

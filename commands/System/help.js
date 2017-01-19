@@ -1,21 +1,55 @@
 exports.run = (client, msg, [cmd]) => {
   if (!cmd) {
-    buildHelp(client, msg)
-      .then((help) => {
-        const helpMessage = [];
-        for (const key in help) {
-          helpMessage.push(`**${key} Commands**: \`\`\`asciidoc`);
-          for (const key2 in help[key]) {
-            helpMessage.push(`= ${key2} =`);
-            helpMessage.push(`${help[key][key2].join("\n")}\n`);
+    msg.author.send('', {
+      embed: {
+        author: {
+          name: "General Commands",
+          icon_url: client.user.avatarURL
+        },
+        color: 16645629,
+        fields: [
+          {
+            name: "-help [command]",
+            value: 'Provides command help. Goes into detail if a command is specified.'
+          },
+          {
+            name: "-ping",
+            value: 'Pings the bot, returns with "PONG!" and the response time in milliseconds.'
+          },
+          {
+            name: "-info",
+            value: 'Provides some basic information about the bot.\n\nAliases: *"details", "what"*'
+          },
+          {
+            name: "-8ball <question>?",
+            value: 'Magic 8-Ball, does exactly what the toy does. (Results may vary)\n\nAliases: *"8", "magic", "mirror"*'
+          },
+          {
+            name: "-choice <first choice>, <second choice>",
+            value: 'Makes a decision for you given some choices.\n\nAliases: *"choose", "decide"*'
+          },
+          {
+            name: "-coinflip",
+            value: 'Flips a (pseudo) coin. 🙂 for heads, 🙃 for tails.\n\nAliases: *"coin"*'
           }
-          helpMessage.push("```\n\u200b");
-        }
-        msg.channel.sendMessage(helpMessage, { split: { char: "\u200b" } }).catch((e) => { console.error(e); });
-      });
+        ]
+      }
+    });
+    msg.reply("Sent you a DM with information.")
   } else if (client.commands.has(cmd)) {
     cmd = client.commands.get(cmd);
-    msg.channel.sendCode("asciidoc", `= ${cmd.help.name} = \n${cmd.help.description}\nusage :: ${client.funcs.fullUsage(client, cmd)}`);
+    msg.author.send('', {
+      embed: {
+        author: {
+          name: `${cmd.help.name}`,
+          icon_url: client.user.avatarURL
+        },
+        color: 16645629,
+        title: `${cmd.help.description}`,
+        description: `${client.funcs.fullUsage(client, cmd)}`
+      }
+    });
+    msg.reply("Sent you a DM with information.")
   }
 };
 
@@ -34,31 +68,3 @@ exports.help = {
   usage: "[command:str]",
   usageDelim: "",
 };
-
-const buildHelp = (client, msg) => new Promise((resolve) => {
-  const help = {};
-  const mps = [];
-
-  const commandNames = Array.from(client.commands.keys());
-  const longest = commandNames.reduce((longest, str) => Math.max(longest, str.length), 0);
-
-  client.commands.forEach((command) => {
-    mps.push(new Promise((res) => {
-      client.funcs.runCommandInhibitors(client, msg, command, true)
-          .then(() => {
-            const cat = command.help.category;
-            const subcat = command.help.subCategory;
-            if (!help.hasOwnProperty(cat)) help[cat] = {};
-            if (!help[cat].hasOwnProperty(subcat)) help[cat][subcat] = [];
-            help[cat][subcat].push(`${msg.guildConf.prefix}${command.help.name}::${" ".repeat(longest - command.help.name.length)} ${command.help.description}`);
-            res();
-          })
-          .catch(() => {
-            res();
-          });
-    }));
-  });
-  Promise.all(mps).then(() => {
-    resolve(help);
-  });
-});
