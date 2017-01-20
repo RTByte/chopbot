@@ -51,7 +51,7 @@ exports.run = (client, msg, [cmd]) => {
     });
     msg.reply("Sent you a DM with information.")
   }
-
+  
   // COMMAND LOGGER, LOGS TO #bot-log in ChopBot Dev
   client.channels.get('271869758024974336').send('', {
     embed: {
@@ -60,12 +60,8 @@ exports.run = (client, msg, [cmd]) => {
         icon_url: msg.guild.iconURL
       },
       color: 16645629,
-      fields: [{
-          name: "Command Content",
-          value: `\`${msg.content}\``,
-          inline: true
-        }
-      ],
+      title: "Command ran:",
+      description: `${msg.content}`,
       timestamp: new Date(),
       footer: {
         text: `${msg.author.username}#${msg.author.discriminator}`,
