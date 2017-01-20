@@ -1,0 +1,6 @@
+{
+  "adminRole": {
+    "data": "Server Staff",
+    "type": "String"
+  }
+}

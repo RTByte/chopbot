@@ -1,0 +1,18 @@
+{
+  "prefix": {
+    "type": "String",
+    "data": "-"
+  },
+  "disabledCommands": {
+    "type": "Array",
+    "data": []
+  },
+  "modRole": {
+    "type": "String",
+    "data": "Server Staff"
+  },
+  "adminRole": {
+    "type": "String",
+    "data": "Senior Staff"
+  }
+}
