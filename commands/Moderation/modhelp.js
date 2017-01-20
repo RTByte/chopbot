@@ -14,31 +14,37 @@ exports.run = (client, msg, [cmd]) => {
           },
           {
             name: "-ban <@user> <...reason>",
-            value: 'Bans mentioned user and logs reason.\n\nAliases: *"b"*'
+            value: 'Bans mentioned user and logs reason.\nAliases: *"b"*'
           },
           {
             name: "-kick <@user> <...reason>",
-            value: 'Kicks mentioned user and logs reason.\n\nAliases: *"k"*'
+            value: 'Kicks mentioned user and logs reason.\nAliases: *"k"*'
           },
           {
             name: "-mute <@user> <...reason>",
-            value: 'Mutes mentioned user and logs reason.\n\nAliases: *"m"*'
+            value: 'Mutes mentioned user and logs reason.\nAliases: *"m"*',
+            inline: true
+          },
+          {
+            name: "-unmute <@user>",
+            value: 'Unmutes mentioned user and logs it.\nAliases: *"um"*',
+            inline: true
           },
           {
             name: "-purge [@user] <amount>",
-            value: 'Removes specified amount of messages from a channel, by user, if specified.\n\nAliases: *"prune", "p"*'
+            value: 'Removes specified amount of messages from a channel, by user, if specified.\nAliases: *"prune", "p"*'
           },
           {
             name: "-serverinfo",
-            value: 'Displays server information.\n\nAliases: *"sinfo"*'
+            value: 'Displays server information.\nAliases: *"sinfo"*'
           },
           {
             name: "-userinfo [@user]",
-            value: 'Displays user information. Returns *your* info if no other user is specifed.\n\nAliases: *"uinfo"*'
+            value: 'Displays user information. Returns *your* info if no other user is specifed.\nAliases: *"uinfo"*'
           },
           {
             name: "-stats",
-            value: 'Displays bot statistics.\n\nAliases: *"statistics"*'
+            value: 'Displays bot statistics.\nAliases: *"statistics"*'
           }
         ]
       }

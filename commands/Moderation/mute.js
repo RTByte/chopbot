@@ -1,5 +1,6 @@
 exports.run = (client, msg, [user]) => {
   let role = msg.guild.roles.find("name", "Muted")
+  msg.mentions.users.first().send(`You have been muted in the ${msg.guild.name} Discord.`);
   msg.guild.member(user).addRole(role)
   .then(() => msg.channel.sendMessage(`<@${msg.mentions.users.first().id}> was muted.`))
   .catch(e => msg.reply(`There was an error trying to mute: ${e}`));
