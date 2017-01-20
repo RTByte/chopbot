@@ -44,7 +44,7 @@ exports.conf = {
 
 exports.help = {
   name: "info",
-  description: "Provides some information about the bot.",
+  description: "Provides some basic information about the bot.",
   usage: "",
   usageDelim: "",
 };

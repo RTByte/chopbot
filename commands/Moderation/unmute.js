@@ -17,7 +17,7 @@ exports.conf = {
 
 exports.help = {
   name: "unmute",
-  description: "Unmutes mentioned discord user",
+  description: "Unmutes mentioned user and logs it.",
   usage: "<user:user>",
   usageDelim: ""
 };

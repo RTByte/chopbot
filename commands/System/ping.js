@@ -16,7 +16,7 @@ exports.conf = {
 
 exports.help = {
   name: "ping",
-  description: "Pings the bot.",
+  description: 'Pings the bot, returns with "PONG!" and the response time in milliseconds.',
   usage: "",
   usageDelim: "",
 };

@@ -22,7 +22,7 @@ exports.run = (client, msg, [cmd]) => {
           },
           {
             name: "-8ball <question>?",
-            value: 'Magic 8-Ball, does exactly what the toy does. (Results may vary)\n\nAliases: *"8", "magic", "mirror"*'
+            value: 'Magic 8-Ball, does exactly what the toy does (Results may vary).\n\nAliases: *"8", "magic", "mirror"*'
           },
           {
             name: "-choice <first choice>, <second choice>",
@@ -64,7 +64,7 @@ exports.conf = {
 
 exports.help = {
   name: "help",
-  description: "Display help for a command.",
+  description: "Provides command help. Goes into detail if a command is specified.",
   usage: "[command:str]",
   usageDelim: "",
 };

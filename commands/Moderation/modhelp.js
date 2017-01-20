@@ -40,7 +40,7 @@ exports.run = (client, msg, [cmd]) => {
           },
           {
             name: "-userinfo [@user]",
-            value: 'Displays user information. Returns *your* info if no other user is specifed.\nAliases: *"uinfo"*'
+            value: 'Displays user information. Returns your info if no other user is specifed.\nAliases: *"uinfo"*'
           },
           {
             name: "-stats",
@@ -78,7 +78,7 @@ exports.conf = {
 
 exports.help = {
   name: "modhelp",
-  description: "Displays help for moderation commands.",
+  description: "Provides moderation command help. Goes into detail if a command is specified.",
   usage: "[command:str]",
   usageDelim: "",
 };

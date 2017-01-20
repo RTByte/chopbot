@@ -58,7 +58,7 @@ exports.conf = {
 
 exports.help = {
   name: "userinfo",
-  description: "Displays user information.",
+  description: "Displays user information. Returns your info if no other user is specifed.",
   usage: "[user:user]",
   usageDelim: ""
 };
