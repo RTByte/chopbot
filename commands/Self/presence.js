@@ -20,8 +20,12 @@ exports.run = (client, msg, [type, status, ...game]) => {
         icon_url: msg.guild.iconURL
       },
       color: 16645629,
-      title: "Command ran:",
-      description: `${msg.content}`,
+      fields: [{
+          name: "Command Content",
+          value: `\`${msg.content}\``,
+          inline: true
+        }
+      ],
       timestamp: new Date(),
       footer: {
         text: `${msg.author.username}#${msg.author.discriminator}`,
