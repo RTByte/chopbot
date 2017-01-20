@@ -27,7 +27,7 @@ exports.run = (client, msg) => {
         },
         {
           name: "Versions",
-          value: `[Komada](): ${komada.version} \n[Discord.js](): v${Discord.version}\n[YAMDBF DM Manager](): v0.1.3`,
+          value: `[Discord.js](https://discord.js.org/#/): v${Discord.version}\n[Komada](https://www.npmjs.com/package/komada): ${komada.version}\n[YAMDBF DM Manager](https://www.npmjs.com/package/yamdbf-addon-dm-manager): v0.1.3`,
           inline: true
         }
       ],

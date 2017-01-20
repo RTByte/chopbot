@@ -22,7 +22,7 @@ exports.run = (client, msg, [cmd]) => {
           },
           {
             name: "-8ball <question>?",
-            value: 'Magic 8-Ball, does exactly what the toy does (Results may vary).\n\nAliases: *"8", "magic", "mirror"*'
+            value: 'Magic 8-Ball, does exactly what the toy does (Results may vary).\n\nAliases: *"8", "magic", "mirror", "magicconch"*'
           },
           {
             name: "-choice <first choice>, <second choice>",

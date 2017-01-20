@@ -6,7 +6,7 @@ exports.conf = {
   enabled: true,
   selfbot: false,
   guildOnly: false,
-  aliases: ['coin'],
+  aliases: ['coin', "flip"],
   permLevel: 0,
   botPerms: [],
   requiredFuncs: [],

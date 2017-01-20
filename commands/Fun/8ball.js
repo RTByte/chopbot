@@ -12,7 +12,7 @@ exports.conf = {
   enabled: true,
   selfbot: false,
   guildOnly: false,
-  aliases: ["8", "magic", "8ball", "mirror"],
+  aliases: ["8", "magic", "8ball", "mirror", "magicconch"],
   permLevel: 0,
   botPerms: [],
   requiredFuncs: [],
