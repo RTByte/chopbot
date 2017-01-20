@@ -6,6 +6,24 @@ exports.run = (client, msg) => {
   } else {
     msg.reply("🎱 That doesn't look like a question, try again please.").catch(err => client.funcs.log(err.stack, "error"));
   }
+
+  // COMMAND LOGGER, LOGS TO #bot-log in ChopBot Dev
+  client.channels.get('271869758024974336').send('', {
+    embed: {
+      author: {
+        name: `${msg.guild.name}`,
+        icon_url: msg.guild.iconURL
+      },
+      color: 16645629,
+      title: "Command ran:",
+      description: `${msg.content}`,
+      timestamp: new Date(),
+      footer: {
+        text: `${msg.author.username}#${msg.author.discriminator}`,
+        icon_url: msg.author.avatarURL
+      }
+    }
+  });
 };
 
 exports.conf = {
