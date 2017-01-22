@@ -1,5 +1,11 @@
 const util = require("util").inspect;
 
+exports.init = (client) => {
+  if (!client.funcs.confs.hasKey("logChannel")) {
+    client.funcs.confs.addKey("logChannel", "REPLACE WITH CHANNEL ID");
+  }
+};
+
 exports.run = (client, msg, [action, key, ...value]) => {
   if (action === "list") {
     msg.channel.sendCode("json", util(msg.guildConf));
