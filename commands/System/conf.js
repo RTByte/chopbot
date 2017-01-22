@@ -1,10 +1,10 @@
 const util = require("util").inspect;
 
-//exports.init = (client) => {
-//  if (!client.funcs.confs.hasKey("logChannelID")) {
-//    client.funcs.confs.addKey("logChannelID", "REPLACE WITH CHANNEL ID");
-//  }
-//};
+exports.init = (client) => {
+  if (!client.funcs.confs.hasKey("logChannel")) {
+    client.funcs.confs.addKey("logChannel", "REPLACE WITH CHANNEL ID");
+  }
+};
 
 exports.run = (client, msg, [action, key, ...value]) => {
   if (action === "list") {
