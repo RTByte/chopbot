@@ -1,6 +1,6 @@
 exports.run = (client, msg, [cmd]) => {
   if (!cmd) {
-    msg.author.sendMessageMessage('', {
+    msg.author.sendMessage('', {
       embed: {
         author: {
           name: "Moderation Commands",

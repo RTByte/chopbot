@@ -1,0 +1,14 @@
+{
+  "logChannel": {
+    "data": "272578210594553859",
+    "type": "String"
+  },
+  "adminRole": {
+    "data": "Admin",
+    "type": "String"
+  },
+  "modRole": {
+    "data": "Subreddit Mod",
+    "type": "String"
+  }
+}
