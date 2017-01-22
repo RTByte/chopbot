@@ -6,5 +6,12 @@
   "adminRole": {
     "data": "Senior Staff",
     "type": "String"
+<<<<<<< HEAD
+=======
+  },
+  "logChannel": {
+    "data": "272559196212297730",
+    "type": "String"
+>>>>>>> 31320cd62b660c0c9dc0a8a3eee07464fb71d511
   }
 }
