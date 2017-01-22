@@ -1,5 +1,5 @@
 exports.run = (client, msg) => {
-  client.channels.get(`${msg.guildConf.logChannel}`).send('', {
+  client.channels.get(`${msg.guildConf.logChannel}`).sendMessage('', {
     embed: {
       author: {
         name: `#${msg.channel.name}`,

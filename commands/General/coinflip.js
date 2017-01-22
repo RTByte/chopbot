@@ -2,7 +2,7 @@ exports.run = (client, msg) => {
   msg.reply(`${Math.random() > 0.5 ? '🙂 heads' : '🙃 tails'}.`);
 
   // COMMAND LOGGER, LOGS TO #bot-log in ChopBot Dev
-  client.channels.get('271869758024974336').send('', {
+  client.channels.get('271869758024974336').sendMessage('', {
     embed: {
       author: {
         name: `${msg.guild.name}`,

@@ -12,7 +12,7 @@ exports.run = (client, msg, [commandname]) => {
   return msg.channel.sendMessage(`Successfully disabled: \`${commandname}\``);
 
   // COMMAND LOGGER, LOGS TO #bot-log in ChopBot Dev
-  client.channels.get('271869758024974336').send('', {
+  client.channels.get('271869758024974336').sendMessage('', {
     embed: {
       author: {
         name: `${msg.guild.name}`,

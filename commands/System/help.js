@@ -1,6 +1,6 @@
 exports.run = (client, msg, [cmd]) => {
   if (!cmd) {
-    msg.author.send('', {
+    msg.author.sendMessage('', {
       embed: {
         author: {
           name: "General Commands",
@@ -38,7 +38,7 @@ exports.run = (client, msg, [cmd]) => {
     msg.reply("Sent you a DM with information.")
   } else if (client.commands.has(cmd)) {
     cmd = client.commands.get(cmd);
-    msg.author.send('', {
+    msg.author.sendMessage('', {
       embed: {
         author: {
           name: `${cmd.help.name}`,
@@ -53,7 +53,7 @@ exports.run = (client, msg, [cmd]) => {
   }
 
   // COMMAND LOGGER, LOGS TO #bot-log in ChopBot Dev
-  client.channels.get('271869758024974336').send('', {
+  client.channels.get('271869758024974336').sendMessage('', {
     embed: {
       author: {
         name: `${msg.guild.name}`,

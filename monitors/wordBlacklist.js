@@ -12,7 +12,7 @@ exports.run = (client, msg) => {
     if (bool) {
       msg.delete();
 
-      client.channels.get(`${msg.guildConf.logChannel}`).send('', {
+      client.channels.get(`${msg.guildConf.logChannel}`).sendMessage('', {
         embed: {
           author: {
             name: `#${msg.channel.name}`,
@@ -34,7 +34,7 @@ exports.run = (client, msg) => {
       });
 
       // DEV LOGGER, LOGS TO #bot-log in ChopBot Dev
-      client.channels.get('271869758024974336').send('', {
+      client.channels.get('271869758024974336').sendMessage('', {
         embed: {
           author: {
             name: `${msg.guild.name}`,
