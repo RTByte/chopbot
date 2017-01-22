@@ -5,6 +5,22 @@ exports.run = (client, msg, [user]) => {
   .then(() => msg.channel.sendMessage(`<@${msg.mentions.users.first().id}> was unmuted.`))
   .catch(e => msg.reply(`There was an error trying to unmute: ${e}`));
 
+  try {
+    client.channels.get(`${msg.guildConf.logChannel}`).sendMessage('', {
+      embed: {
+        author: {
+          name: `${msg.author.username}#${msg.author.discriminator}`,
+          icon_url: msg.author.avatarURL
+        },
+        color: 16743168,
+        description: `**Member:** ${msg.mentions.users.first().username}#${msg.mentions.users.first().discriminator} (${msg.mentions.users.first().id})\n**Action:** Unmute\n**Reason:** ${args.toString().split(",").join(" ")}`,
+        timestamp: new Date()
+      }
+    });
+  } catch (err) {
+    return;
+  }
+
   // COMMAND LOGGER, LOGS TO #bot-log in ChopBot Dev
   client.channels.get('271869758024974336').sendMessage('', {
     embed: {
