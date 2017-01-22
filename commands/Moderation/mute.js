@@ -2,7 +2,7 @@ exports.run = (client, msg, [user, ...args]) => {
   let role = msg.guild.roles.find("name", "Muted")
   msg.mentions.users.first().sendMessage(`You have been muted in the ${msg.guild.name} Discord.\n**Reason:** ${args.toString().split(",").join(" ")}`);
   msg.guild.member(user).addRole(role)
-  .then(() => msg.channel.sendMessage(`<@${user.id}> was muted.`))
+  .then(() => msg.channel.sendMessage(`<@${msg.mentions.users.first().id}> was muted.`))
   .catch(e => msg.reply(`There was an error trying to mute: ${e}`));
 
   try {
@@ -56,6 +56,6 @@ exports.conf = {
 exports.help = {
   name: "mute",
   description: "Mutes mentioned user and logs reason.",
-  usage: "<user:user> <reason:str>",
+  usage: "<user:user> <reason:str> [...]",
   usageDelim: " "
 };
