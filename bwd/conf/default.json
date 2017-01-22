@@ -17,6 +17,6 @@
   },
   "logChannel": {
     "type": "String",
-    "data": "REPLACE WITH CHANNEL ID"
+    "data": "REPLACE WITH CHANNEL"
   }
 }
