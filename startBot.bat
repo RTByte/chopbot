@@ -1,2 +1,2 @@
 @ECHO OFF
-node bot.js
+node --harmony bot.js
