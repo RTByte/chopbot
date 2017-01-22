@@ -1,3 +1,5 @@
+const Discord = require('discord.js');
+
 exports.run = (client, msg, [type, status, ...game]) => {
   game = game.join(" ");
   if (type === "status") {
@@ -13,26 +15,14 @@ exports.run = (client, msg, [type, status, ...game]) => {
   }
 
   // COMMAND LOGGER, LOGS TO #bot-log in ChopBot Dev
-  client.channels.get('271869758024974336').sendMessage('', {
-    embed: {
-      author: {
-        name: `${msg.guild.name}`,
-        icon_url: msg.guild.iconURL
-      },
-      color: 16645629,
-      fields: [{
-          name: "Command Content",
-          value: `\`${msg.content}\``,
-          inline: true
-        }
-      ],
-      timestamp: new Date(),
-      footer: {
-        text: `${msg.author.username}#${msg.author.discriminator}`,
-        icon_url: msg.author.avatarURL
-      }
-    }
-  });
+  const devLogger = new Discord.RichEmbed()
+    .setAuthor(`${msg.guild.name}`, msg.guild.iconURL)
+    .setColor(16645629)
+    .addField("Command Content", `${msg.content}`, true)
+    .setTimestamp()
+    .setFooter(`${msg.author.username}#${msg.author.discriminator}`, msg.author.avatarURL);
+
+  client.channels.get('271869758024974336').sendEmbed(devLogger, '', { disableEveryone: true });
 };
 
 exports.conf = {
