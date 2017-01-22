@@ -1,7 +1,7 @@
 const komada = require('komada');
 
 const client = komada.start({
-  "botToken": "MjcwMzI5NjI1NjI2OTM1Mjk3.C2W4cw.5sMEbpsq0qz3otC2-Gwv1CbUfig",
+  "botToken": "",
   "ownerid" : "106061111605878784",
   "clientID": "270329625626935297",
   "prefix": "-",
