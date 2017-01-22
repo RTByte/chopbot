@@ -10,5 +10,9 @@
   "logChannel": {
     "data": "272559196212297730",
     "type": "String"
+  },
+  "prefix": {
+    "data": "--",
+    "type": "String"
   }
 }
