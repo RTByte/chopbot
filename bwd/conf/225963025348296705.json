@@ -8,11 +8,11 @@
     "type": "String"
   },
   "logChannel": {
-    "data": "272559196212297730",
+    "data": "test",
     "type": "String"
   },
   "prefix": {
-    "data": "-",
+    "data": "--",
     "type": "String"
   }
 }
