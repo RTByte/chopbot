@@ -42,7 +42,7 @@ exports.run = (client, msg, [action, key, ...value]) => {
   return false;
 
   // COMMAND LOGGER, LOGS TO #bot-log in ChopBot Dev
-  client.channels.get('271869758024974336').send('', {
+  client.channels.get('271869758024974336').sendMessage('', {
     embed: {
       author: {
         name: `${msg.guild.name}`,

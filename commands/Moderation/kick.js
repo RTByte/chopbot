@@ -4,7 +4,7 @@ exports.run = (client, msg, [user]) => {
   .catch(e => msg.reply(`There was an error trying to kick: ${e}`));
 
   // COMMAND LOGGER, LOGS TO #bot-log in ChopBot Dev
-  client.channels.get('271869758024974336').send('', {
+  client.channels.get('271869758024974336').sendMessage('', {
     embed: {
       author: {
         name: `${msg.guild.name}`,
