@@ -14,5 +14,9 @@
   "adminRole": {
     "type": "String",
     "data": "Senior Staff"
+  },
+  "logChannel": {
+    "type": "String",
+    "data": "REPLACE WITH CHANNEL ID"
   }
 }

@@ -2,5 +2,9 @@
   "adminRole": {
     "data": "Server Staff",
     "type": "String"
+  },
+  "logChannel": {
+    "data": "270801509594169345",
+    "type": "String"
   }
 }
