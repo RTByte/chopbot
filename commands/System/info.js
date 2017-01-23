@@ -1,38 +1,16 @@
 const Discord = require('discord.js');
 
 exports.run = (client, msg) => {
-  msg.channel.sendMessage('', {
-    embed: {
-      title: "ChopBot Information",
-      color: 16645629,
-      fields: [{
-          name: "About",
-          value: "ChopBot, a Discord bot built for the RT Family Discord servers.",
-          inline: true
-        },
-        {
-          name: "Authors",
-          value: "• <@106061111605878784> \n• <@171366637969211392>",
-          inline: true
-        },
-        {
-          name: "Libraries",
-          value: "[Discord.js](https://discord.js.org/#/) v11\n[Komada](https://www.npmjs.com/package/komada) v0.12.4\n[YAMDBF DM Manager](https://www.npmjs.com/package/yamdbf-addon-dm-manager) v0.1.3",
-          inline: true
-        }
-      ],
-      thumbnail: {
-        url: "http://i.imgur.com/7lSighC.png",
-        height: 50,
-        width: 50
-      },
-      timestamp: new Date(),
-      footer: {
-        icon_url: msg.author.avatarURL,
-        text: `Requested by ${msg.author.username}#${msg.author.discriminator}`
-      }
-    }
-  });
+  const infoEmbed = new Discord.RichEmbed()
+    .setTitle("ChopBot Information")
+    .setColor(16645629)
+    .addField("About", "ChopBot, a Discord bot built for the RT Family Discord servers.", true)
+    .addField("Authors", "• <@106061111605878784> \n• <@171366637969211392>", true)
+    .addField("Libraries", "[Discord.js](https://discord.js.org/#/) v11\n[Komada](https://www.npmjs.com/package/komada) v0.12.4\n[YAMDBF DM Manager](https://www.npmjs.com/package/yamdbf-addon-dm-manager) v0.1.3")
+    .setThumbnail("http://i.imgur.com/7lSighC.png", 50, 50)
+    .setTimestamp()
+    .setFooter(`Requested by ${msg.author.username}#${msg.author.discriminator}`, msg.author.avatarURL);
+  msg.channel.sendEmbed(infoEmbed, '', { disableEveryone: true });
 
   // COMMAND LOGGER, LOGS TO #bot-log in ChopBot Dev
   const devLogger = new Discord.RichEmbed()
