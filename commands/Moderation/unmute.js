@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 
 exports.run = (client, msg, [user]) => {
   const target = msg.mentions.users.first();
-  
+
   let role = msg.guild.roles.find("name", "Muted")
   msg.mentions.users.first().sendMessage(`Your mute on the ${msg.guild.name} Discord has been lifted. You may now send messages.`);
   msg.guild.member(user).removeRole(role)
@@ -12,8 +12,8 @@ exports.run = (client, msg, [user]) => {
   try {
     const serverLog = new Discord.RichEmbed()
       .setAuthor(`${msg.author.username}#${msg.author.discriminator}`, msg.author.avatarURL)
-      .setColor(16711680)
-      .setDescription(`**Member:** ${target.username}#${target.discriminator} (${target.id})\n**Action:** Unmute\n**Reason:** ${args.toString().split(",").join(" ")}`)
+      .setColor("#ff7200")
+      .setDescription(`**Member:** ${target.username}#${target.discriminator} (${target.id})\n**Action:** Unmute}`)
       .setTimestamp();
     client.channels.get(`${msg.guildConf.logChannel}`).sendEmbed(serverLog, '', { disableEveryone: true });
   } catch (err) {
