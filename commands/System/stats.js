@@ -5,66 +5,26 @@ require("moment-duration-format");
 
 exports.run = (client, msg) => {
   const duration = moment.duration(client.uptime).format(" D [days], H [hrs], m [mins], s [secs]");
-
-  msg.channel.sendMessage('', {
-    embed: {
-      title: "ChopBot Statistics",
-      color: 16645629,
-      fields: [{
-          name: "Memory Usage",
-          value: `${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} MB`,
-          inline: true
-        },
-        {
-          name: "Uptime",
-          value: `${duration}`,
-          inline: true
-        },
-        {
-          name: "Servers, Channels & Users",
-          value: `• ${client.guilds.size} servers, \n• ${client.channels.size} channels, \n• ${client.users.size} users.`,
-          inline: true
-        },
-        {
-          name: "Versions",
-          value: `[Discord.js](https://discord.js.org/#/): v${Discord.version}\n[Komada](https://www.npmjs.com/package/komada): ${komada.version}\n[YAMDBF DM Manager](https://www.npmjs.com/package/yamdbf-addon-dm-manager): v0.1.3`,
-          inline: true
-        }
-      ],
-      thumbnail: {
-        url: "http://i.imgur.com/7lSighC.png",
-        height: 50,
-        width: 50
-      },
-      timestamp: new Date(),
-      footer: {
-        icon_url: msg.author.avatarURL,
-        text: `Requested by ${msg.author.username}#${msg.author.discriminator}`
-      }
-    }
-  });
+  const statsEmbed =  new Discord.RichEmbed()
+    .setTitle("ChopBot Statistics")
+    .setColor(16645629)
+    .addField("Memory Usage", `${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} MB`, true)
+    .addField("Uptime", `${duration}`, true)
+    .addField("Servers, Channels & Users", `• ${client.guilds.size} servers, \n• ${client.channels.size} channels, \n• ${client.users.size} users.`, true)
+    .addField("Versions", `[Discord.js](https://discord.js.org/#/): v${Discord.version}\n[Komada](https://www.npmjs.com/package/komada): v0.12.4\n[YAMDBF DM Manager](https://www.npmjs.com/package/yamdbf-addon-dm-manager): v0.1.3`)
+    .setThumbnail("http://i.imgur.com/7lSighC.png", 50, 50)
+    .setTimestamp()
+    .setFooter(`Requested by ${msg.author.username}#${msg.author.discriminator}`);
+  msg.channel.sendEmbed(statsEmbed, '', { disableEveryone: true });
 
   // COMMAND LOGGER, LOGS TO #bot-log in ChopBot Dev
-  client.channels.get('271869758024974336').sendMessage('', {
-    embed: {
-      author: {
-        name: `${msg.guild.name}`,
-        icon_url: msg.guild.iconURL
-      },
-      color: 16645629,
-      fields: [{
-          name: "Command Content",
-          value: `\`${msg.content}\``,
-          inline: true
-        }
-      ],
-      timestamp: new Date(),
-      footer: {
-        text: `${msg.author.username}#${msg.author.discriminator}`,
-        icon_url: msg.author.avatarURL
-      }
-    }
-  });
+  const devLogger = new Discord.RichEmbed()
+    .setAuthor(`${msg.guild.name}`, msg.guild.iconURL)
+    .setColor(16645629)
+    .addField("Command Content", `${msg.content}`, true)
+    .setTimestamp()
+    .setFooter(`${msg.author.username}#${msg.author.discriminator}`, msg.author.avatarURL);
+  client.channels.get('271869758024974336').sendEmbed(devLogger, '', { disableEveryone: true });
 };
 
 exports.conf = {

@@ -1,30 +1,32 @@
-exports.run = (client, msg, [user]) => {
-  msg.mentions.users.first().sendMessage(`You have been banned from the ${msg.guild.name} Discord.\n**Reason:** (call reason)\n\nYou can appeal your ban by DMing me the command \`appeal <message>\`, where \`'<message>'\` is a message detailing why you think you deserve to have your ban lifted. You must send this command without a prefix or I won't recognize it. If you are currently banned from more than one of the Rooster Teeth family Discords, you may only appeal the most recent ban until that appeal is approved or rejected. If your appeal is rejected, you may not appeal again.\n\n If you are unable to DM me because we do not have any mutual servers, you may use this invite to gain a mutual server and then DM me your appeal.\nhttps://discord.gg/nrHafz3\n\nYou still want to remain in this mutual server until after your appeal has been approved so that you can be notified of the appeal result.`)
+const Discord = require('discord.js');
+
+exports.run = (client, msg, [user, ...args]) => {
+  const target = msg.mentions.users.first();
+
+  msg.mentions.users.first().sendMessage(`You have been banned from the ${msg.guild.name} Discord.\n**Reason:** ${args.toString().split(",").join(" ")}\n\nTo appeal your ban, please DM the owner of the server you were banned from, listed below.\n<@${msg.guild.owner.id}>`)
   msg.guild.member(user).ban()
   .then(() => msg.channel.sendMessage(`**${user.username}#${user.discriminator}** was banned.`))
   .catch(e => msg.reply(`There was an error trying to ban: ${e}`));
 
+  try {
+    const serverLog = new Discord.RichEmbed()
+      .setAuthor(`${msg.author.username}#${msg.author.discriminator}`, msg.author.avatarURL)
+      .setColor(16711680)
+      .setDescription(`**Member:** ${target.username}#${target.discriminator} (${target.id})\n**Action:** Ban\n**Reason:** ${args.toString().split(",").join(" ")}`)
+      .setTimestamp();
+    client.channels.get(`${msg.guildConf.logChannel}`).sendEmbed(serverLog, '', { disableEveryone: true });
+  } catch (err) {
+    return;
+  }
+
   // COMMAND LOGGER, LOGS TO #bot-log in ChopBot Dev
-  client.channels.get('271869758024974336').sendMessage('', {
-    embed: {
-      author: {
-        name: `${msg.guild.name}`,
-        icon_url: msg.guild.iconURL
-      },
-      color: 16645629,
-      fields: [{
-          name: "Command Content",
-          value: `\`${msg.content}\``,
-          inline: true
-        }
-      ],
-      timestamp: new Date(),
-      footer: {
-        text: `${msg.author.username}#${msg.author.discriminator}`,
-        icon_url: msg.author.avatarURL
-      }
-    }
-  });
+  const devLogger = new Discord.RichEmbed()
+    .setAuthor(`${msg.guild.name}`, msg.guild.iconURL)
+    .setColor(16645629)
+    .addField("Command Content", `${msg.content}`, true)
+    .setTimestamp()
+    .setFooter(`${msg.author.username}#${msg.author.discriminator}`, msg.author.avatarURL);
+  client.channels.get('271869758024974336').sendEmbed(devLogger, '', { disableEveryone: true });
 };
 
 exports.conf = {
@@ -38,7 +40,7 @@ exports.conf = {
 
 exports.help = {
   name: "ban",
-  description: "Bans mentioned user. Currently does not require reason (no mod-log)",
-  usage: "<user:user>",
-  usageDelim: "",
+  description: "Bans mentioned user and logs reason.",
+  usage: "<user:user> <reason:str> [...]",
+  usageDelim: " ",
 };

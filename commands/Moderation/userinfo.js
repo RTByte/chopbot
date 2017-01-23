@@ -1,72 +1,30 @@
+const Discord = require('discord.js');
+
 exports.run = (client, msg, [user]) => {
   const target = msg.mentions.users.first() || msg.author;
 
-  msg.channel.sendMessage('', {
-    embed: {
-      author: {
-        name: `${target.username}`,
-        icon_url: target.avatarURL
-      },
-      color: 16645629,
-      fields: [{
-          name: "ID",
-          value: `${target.id}`,
-          inline: true
-        },
-        {
-          name: "Name & Discriminator",
-          value: `${target.username}#${target.discriminator}`,
-          inline: true
-        },
-        {
-          name: "Status",
-          value: `${target.presence.status}`,
-          inline: true
-        },
-        {
-          name: "Bot Account",
-          value: `${target.bot}`,
-          inline: true
-        },
-        {
-          name: "Created on",
-          value: `${target.createdAt}`
-        }
-      ],
-      thumbnail: {
-        url: "http://i.imgur.com/7lSighC.png",
-        height: 50,
-        width: 50
-      },
-      timestamp: new Date(),
-      footer: {
-        icon_url: msg.author.avatarURL,
-        text: `Requested by ${msg.author.username}#${msg.author.discriminator}`
-      }
-    }
-  });
+  const userInfo = new Discord.RichEmbed()
+    .setAuthor(`${target.username}`, target.avatarURL)
+    .setColor(16645629)
+    .addField("ID", `${target.id}`, true)
+    .addField("Name & Discriminator", `${target.username}#${target.discriminator}`, true)
+    .addField("Status", `${target.presence.status}`, true)
+    .addField("Bot Account", `${target.bot}`, true)
+    .addField("Joined Discord", `${msg.author.createdAt}`, true)
+    .setThumbnail("http://i.imgur.com/7lSighC.png", 50, 50)
+    .setTimestamp()
+    .setFooter(`Requested by ${msg.author.username}#${msg.author.discriminator}`, msg.author.avatarURL);
+  msg.channel.sendEmbed(userInfo, '', { disableEveryone: true });
 
   // COMMAND LOGGER, LOGS TO #bot-log in ChopBot Dev
-  client.channels.get('271869758024974336').sendMessage('', {
-    embed: {
-      author: {
-        name: `${msg.guild.name}`,
-        icon_url: msg.guild.iconURL
-      },
-      color: 16645629,
-      fields: [{
-          name: "Command Content",
-          value: `\`${msg.content}\``,
-          inline: true
-        }
-      ],
-      timestamp: new Date(),
-      footer: {
-        text: `${msg.author.username}#${msg.author.discriminator}`,
-        icon_url: msg.author.avatarURL
-      }
-    }
-  });
+  const devLogger = new Discord.RichEmbed()
+    .setAuthor(`${msg.guild.name}`, msg.guild.iconURL)
+    .setColor(16645629)
+    .addField("Command Content", `${msg.content}`, true)
+    .setTimestamp()
+    .setFooter(`${msg.author.username}#${msg.author.discriminator}`, msg.author.avatarURL);
+
+  client.channels.get('271869758024974336').sendEmbed(devLogger, '', { disableEveryone: true });
 };
 
 exports.conf = {

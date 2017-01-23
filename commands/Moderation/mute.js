@@ -1,31 +1,33 @@
-exports.run = (client, msg, [user]) => {
+const Discord = require('discord.js');
+
+exports.run = (client, msg, [user, ...args]) => {
+  const target = msg.mentions.users.first();
+
   let role = msg.guild.roles.find("name", "Muted")
-  msg.mentions.users.first().sendMessage(`You have been muted in the ${msg.guild.name} Discord.`);
+  msg.mentions.users.first().sendMessage(`You have been muted in the ${msg.guild.name} Discord.\n**Reason:** ${args.toString().split(",").join(" ")}`);
   msg.guild.member(user).addRole(role)
-  .then(() => msg.channel.sendMessage(`<@${msg.mentions.users.first().id}> was muted.`))
+  .then(() => msg.channel.sendMessage(`Muted <@${user.id}>.`))
   .catch(e => msg.reply(`There was an error trying to mute: ${e}`));
 
+  try {
+    const serverLog = new Discord.RichEmbed()
+      .setAuthor(`${msg.author.username}#${msg.author.discriminator}`, msg.author.avatarURL)
+      .setColor("#ff7200")
+      .setDescription(`**Member:** ${target.username}#${target.discriminator} (${target.id})\n**Action:** Mute\n**Reason:** ${args.toString().split(",").join(" ")}`)
+      .setTimestamp();
+    client.channels.get(`${msg.guildConf.logChannel}`).sendEmbed(serverLog, '', { disableEveryone: true });
+  } catch (err) {
+    return;
+  }
+
   // COMMAND LOGGER, LOGS TO #bot-log in ChopBot Dev
-  client.channels.get('271869758024974336').sendMessage('', {
-    embed: {
-      author: {
-        name: `${msg.guild.name}`,
-        icon_url: msg.guild.iconURL
-      },
-      color: 16645629,
-      fields: [{
-          name: "Command Content",
-          value: `\`${msg.content}\``,
-          inline: true
-        }
-      ],
-      timestamp: new Date(),
-      footer: {
-        text: `${msg.author.username}#${msg.author.discriminator}`,
-        icon_url: msg.author.avatarURL
-      }
-    }
-  });
+  const devLogger = new Discord.RichEmbed()
+    .setAuthor(`${msg.guild.name}`, msg.guild.iconURL)
+    .setColor(16645629)
+    .addField("Command Content", `${msg.content}`, true)
+    .setTimestamp()
+    .setFooter(`${msg.author.username}#${msg.author.discriminator}`, msg.author.avatarURL);
+  client.channels.get('271869758024974336').sendEmbed(devLogger, '', { disableEveryone: true });
 };
 
 exports.conf = {
@@ -40,6 +42,6 @@ exports.conf = {
 exports.help = {
   name: "mute",
   description: "Mutes mentioned user and logs reason.",
-  usage: "<user:user> <reason:str>",
+  usage: "<user:user> <reason:str> [...]",
   usageDelim: " "
 };
