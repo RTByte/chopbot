@@ -7,12 +7,12 @@ exports.run = (client, msg, [cmd]) => {
       .setColor(16645629)
       .addField("-modhelp [command]", "Provides moderation command help. Goes into detail if a command is specified.")
       .addField("-warn <@user> <...reason>", "Warns mentioned user and logs reason.\nAliases: *'w'*")
-      .addField("-mute <@user> <...reason>", "Mutes mentioned user and logs reason.\nAliases: *'m'*")
+      .addField("-mute <@user> <...reason>", "Mutes mentioned user and logs reason.\nAliases: *'m'*", true)
       .addField("-unmute <@user>", "Unmutes mentioned user and logs it.\nAliases: *'um'*", true)
       .addField("-kick <@user> <...reason>", "Kicks mentioned user and logs reason.\nAliases: *'k'*")
       .addField("-ban <@user> <...reason>", "Bans mentioned user and logs reason.\nAliases: *'b'*")
       .addField("-purge [@user] <amount>", "Removes specified amount of messages from a channel, by user, if specified.\nAliases: *'prune'*, *'p'*")
-      .addField("-userinfo [@user]", "Displays user information. Returns your info if no other user is specified.\nAliases: *'uinfo'*, *'whois'*")
+      .addField("-userinfo [@user]", "Displays user information. Returns your info if no other user is specified.\nAliases: *'uinfo'*, *'whois'*", true)
       .addField("-serverinfo", "Displays server information.\nAliases: *'sinfo'*", true)
       .addField("-stats", "Displays bot statistics.\nAliases: *'statistics'*");
     msg.author.sendEmbed(helpMessage, '', { disableEveryone: true });
