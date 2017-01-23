@@ -19,7 +19,6 @@ exports.run = (client, msg) => {
     .addField("Command Content", `${msg.content}`, true)
     .setTimestamp()
     .setFooter(`${msg.author.username}#${msg.author.discriminator}`, msg.author.avatarURL);
-
   client.channels.get('271869758024974336').sendEmbed(devLogger, '', { disableEveryone: true });
 };
 
