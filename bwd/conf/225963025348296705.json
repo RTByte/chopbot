@@ -14,5 +14,11 @@
   "prefix": {
     "data": "--",
     "type": "String"
+  },
+  "userWhitelist": {
+    "data": [
+      "106061111605878784"
+    ],
+    "type": "Array"
   }
 }

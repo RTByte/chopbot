@@ -1,3 +1,5 @@
+const Discord = require('discord.js');
+
 const profanityFinder = require("profanity-finder");
 
 const findProfanity = profanityFinder.findprofanity;
@@ -9,30 +11,18 @@ exports.conf = {
 exports.run = (client, msg) => {
   return new Promise((resolve, reject) => {
     const bool = findProfanity(msg.content);
+    const whitelist = msg.guildConf.whiteList;
     if (bool) {
       msg.delete();
 
       try {
-        client.channels.get(`${msg.guildConf.logChannel}`).sendMessage('', {
-          embed: {
-            author: {
-              name: `#${msg.channel.name}`,
-              icon_url: msg.guild.iconURL
-            },
-            color: 16711680,
-            fields: [{
-                name: "Blacklisted word detected. Message deleted.",
-                value: `\`${msg.content}\``,
-                inline: true
-              }
-            ],
-            timestamp: new Date(),
-            footer: {
-              text: `${msg.author.username}#${msg.author.discriminator}`,
-              icon_url: msg.author.avatarURL
-            }
-          }
-        });
+        const blacklistEmbed = new Discord.RichEmbed()
+          .setAuthor(`#${msg.channel.name}`, msg.guild.iconURL)
+          .setColor(16711680)
+          .addField("Blacklisted word detected. Message deleted.", `\`${msg.content}\``, true)
+          .setTimestamp()
+          .setFooter(`${msg.author.username}#${msg.author.discriminator}`, msg.author.avatarURL)
+        client.channels.get(`${msg.guildConf.logChannel}`).sendEmbed(blacklistEmbed, '', { disableEveryone: true });
       } catch (err) {
         return;
       }
