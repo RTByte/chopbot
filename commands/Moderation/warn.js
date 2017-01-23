@@ -1,13 +1,15 @@
 const Discord = require('discord.js');
 
 exports.run = (client, msg, [user, ...args]) => {
+  const target = msg.mentions.users.first();
+
   msg.mentions.users.first().sendMessage(`You've recieved a warning in the ${msg.guild.name} Discord.\n**Reason:** ${args.toString().split(",").join(" ")}`);
   msg.channel.sendMessage(`Warned <@${user.id}>.`)
 
   try {
     const serverLog = new Discord.RichEmbed()
       .setAuthor(`${msg.author.username}#${msg.author.discriminator}`, msg.author.avatarURL)
-      .setColor(16769280)
+      .setColor(16711680)
       .setDescription(`**Member:** ${target.username}#${target.discriminator} (${target.id})\n**Action:** Warn\n**Reason:** ${args.toString().split(",").join(" ")}`)
       .setTimestamp();
     client.channels.get(`${msg.guildConf.logChannel}`).sendEmbed(serverLog, '', { disableEveryone: true });

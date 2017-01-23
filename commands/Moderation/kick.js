@@ -1,6 +1,8 @@
 const Discord = require('discord.js');
 
 exports.run = (client, msg, [user, ...args]) => {
+  const target = msg.mentions.users.first();
+
   msg.mentions.users.first().sendMessage(`You have been kicked from the ${msg.guild.name} Discord.\n**Reason:** ${args.toString().split(",").join(" ")}`);
   msg.guild.member(user).kick()
   .then(() => msg.channel.sendMessage(`**${user.username}#${user.discriminator}** was kicked.`))

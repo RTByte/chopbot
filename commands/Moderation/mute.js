@@ -1,16 +1,18 @@
 const Discord = require('discord.js');
 
 exports.run = (client, msg, [user, ...args]) => {
+  const target = msg.mentions.users.first();
+
   let role = msg.guild.roles.find("name", "Muted")
   msg.mentions.users.first().sendMessage(`You have been muted in the ${msg.guild.name} Discord.\n**Reason:** ${args.toString().split(",").join(" ")}`);
   msg.guild.member(user).addRole(role)
-  .then(() => msg.channel.sendMessage(`<@${target.id}> was muted.`))
+  .then(() => msg.channel.sendMessage(`Muted <@${user.id}>.`))
   .catch(e => msg.reply(`There was an error trying to mute: ${e}`));
 
   try {
     const serverLog = new Discord.RichEmbed()
       .setAuthor(`${msg.author.username}#${msg.author.discriminator}`, msg.author.avatarURL)
-      .setColor(16711680)
+      .setColor("#ff7200")
       .setDescription(`**Member:** ${target.username}#${target.discriminator} (${target.id})\n**Action:** Mute\n**Reason:** ${args.toString().split(",").join(" ")}`)
       .setTimestamp();
     client.channels.get(`${msg.guildConf.logChannel}`).sendEmbed(serverLog, '', { disableEveryone: true });

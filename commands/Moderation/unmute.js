@@ -1,6 +1,8 @@
 const Discord = require('discord.js');
 
 exports.run = (client, msg, [user]) => {
+  const target = msg.mentions.users.first();
+  
   let role = msg.guild.roles.find("name", "Muted")
   msg.mentions.users.first().sendMessage(`Your mute on the ${msg.guild.name} Discord has been lifted. You may now send messages.`);
   msg.guild.member(user).removeRole(role)
