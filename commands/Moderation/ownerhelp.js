@@ -5,35 +5,20 @@ exports.run = (client, msg, [cmd]) => {
 
   if(owners.indexOf(`${msg.author.id}`) > -1) {
     if (!cmd) {
-      msg.author.sendMessage('', {
-        embed: {
-          author: {
-            name: "Owner Commands",
-            icon_url: client.user.avatarURL
-          },
-          color: 16645629,
-          fields: [
-            {
-              name: "-conf <set|get|reset|list> [key] [what you want to set it to]",
-              value: 'Define per-sever configuration.\n\nAliases: *"config"*'
-            }
-          ]
-        }
-      });
+      const helpMessage = new Discord.RichEmbed()
+        .setAuthor("Owner Commands", client.user.avatarURL)
+        .setColor(166456)
+        .addField("-conf <set|get|reset|list> [key] [value]", "Define per-server configuration.\nAliases: *'config'*");
+      msg.author.sendEmbed(helpMessage, '', { disableEveryone: true });
       msg.reply("Sent you a DM with information.")
     } else if (client.commands.has(cmd)) {
       cmd = client.commands.get(cmd);
-      msg.author.sendMessage('', {
-        embed: {
-          author: {
-            name: `${cmd.help.name}`,
-            icon_url: client.user.avatarURL
-          },
-          color: 16645629,
-          title: `${cmd.help.description}`,
-          description: `\`${client.funcs.fullUsage(client, cmd)}\``
-        }
-      });
+      const helpMessageCMD = new Discord.RichEmbed()
+        .setAuthor(`${cmd.help.name}`, client.user.avatarURL)
+        .setColor(16645629)
+        .setTitle(`${cmd.help.description}`)
+        .setDescription(`\`${client.funcs.fullUsage(client, cmd)}\``);
+      msg.author.sendEmbed(helpMessageCMD, '', { disableEveryone: true });
       msg.reply("Sent you a DM with information.")
     }
   } else {

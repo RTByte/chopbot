@@ -5,17 +5,12 @@ exports.run = (client, msg, [user, ...args]) => {
   msg.channel.sendMessage(`Warned <@${user.id}>.`)
 
   try {
-    client.channels.get(`${msg.guildConf.logChannel}`).sendMessage('', {
-      embed: {
-        author: {
-          name: `${msg.author.username}#${msg.author.discriminator}`,
-          icon_url: msg.author.avatarURL
-        },
-        color: 16769280,
-        description: `**Member:** ${msg.mentions.users.first().username}#${msg.mentions.users.first().discriminator} (${msg.mentions.users.first().id})\n**Action:** Warn\n**Reason:** ${args.toString().split(",").join(" ")}`,
-        timestamp: new Date()
-      }
-    });
+    const serverLog = new Discord.RichEmbed()
+      .setAuthor(`${msg.author.username}#${msg.author.discriminator}`, msg.author.avatarURL)
+      .setColor(16769280)
+      .setDescription(`**Member:** ${target.username}#${target.discriminator} (${target.id})\n**Action:** Warn\n**Reason:** ${args.toString().split(",").join(" ")}`)
+      .setTimestamp();
+    client.channels.get(`${msg.guildConf.logChannel}`).sendEmbed(serverLog, '', { disableEveryone: true });
   } catch (err) {
     return;
   }
