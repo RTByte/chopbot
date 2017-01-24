@@ -14,5 +14,9 @@
   "prefix": {
     "data": "--",
     "type": "String"
+  },
+  "whitelistedRole": {
+    "data": "227569930566893569",
+    "type": "String"
   }
 }

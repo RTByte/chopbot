@@ -13,7 +13,7 @@ exports.run = (client, msg, [user]) => {
     const serverLog = new Discord.RichEmbed()
       .setAuthor(`${msg.author.username}#${msg.author.discriminator}`, msg.author.avatarURL)
       .setColor("#ff7200")
-      .setDescription(`**Member:** ${target.username}#${target.discriminator} (${target.id})\n**Action:** Unmute}`)
+      .setDescription(`**Member:** ${target.username}#${target.discriminator} (${target.id})\n**Action:** Unmute`)
       .setTimestamp();
     client.channels.get(`${msg.guildConf.logChannel}`).sendEmbed(serverLog, '', { disableEveryone: true });
   } catch (err) {
