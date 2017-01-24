@@ -6,5 +6,9 @@
   "logChannel": {
     "data": "270801509594169345",
     "type": "String"
+  },
+  "modRole": {
+    "data": "Helpers",
+    "type": "String"
   }
 }
