@@ -18,5 +18,9 @@
   "logChannel": {
     "type": "String",
     "data": "REPLACE WITH CHANNEL"
+  },
+  "whitelistedRole": {
+    "type": "String",
+    "data": "REPLACE WITH ROLE ID"
   }
 }
