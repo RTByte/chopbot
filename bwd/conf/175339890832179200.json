@@ -2,5 +2,9 @@
   "logChannel": {
     "data": "271049787782987776",
     "type": "String"
+  },
+  "whitelistedRole": {
+    "data": "179294179833151488",
+    "type": "String"
   }
 }
