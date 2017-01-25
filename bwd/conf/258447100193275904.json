@@ -10,5 +10,9 @@
   "modRole": {
     "data": "Helpers",
     "type": "String"
+  },
+  "whitelistedRole": {
+    "data": "258492340048625664",
+    "type": "String"
   }
 }
