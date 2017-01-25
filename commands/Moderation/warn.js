@@ -9,7 +9,7 @@ exports.run = (client, msg, [user, ...args]) => {
   try {
     const serverLog = new Discord.RichEmbed()
       .setAuthor(`${msg.author.username}#${msg.author.discriminator}`, msg.author.avatarURL)
-      .setColor(16711680)
+      .setColor("#fff200")
       .setDescription(`**Member:** ${target.username}#${target.discriminator} (${target.id})\n**Action:** Warn\n**Reason:** ${args.toString().split(",").join(" ")}`)
       .setTimestamp();
     client.channels.get(`${msg.guildConf.logChannel}`).sendEmbed(serverLog, '', { disableEveryone: true });
@@ -20,7 +20,7 @@ exports.run = (client, msg, [user, ...args]) => {
   // COMMAND LOGGER, LOGS TO #bot-log in ChopBot Dev
   const devLogger = new Discord.RichEmbed()
     .setAuthor(`${msg.guild.name}`, msg.guild.iconURL)
-    .setColor(16645629)
+    .setColor("#ffffff")
     .addField("Command Content", `${msg.content}`, true)
     .setTimestamp()
     .setFooter(`${msg.author.username}#${msg.author.discriminator}`, msg.author.avatarURL);

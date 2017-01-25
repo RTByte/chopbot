@@ -21,7 +21,7 @@ exports.run = (client, msg, [user, amount]) => {
   // COMMAND LOGGER, LOGS TO #bot-log in ChopBot Dev
   const devLogger = new Discord.RichEmbed()
     .setAuthor(`${msg.guild.name}`, msg.guild.iconURL)
-    .setColor(16645629)
+    .setColor("#ffffff")
     .addField("Command Content", `${msg.content}`, true)
     .setTimestamp()
     .setFooter(`${msg.author.username}#${msg.author.discriminator}`, msg.author.avatarURL);

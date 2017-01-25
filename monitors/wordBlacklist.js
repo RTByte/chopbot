@@ -17,7 +17,7 @@ exports.run = (client, msg) => {
         try {
           const blacklistEmbed = new Discord.RichEmbed()
             .setAuthor(`#${msg.channel.name}`, msg.guild.iconURL)
-            .setColor(16711680)
+            .setColor("#ff0000")
             .addField("Blacklisted word detected. Message deleted.", `\`${msg.content}\``, true)
             .setTimestamp()
             .setFooter(`${msg.author.username}#${msg.author.discriminator}`, msg.author.avatarURL)
