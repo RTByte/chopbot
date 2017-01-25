@@ -21,6 +21,6 @@
   },
   "whitelistedRole": {
     "type": "String",
-    "data": "REPLACE WITH ROLE ID"
+    "data": "REPLACE WITH ROLE"
   }
 }

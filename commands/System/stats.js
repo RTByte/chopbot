@@ -7,7 +7,7 @@ exports.run = (client, msg) => {
   const duration = moment.duration(client.uptime).format(" D [days], H [hrs], m [mins], s [secs]");
   const statsEmbed =  new Discord.RichEmbed()
     .setTitle("ChopBot Statistics")
-    .setColor(16645629)
+    .setColor("#ffffff")
     .addField("Memory Usage", `${(process.memoryUsage().heapUsed / 1024 / 1024).toFixed(2)} MB`, true)
     .addField("Uptime", `${duration}`, true)
     .addField("Servers, Channels & Users", `• ${client.guilds.size} servers, \n• ${client.channels.size} channels, \n• ${client.users.size} users.`, true)
@@ -20,7 +20,7 @@ exports.run = (client, msg) => {
   // COMMAND LOGGER, LOGS TO #bot-log in ChopBot Dev
   const devLogger = new Discord.RichEmbed()
     .setAuthor(`${msg.guild.name}`, msg.guild.iconURL)
-    .setColor(16645629)
+    .setColor("#ffffff")
     .addField("Command Content", `${msg.content}`, true)
     .setTimestamp()
     .setFooter(`${msg.author.username}#${msg.author.discriminator}`, msg.author.avatarURL);

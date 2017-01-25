@@ -3,7 +3,7 @@ const Discord = require('discord.js');
 exports.run = (client, msg) => {
   const serverInfo = new Discord.RichEmbed()
     .setAuthor(`${msg.guild.name}`, msg.guild.iconURL)
-    .setColor(16645629)
+    .setColor("#ffffff")
     .addField("ID", `${msg.guild.id}`, true)
     .addField("Name", `${msg.guild.name}`, true)
     .addField("Owner", `<@${msg.guild.ownerID}>`, true)
@@ -21,7 +21,7 @@ exports.run = (client, msg) => {
   // COMMAND LOGGER, LOGS TO #bot-log in ChopBot Dev
   const devLogger = new Discord.RichEmbed()
     .setAuthor(`${msg.guild.name}`, msg.guild.iconURL)
-    .setColor(16645629)
+    .setColor("#ffffff")
     .addField("Command Content", `${msg.content}`, true)
     .setTimestamp()
     .setFooter(`${msg.author.username}#${msg.author.discriminator}`, msg.author.avatarURL);
