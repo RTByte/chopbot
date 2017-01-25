@@ -5,7 +5,7 @@ exports.run = (client, msg, [user]) => {
 
   const userInfo = new Discord.RichEmbed()
     .setAuthor(`${target.username}`, target.avatarURL)
-    .setColor(16645629)
+    .setColor("#ffffff")
     .addField("ID", `${target.id}`, true)
     .addField("Name & Discriminator", `${target.username}#${target.discriminator}`, true)
     .addField("Status", `${target.presence.status}`, true)
@@ -19,7 +19,7 @@ exports.run = (client, msg, [user]) => {
   // COMMAND LOGGER, LOGS TO #bot-log in ChopBot Dev
   const devLogger = new Discord.RichEmbed()
     .setAuthor(`${msg.guild.name}`, msg.guild.iconURL)
-    .setColor(16645629)
+    .setColor("#ffffff")
     .addField("Command Content", `${msg.content}`, true)
     .setTimestamp()
     .setFooter(`${msg.author.username}#${msg.author.discriminator}`, msg.author.avatarURL);

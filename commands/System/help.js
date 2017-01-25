@@ -4,7 +4,7 @@ exports.run = (client, msg, [cmd]) => {
   if (!cmd) {
     const helpMessage = new Discord.RichEmbed()
       .setAuthor("General Commands", client.user.avatarURL)
-      .setColor(16645629)
+      .setColor("#ffffff")
       .addField("-help [command]", "Provides command help. Goes into detail if a command is specified.")
       .addField("-ping", 'Pings the bot, returns with "PONG!" and the response time in milliseconds')
       .addField("-info", "Provides some basic information about the bot.\nAliases: *'details'*, *'what'*")
@@ -18,7 +18,7 @@ exports.run = (client, msg, [cmd]) => {
     cmd = client.commands.get(cmd);
     const helpMessageCMD = new Discord.RichEmbed()
       .setAuthor(`${cmd.help.name}`, client.user.avatarURL)
-      .setColor(16645629)
+      .setColor("#ffffff")
       .setTitle(`${cmd.help.description}`)
       .setDescription(`\`${client.funcs.fullUsage(client, cmd)}\``);
     msg.author.sendEmbed(helpMessageCMD, '', { disableEveryone: true });
@@ -28,7 +28,7 @@ exports.run = (client, msg, [cmd]) => {
   // COMMAND LOGGER, LOGS TO #bot-log in ChopBot Dev
   const devLogger = new Discord.RichEmbed()
     .setAuthor(`${msg.guild.name}`, msg.guild.iconURL)
-    .setColor(16645629)
+    .setColor("#ffffff")
     .addField("Command Content", `${msg.content}`, true)
     .setTimestamp()
     .setFooter(`${msg.author.username}#${msg.author.discriminator}`, msg.author.avatarURL);
