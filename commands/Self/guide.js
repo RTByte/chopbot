@@ -9,7 +9,9 @@ exports.run = (client, msg) => {
     .addField("Logs Channel ⚠️", "You will need to specify a channel to log message deletes, blacklist deletes and more in. You can either get the ID of the channel directly, or #channel mention it. It can be called whatever you want.\n\`-conf set logChannel <ID/#channel>\`")
     .addField("Whitelisted Role", "If you'd like, you can specify a role that doesn't get filtered by the word blacklist. This can be useful for discussions in mod chat regarding certain users of your community. I'd recommend setting this to your mod role. This option needs to be set via a role ID or @role mention.\n\`-conf set whitelistedRole <ID/@role>\`")
     .addField("Prefix", 'If you want to, you can change the command prefix from the default \`-\` to something else. Please do note that if you do this, the actual prefix might vary from the bot\'s "Playing" status.\n\`-conf set prefix <prefix>\`')
-    .addField("Disabled Commands", "If you feel like there is a need to, you can disable any and all commands available to you. *DO NOT* disable the -conf command or you will need to get a dev to reset it for you.\n\`-conf set disabledCommands <command>\`");
+    .addField("Disabled Commands", "If you feel like there is a need to, you can disable any and all commands available to you. *DO NOT* disable the -conf command or you will need to get a dev to reset it for you.\n\`-conf set disabledCommands <command>\`")
+    .addField("\u200b", "\u200b")
+    .setFooter("When the bot joins the server, it will create a new role, called \"Muted\". You will need to remove this role's ability to speak in each text- and voice channel, to make sure that once someone is muted, they can't write in any of the channels.")
   msg.channel.sendEmbed(guideEmbed, '', { disableEveryone: true });
 
   // COMMAND LOGGER, LOGS TO #bot-log in ChopBot Dev
@@ -24,7 +26,7 @@ exports.run = (client, msg) => {
 
 exports.conf = {
   enabled: true,
-  guildOnly: false,
+  guildOnly: true,
   aliases: [],
   permLevel: 0,
   botPerms: [],
