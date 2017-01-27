@@ -11,7 +11,8 @@ exports.run = (client, msg, [cmd]) => {
       .addField("-8ball <question>?", "Magic 8-Ball, does exactly what the toy does (Results may vary).\nAliases: *'8'*, *'magic'*, *'mirror'*, *'magicconch'*")
       .addField("-choice <first choice>, <second choice>", "Makes a decision for you given some choices.\nAliases: *'choose'*, *'decide'*")
       .addField("-coinflip", "Flips a (pseudo) coin. 🙂 for heads, 🙃 for tails.\nAliases: *'coin'*, *'flip'*")
-      .addField("-servers", "Links to all RT Family Discord servers\nAliases: *'serv'*, *'rtfam'*");
+      .addField("-servers", "Links to all RT Family Discord servers\nAliases: *'serv'*, *'rtfam'*")
+      .addField("-report <user> <reason>", "Reports mentioned user to the mod team, reason required. Screenshots appreciated.")
     msg.author.sendEmbed(helpMessage, '', { disableEveryone: true });
     msg.reply("Sent you a DM with information.")
   } else if (client.commands.has(cmd)) {
