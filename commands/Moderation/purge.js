@@ -30,7 +30,7 @@ exports.run = (client, msg, [user, amount]) => {
 
 exports.conf = {
   enabled: true,
-  guildOnly: false,
+  guildOnly: true,
   selfbot: false,
   aliases: ["prune", "p"],
   permLevel: 2,

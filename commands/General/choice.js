@@ -22,7 +22,7 @@ exports.run = (client, msg, choices) => {
 exports.conf = {
   enabled: true,
   selfbot: false,
-  guildOnly: false,
+  guildOnly: true,
   aliases: ['choose', 'decide'],
   permLevel: 0,
   botPerms: [],

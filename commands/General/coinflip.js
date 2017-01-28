@@ -16,7 +16,7 @@ exports.run = (client, msg) => {
 exports.conf = {
   enabled: true,
   selfbot: false,
-  guildOnly: false,
+  guildOnly: true,
   aliases: ['coin', "flip"],
   permLevel: 0,
   botPerms: [],

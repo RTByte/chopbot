@@ -8,6 +8,9 @@ exports.init = (client) => {
   if (!client.funcs.confs.hasKey("whitelistedRole")) {
     client.funcs.confs.addKey("whitelistedRole", "REPLACE WITH ROLE ID");
   }
+  if (!client.funcs.confs.hasKey("modChat")) {
+    client.funcs.confs.addKey("modChat", "REPLACW WITH CHANNEL ID");
+  }
 };
 
 exports.run = (client, msg, [action, key, ...value]) => {
