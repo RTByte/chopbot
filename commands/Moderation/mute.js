@@ -4,7 +4,8 @@ exports.run = (client, msg, [user, ...args]) => {
   const target = msg.mentions.users.first();
 
   let role = msg.guild.roles.find("name", "Muted")
-  msg.mentions.users.first().sendMessage(`You have been muted in the ${msg.guild.name} Discord.\n**Reason:** ${args.toString().split(",").join(" ")}`);
+  client.fetchUser(target.id)
+  target.sendMessage(`You have been muted in the ${msg.guild.name} Discord.\n**Reason:** ${args.toString().split(",").join(" ")}`);
   msg.guild.member(user).addRole(role)
   .then(() => msg.channel.sendMessage(`Muted <@${user.id}>.`))
   .catch(e => msg.reply(`There was an error trying to mute: ${e}`));
