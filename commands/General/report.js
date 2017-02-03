@@ -3,7 +3,7 @@ const Discord = require('discord.js');
 exports.run = (client, msg, [user, ...args]) => {
   const target = msg.mentions.users.first();
 
-  msg.channel.sendMessage(`Report recieved.`)
+  msg.channel.sendMessage(`Report received.`)
 
   try {
     const modChat = new Discord.RichEmbed()

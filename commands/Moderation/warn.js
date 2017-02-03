@@ -3,7 +3,7 @@ const Discord = require('discord.js');
 exports.run = (client, msg, [user, ...args]) => {
   const target = msg.mentions.users.first();
 
-  msg.mentions.users.first().sendMessage(`You've recieved a warning in the ${msg.guild.name} Discord.\n**Reason:** ${args.toString().split(",").join(" ")}`);
+  msg.mentions.users.first().sendMessage(`You've received a warning in the ${msg.guild.name} Discord.\n**Reason:** ${args.toString().split(",").join(" ")}`);
   msg.channel.sendMessage(`Warned <@${user.id}>.`)
 
   try {
