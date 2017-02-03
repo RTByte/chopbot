@@ -4,7 +4,8 @@ exports.run = (client, msg, [user]) => {
   const target = msg.mentions.users.first();
 
   let role = msg.guild.roles.find("name", "Muted")
-  msg.mentions.users.first().sendMessage(`Your mute on the ${msg.guild.name} Discord has been lifted. You may now send messages.`);
+  client.fetchUser(target.id)
+  target.sendMessage(`Your mute on the ${msg.guild.name} Discord has been lifted. You may now send messages.`);
   msg.guild.member(user).removeRole(role)
   .then(() => msg.channel.sendMessage(`<@${user.id}> was unmuted.`))
   .catch(e => msg.reply(`There was an error trying to unmute: ${e}`));

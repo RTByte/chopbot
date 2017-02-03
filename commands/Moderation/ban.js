@@ -3,7 +3,8 @@ const Discord = require('discord.js');
 exports.run = (client, msg, [user, ...args]) => {
   const target = msg.mentions.users.first();
 
-  msg.mentions.users.first().sendMessage(`You have been banned from the ${msg.guild.name} Discord.\n**Reason:** ${args.toString().split(",").join(" ")}\n\nTo appeal your ban, please DM the owner of the server you were banned from, listed below.\n<@${msg.guild.owner.id}>`)
+  client.fetchUser(target.id)
+  target.sendMessage(`You have been banned from the ${msg.guild.name} Discord.\n**Reason:** ${args.toString().split(",").join(" ")}\n\nTo appeal your ban, please respond to this message, detailing why you think you should be unbanned. The owner of the server you were banned from will get back to you when possible.`)
   msg.guild.member(user).ban()
   .then(() => msg.channel.sendMessage(`**${user.username}#${user.discriminator}** was banned.`))
   .catch(e => msg.reply(`There was an error trying to ban: ${e}`));

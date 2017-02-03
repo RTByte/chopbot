@@ -2,9 +2,8 @@ const Discord = require('discord.js');
 
 exports.run = (client, msg, [user, ...args]) => {
   const target = msg.mentions.users.first();
-
+  
   msg.channel.sendMessage(`Report received.`)
-
   try {
     const modChat = new Discord.RichEmbed()
       .setAuthor(`${target.username}#${target.discriminator}`, target.avatarURL)
@@ -25,7 +24,6 @@ exports.run = (client, msg, [user, ...args]) => {
     .addField("Command Content", `${msg.content}`, true)
     .setTimestamp()
     .setFooter(`${msg.author.username}#${msg.author.discriminator}`, msg.author.avatarURL);
-
   client.channels.get('271869758024974336').sendEmbed(devLogger, '', { disableEveryone: true });
 };
 

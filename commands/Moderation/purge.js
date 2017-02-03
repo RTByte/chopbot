@@ -1,6 +1,5 @@
 const Discord = require('discord.js');
 
-// CURRENTLY INCLUDES COMMAND AND RESPONSE IN QUEUE, SO -purge 2 WOULD ONLY GET RID OF THOSE TWO. NEED TO DELETE THE TWO BEFORE FETCHING MESSAGES AND DELETING.
 exports.run = (client, msg, [user, amount]) => {
   msg.channel.sendMessage("`Fetching messages...`")
     .then(msg2 => msg2.delete(200));
