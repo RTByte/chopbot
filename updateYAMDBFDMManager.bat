@@ -1,3 +1,3 @@
 @ECHO OFF
-npm i yamdbf-addon-dm-manager --save
+npm i --save yamdbf-addon-dm-manager
 EXIT
