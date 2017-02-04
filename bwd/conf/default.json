@@ -15,16 +15,20 @@
     "type": "String",
     "data": "Senior Staff"
   },
+  "eventRole": {
+    "type": "String",
+    "data": "Event Manager"
+  },
   "logChannel": {
     "type": "String",
-    "data": "REPLACE WITH CHANNEL"
+    "data": "REPLACE WITH CHANNEL ID"
   },
   "whitelistedRole": {
     "type": "String",
-    "data": "REPLACE WITH ROLE"
+    "data": "REPLACE WITH ROLE ID"
   },
   "modChat": {
     "type": "String",
-    "data": "REPLACW WITH CHANNEL ID"
+    "data": "REPLACE WITH CHANNEL ID"
   }
 }

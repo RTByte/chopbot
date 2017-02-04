@@ -12,8 +12,12 @@ exports.init = (client) => {
   defaultConf = {
     prefix: { type: "String", data: client.config.prefix },
     disabledCommands: { type: "Array", data: [] },
-    modRole: { type: "String", data: "Mods" },
-    adminRole: { type: "String", data: "Devs" },
+    modRole: { type: "String", data: "Server Staff" },
+    adminRole: { type: "String", data: "Senior Staff" },
+    eventRole: { type: "String", data: "Event Manager" },
+    logChannel: { type: "String", data: "REPLACE WITH CHANNEL ID" },
+    whitelistedRole: { type: "String", data: "REPLACE WITH ROLE ID" },
+    modChat: { type: "String", data: "REPLACE WITH CHANNEL ID" },
   };
   fs.ensureFileSync(`${dataDir}${path.sep}${defaultFile}`);
   try {

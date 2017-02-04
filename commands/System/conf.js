@@ -1,18 +1,6 @@
 const util = require("util").inspect;
 const Discord = require('discord.js');
 
-exports.init = (client) => {
-  if (!client.funcs.confs.hasKey("logChannel")) {
-    client.funcs.confs.addKey("logChannel", "REPLACE WITH CHANNEL ID");
-  }
-  if (!client.funcs.confs.hasKey("whitelistedRole")) {
-    client.funcs.confs.addKey("whitelistedRole", "REPLACE WITH ROLE ID");
-  }
-  if (!client.funcs.confs.hasKey("modChat")) {
-    client.funcs.confs.addKey("modChat", "REPLACW WITH CHANNEL ID");
-  }
-};
-
 exports.run = (client, msg, [action, key, ...value]) => {
   if (action === "list") {
     msg.channel.sendCode("json", util(msg.guildConf));
