@@ -5,7 +5,7 @@ exports.run = (client, msg, [user]) => {
 
   let role = msg.guild.roles.find("name", "Muted")
   client.fetchUser(target.id)
-  target.sendMessage(`Your mute on the ${msg.guild.name} Discord has been lifted. You may now send messages.`);
+  target.sendMessage(`Your mute on the ${msg.guild.name} Discord has been lifted. You may now send messages.\n\nThis action was performed manually by a moderator of the ${msg.guild.name} Discord. If you are confused, or need help, feel free to respond to this message and someone will get back to you soon.`);
   msg.guild.member(user).removeRole(role)
   .then(() => msg.channel.sendMessage(`<@${user.id}> was unmuted.`))
   .catch(e => msg.reply(`There was an error trying to unmute: ${e}`));
