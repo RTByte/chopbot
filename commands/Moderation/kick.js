@@ -4,7 +4,7 @@ exports.run = (client, msg, [user, ...args]) => {
   const target = msg.mentions.users.first();
 
   client.fetchUser(target.id)
-  target.sendMessage(`You have been kicked from the ${msg.guild.name} Discord.\n**Reason:** ${args.toString().split(",").join(" ")}`);
+  target.sendMessage(`You have been kicked from the ${msg.guild.name} Discord.\n**Reason:** ${args.toString().split(",").join(" ")}.\n\nThis action was performed manually by a moderator of the ${msg.guild.name} Discord. If you are confused, or need help, feel free to respond to this message and someone will get back to you soon.`);
   msg.guild.member(user).kick()
   .then(() => msg.channel.sendMessage(`**${user.username}#${user.discriminator}** was kicked.`))
   .catch(e => msg.reply(`There was an error trying to kick: ${e}`));

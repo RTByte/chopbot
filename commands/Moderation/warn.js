@@ -4,7 +4,7 @@ exports.run = (client, msg, [user, ...args]) => {
   const target = msg.mentions.users.first();
 
   client.fetchUser(target.id)
-  target.sendMessage(`You've received a warning in the ${msg.guild.name} Discord.\n**Reason:** ${args.toString().split(",").join(" ")}`);
+  target.sendMessage(`You've received a warning in the ${msg.guild.name} Discord.\n**Reason:** ${args.toString().split(",").join(" ")}.\n\nThis action was performed manually by a moderator of the ${msg.guild.name} Discord. If you are confused, or need help, feel free to respond to this message and someone will get back to you soon.`);
   msg.channel.sendMessage(`Warned <@${user.id}>.`)
 
   try {
