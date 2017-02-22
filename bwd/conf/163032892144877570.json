@@ -18,5 +18,11 @@
   "whitelistedRole": {
     "data": "228271695541043201",
     "type": "String"
+  },
+  "disabledCommands": {
+    "data": [
+      "report"
+    ],
+    "type": "Array"
   }
 }
