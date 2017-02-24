@@ -7,7 +7,7 @@ exports.run = (client, msg) => {
       const rasMention = new Discord.RichEmbed()
         .setAuthor(`${msg.guild.name}`, msg.guild.iconURL)
         .setColor("#ffffff")
-        .addField(`Mention Detected (${msg.channel})`, `${msg.content}`, true)
+        .addField(`Mention Detected (#${msg.channel.name})`, `${msg.content}`, true)
         .setTimestamp()
         .setFooter(`${msg.author.username}#${msg.author.discriminator}`, msg.author.avatarURL);
       client.channels.get(`283746370421260289`).sendEmbed(rasMention, '', { disableEveryone: true });
@@ -20,7 +20,7 @@ exports.run = (client, msg) => {
       const kilMention = new Discord.RichEmbed()
         .setAuthor(`${msg.guild.name}`, msg.guild.iconURL)
         .setColor("#ffffff")
-        .addField(`Mention Detected (${msg.channel})`, `${msg.content}`, true)
+        .addField(`Mention Detected (#${msg.channel.name})`, `${msg.content}`, true)
         .setTimestamp()
         .setFooter(`${msg.author.username}#${msg.author.discriminator}`, msg.author.avatarURL);
       client.channels.get(`283746370421260289`).sendEmbed(kilMention, '', { disableEveryone: true });
@@ -33,7 +33,7 @@ exports.run = (client, msg) => {
       const sugMention = new Discord.RichEmbed()
         .setAuthor(`${msg.guild.name}`, msg.guild.iconURL)
         .setColor("#ffffff")
-        .addField(`Mention Detected (${msg.channel})`, `${msg.content}`, true)
+        .addField(`Mention Detected (#${msg.channel.name})`, `${msg.content}`, true)
         .setTimestamp()
         .setFooter(`${msg.author.username}#${msg.author.discriminator}`, msg.author.avatarURL);
       client.channels.get(`283746370421260289`).sendEmbed(sugMention, '', { disableEveryone: true });
