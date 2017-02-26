@@ -41,7 +41,7 @@ exports.run = (client, msg) => {
       return;
     }
   }
-  if(msg.content.toLowerCase().includes("stick")) {
+  if(msg.content.toLowerCase().includes("stickman")) {
     try {
       const stickMention = new Discord.RichEmbed()
         .setAuthor(`${msg.guild.name}`, msg.guild.iconURL)

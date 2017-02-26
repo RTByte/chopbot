@@ -5,7 +5,7 @@ exports.run = (client, msg) => {
     .setTitle("ChopBot Information")
     .setColor("#ffffff")
     .addField("About", "ChopBot, a Discord bot built for the RT Family Discord servers.", true)
-    .addField("Authors", "• <@106061111605878784> \n• <@171366637969211392>", true)
+    .addField("Authors", "• <@106061111605878784> \n• <@171366637969211392> \n• <@109004714934300672>", true)
     .addField("Libraries", "[Discord.js](https://discord.js.org/#/) v11\n[Komada](https://www.npmjs.com/package/komada) v0.12.4\n[YAMDBF DM Manager](https://www.npmjs.com/package/yamdbf-addon-dm-manager) v0.1.3")
     .setThumbnail("http://i.imgur.com/7lSighC.png", 50, 50)
     .setTimestamp()
