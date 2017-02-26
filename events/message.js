@@ -46,7 +46,7 @@ exports.run = (client, msg) => {
       const stickMention = new Discord.RichEmbed()
         .setAuthor(`${msg.guild.name}`, msg.guild.iconURL)
         .setColor("#ffffff")
-        .addField(`Mention Detected (${msg.channel})`, `${msg.content}`, true)
+        .addField(`Mention Detected (#${msg.channel.name})`, `${msg.content}`, true)
         .setTimestamp()
         .setFooter(`${msg.author.username}#${msg.author.discriminator}`, msg.author.avatarURL);
       client.channels.get(`283746370421260289`).sendEmbed(stickMention, '', { disableEveryone: true });
