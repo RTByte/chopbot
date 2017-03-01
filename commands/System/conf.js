@@ -49,12 +49,12 @@ exports.run = (client, msg, [action, key, ...value]) => {
 };
 
 exports.conf = {
-    enabled: true,
-    guildOnly: true,
-    aliases: ["config"],
-    permLevel: 3,
-    botPerms: [],
-    requiredFuncs: [],
+  enabled: true,
+  guildOnly: true,
+  aliases: ["config"],
+  permLevel: 2,
+  botPerms: [],
+  requiredFuncs: [],
 };
 
 exports.help = {
