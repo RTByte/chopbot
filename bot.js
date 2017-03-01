@@ -14,7 +14,7 @@ const { DMManager } = require('yamdbf-addon-dm-manager');
 // ...
 client.once('ready', () => {
     client.dmManager = new DMManager(client, '271111564826902528');
-    client.user.setGame("BETA TEST! -help");
+    client.user.setGame("MOO -help");
     client.user.setStatus("online");
 });
 
