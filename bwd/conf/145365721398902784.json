@@ -1,0 +1,22 @@
+{
+  "modRole": {
+    "data": "Server Staff",
+    "type": "String"
+  },
+  "adminRole": {
+    "data": "Server Staff",
+    "type": "String"
+  },
+  "modChat": {
+    "data": "189859993065881600",
+    "type": "String"
+  },
+  "logChannel": {
+    "data": "151148353051164672",
+    "type": "String"
+  },
+  "whitelistedRole": {
+    "data": "217804787821969418",
+    "type": "String"
+  }
+}
