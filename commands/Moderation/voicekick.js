@@ -22,6 +22,31 @@ exports.run = (client, msg, [user, ...args]) => {
         }
         //targetID.sendMessage(`You have been kicked from ${originChannel.name} voice chat.\n**Reason:** ${args.toString().split(",").join(" ")}.\n\nThis action was performed manually by a moderator of the ${msg.guild.name} Discord. If you are confused, or need help, feel free to respond to this message and someone will get back to you soon.`);
     }
+
+    try {
+        const serverLog = new Discord.RichEmbed()
+            .setAuthor(`${msg.author.username}#${msg.author.discriminator}`, msg.author.avatarURL)
+            .setColor("#ff0000")
+            .setDescription(`**Member:** ${target.username}#${target.discriminator} (${target.id})\n**Action:** Voice Kick\n**Reason:** ${args.toString().split(",").join(" ")}`)
+            .setTimestamp();
+        client.channels.get(`${msg.guildConf.logChannel}`).sendEmbed(serverLog, '', {
+            disableEveryone: true
+        });
+    } catch (err) {
+        return;
+    }
+
+    // COMMAND LOGGER, LOGS TO #bot-log in ChopBot Dev
+    const devLogger = new Discord.RichEmbed()
+        .setAuthor(`${msg.guild.name}`, msg.guild.iconURL)
+        .setColor("#ffffff")
+        .addField("Command Content", `${msg.content}`, true)
+        .setTimestamp()
+        .setFooter(`${msg.author.username}#${msg.author.discriminator}`, msg.author.avatarURL);
+    client.channels.get('271869758024974336').sendEmbed(devLogger, '', {
+        disableEveryone: true
+    });
+
 };
 
 exports.conf = {
