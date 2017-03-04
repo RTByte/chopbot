@@ -3,16 +3,16 @@ const Discord = require('discord.js');
 exports.run = (client, msg, [user, ...args]) => {
     const target = msg.mentions.users.first();
     const targetID = msg.guild.members.get(target.id);
-    let role = msg.guild.roles.find("name", "Voice Chat Banned");
+    let role = msg.guild.roles.find("name", "VC Banned");
 
     //Kick user from voice channels if they're in one
-    if(!targetID.voiceChannel){
+    if (!targetID.voiceChannel) {
         //Check to see if user is in a voice channel
-        msg.channel.sendMessage(`\`\`\`${target.username} is not in a Voice channel.\`\`\``);
+        msg.channel.sendMessage(`${target.username} is not in a voice channel.`);
     } else {
         var originChannel = targetID.voiceChannel;
         //Creating temporary channel to move user to
-        try{
+        try {
             msg.guild.createChannel(`kick${target.username}`, `voice`)
                 .then(kickChannel => {
                     targetID.setVoiceChannel(kickChannel);
@@ -23,16 +23,16 @@ exports.run = (client, msg, [user, ...args]) => {
                     }, 250);
                 });
         } catch (e) {
-            msg.channel.sendMessage(`\`\`\`I couldn't kick ${target.username} from ${originChannel.name} Voice Chat.\`\`\``);
+            msg.channel.sendMessage(`I couldn't kick ${target.username} from ${originChannel.name} voice chat.`);
         }
     }
 
     //Giving the user the Voice Chat Banned role
     msg.guild.member(targetID).addRole(role)
-        .then(() => msg.channel.sendMessage(`\`\`\`${target.username} banned from ${msg.guild.name} Voice Chat.\`\`\``))
-        .catch(e => msg.reply(`There was an error trying to Voice Chat Ban ${target.username} ${e}`));
+        .then(() => msg.channel.sendMessage(`Voice-banned ${target.username}.`))
+        .catch(e => msg.reply(`There was an error trying to voice-ban ${target.username} (${e})`));
     //DMing the user to inform them of their voice chat ban
-    targetID.sendMessage(`You have been banned from ${msg.guild.name} voice chat.\n**Reason:** ${args.toString().split(",").join(" ")}.\n\nThis action was performed manually by a moderator of the ${msg.guild.name} Discord. If you are confused, or need help, feel free to respond to this message and someone will get back to you soon.`);
+    targetID.sendMessage(`You have been voice-banned from the ${msg.guild.name} Discord. You will not be able to connect to any voice channel until this has been lifted.\n**Reason:** ${args.toString().split(",").join(" ")}.\n\nThis action was performed manually by a moderator of the ${msg.guild.name} Discord. If you are confused, or need help, feel free to respond to this message and someone will get back to you soon.`);
 
 
     //Local moderation log
@@ -40,7 +40,7 @@ exports.run = (client, msg, [user, ...args]) => {
         const serverLog = new Discord.RichEmbed()
             .setAuthor(`${msg.author.username}#${msg.author.discriminator}`, msg.author.avatarURL)
             .setColor("#ff0000")
-            .setDescription(`**Member:** ${target.username}#${target.discriminator} (${target.id})\n**Action:** Voice Ban\n**Reason:** ${args.toString().split(",").join(" ")}`)
+            .setDescription(`**Member:** ${target.username}#${target.discriminator} (${target.id})\n**Action:** Voice-ban\n**Reason:** ${args.toString().split(",").join(" ")}`)
             .setTimestamp();
         client.channels.get(`${msg.guildConf.logChannel}`).sendEmbed(serverLog, '', {
             disableEveryone: true
@@ -65,14 +65,14 @@ exports.run = (client, msg, [user, ...args]) => {
 exports.conf = {
     enabled: true,
     guildOnly: true,
-    aliases: ["vban", "voiceban", "vb"],
+    aliases: ["vban", "vb"],
     permLevel: 2,
     botPerms: ["MANAGE_CHANNELS", "MOVE_MEMBERS", "MANAGE_ROLES_OR_PERMISSIONS"],
     requiredFuncs: [],
 };
 
 exports.help = {
-    name: "VoiceBan",
+    name: "vcban",
     description: "Bans user from entering voice channels.",
     usage: "<user:user> <reason:str> [...]",
     usageDelim: " ",

@@ -3,21 +3,21 @@ const Discord = require('discord.js');
 exports.run = (client, msg, [user]) => {
     const target = msg.mentions.users.first();
     const targetID = msg.guild.members.get(target.id);
-    let role = msg.guild.roles.find("name", "Voice Chat Banned");
+    let role = msg.guild.roles.find("name", "VC Banned");
 
     //Removing Voice Chat Banned role from user
     msg.guild.member(targetID).removeRole(role)
-        .then(() => msg.channel.sendMessage(`\`\`\`${target.username} unbanned from ${msg.guild.name} Voice Chat.\`\`\``))
-        .catch(e => msg.reply(`There was an error trying to remove ${target.username}'s Voice Chat Ban ' ${e}`));
+        .then(() => msg.channel.sendMessage(`Voice-unbanned ${target.username}.`))
+        .catch(e => msg.reply(`There was an error trying to remove ${target.username}'s voice-ban (${e})`));
     //DMing the user to inform them of their ban being lifted
-    targetID.sendMessage(`You have been unbanned from ${msg.guild.name} voice chat.`);
+    targetID.sendMessage(`Your voice-ban on the ${msg.guild.name} has been lifted. You can connect to voice channels again.`);
 
 
     try {
         const serverLog = new Discord.RichEmbed()
             .setAuthor(`${msg.author.username}#${msg.author.discriminator}`, msg.author.avatarURL)
             .setColor("#ff7200")
-            .setDescription(`**Member:** ${target.username}#${target.discriminator} (${target.id})\n**Action:** UnVoiceBan`)
+            .setDescription(`**Member:** ${target.username}#${target.discriminator} (${target.id})\n**Action:** Voice-unban`)
             .setTimestamp();
         client.channels.get(`${msg.guildConf.logChannel}`).sendEmbed(serverLog, '', {
             disableEveryone: true
@@ -41,14 +41,14 @@ exports.run = (client, msg, [user]) => {
 exports.conf = {
     enabled: true,
     guildOnly: true,
-    aliases: ["uvban", "unvoiceban", "uvb"],
+    aliases: ["uvban", "uvb"],
     permLevel: 2,
     botPerms: ["MANAGE_ROLES_OR_PERMISSIONS"],
     requiredFuncs: []
 };
 
 exports.help = {
-    name: "UnVoiceBan",
+    name: "uvcban",
     description: "Unbans user from server's voice channels",
     usage: "<user:user>",
     usageDelim: ""
