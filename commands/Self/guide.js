@@ -12,7 +12,7 @@ exports.run = (client, msg) => {
         .addField("Prefix", 'If you want to, you can change the command prefix from the default \`-\` to something else. Please do note that if you do this, the actual prefix might vary from the bot\'s "Playing" status.\n\`-conf set prefix <prefix>\`')
         .addField("Disabled Commands", "If you feel like there is a need to, you can disable any and all commands available to you. *DO NOT* disable the -conf command or you will need to get a dev to reset it for you.\n\`-conf set disabledCommands <command>\`")
         .addField("\u200b", "\u200b")
-        .setFooter("When the bot joins the server, it will create a new role, called \"Muted\". You will need to remove this role's ability to speak in each text- and voice channel, to make sure that once someone is muted, they are *actually* muted.", "http://i.imgur.com/TdXA2dY.png")
+        .setFooter("When the bot joins the server, it will create two new roles, called \"Muted\" and \"Voice Chat Banned\". You will need to remove the \"Muted\" role's ability to Speak in each text- and voice channel, and remove the \"Voice Chat Banned\" role's ability to Connect to Voice Channels, to make sure that once someone is muted or voice chat banned, they are *actually* muted or banned.", "http://i.imgur.com/TdXA2dY.png")
     msg.channel.sendEmbed(guideEmbed, '', {
         disableEveryone: true
     });
