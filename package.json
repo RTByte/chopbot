@@ -12,6 +12,6 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Rasmus Gerdin, Stick name placeholder, Killian Higgins",
+  "author": "Rasmus Gerdin, Michael Cumbers, Killian Higgins",
   "license": "ISC"
 }
