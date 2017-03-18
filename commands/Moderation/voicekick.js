@@ -25,7 +25,7 @@ exports.run = (client, msg, [user, ...args]) => {
         } catch (e) {
             msg.channel.sendMessage(`I couldn't kick ${target.username} from ${originChannel.name} voice chat.`);
         }
-        //targetID.sendMessage(`You have been kicked from ${originChannel.name} voice chat.\n**Reason:** ${args.toString().split(",").join(" ")}.\n\nThis action was performed manually by a moderator of the ${msg.guild.name} Discord. If you are confused, or need help, feel free to respond to this message and someone will get back to you soon.`);
+        target.sendMessage(`You have been kicked from ${originChannel.name} voice chat.\n**Reason:** ${args.toString().split(",").join(" ")}.\n\nThis action was performed manually by a moderator of the ${msg.guild.name} Discord. If you are confused, or need help, feel free to respond to this message and someone will get back to you soon.`);
     }
 
     //Local moderation log

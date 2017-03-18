@@ -30,5 +30,9 @@
   "modChat": {
     "type": "String",
     "data": "REPLACE WITH CHANNEL ID"
+  },
+  "lang": {
+    "type": "String",
+    "data": "en"
   }
 }

@@ -29,10 +29,10 @@ exports.run = (client, msg, [user, ...args]) => {
 
     //Giving the user the Voice Chat Banned role
     msg.guild.member(targetID).addRole(role)
-        .then(() => msg.channel.sendMessage(`Voice-banned ${target.username}.`))
+        .then(() => msg.channel.sendMessage(`Voice-banned **${target.username}#${target.discriminator}**.`))
         .catch(e => msg.reply(`There was an error trying to voice-ban ${target.username} (${e})`));
     //DMing the user to inform them of their voice chat ban
-    targetID.sendMessage(`You have been voice-banned from the ${msg.guild.name} Discord. You will not be able to connect to any voice channel until this has been lifted.\n**Reason:** ${args.toString().split(",").join(" ")}.\n\nThis action was performed manually by a moderator of the ${msg.guild.name} Discord. If you are confused, or need help, feel free to respond to this message and someone will get back to you soon.`);
+    target.sendMessage(`You have been voice-banned from the ${msg.guild.name} Discord. You will not be able to connect to any voice channel until this has been lifted.\n**Reason:** ${args.toString().split(",").join(" ")}.\n\nThis action was performed manually by a moderator of the ${msg.guild.name} Discord. If you are confused, or need help, feel free to respond to this message and someone will get back to you soon.`);
 
 
     //Local moderation log
