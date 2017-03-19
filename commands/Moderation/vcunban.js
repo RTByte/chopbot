@@ -48,7 +48,7 @@ exports.conf = {
 };
 
 exports.help = {
-    name: "voiceunban",
+    name: "vcunban",
     description: "Unbans user from server's voice channels",
     usage: "<user:user>",
     usageDelim: ""

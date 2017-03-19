@@ -4,8 +4,8 @@ exports.run = (client, msg, [user, ...args]) => {
     const target = msg.mentions.users.first();
     const targetID = client.fetchUser(target.id);
 
-    target.sendMessage(`Your submissions from the past 24 hours have been removed, and you have been kicked from the ${msg.guild.name} Discord.\n**Reason:** ${args.toString().split(",").join(" ")}.\n\nThis action was performed manually by a moderator of the ${msg.guild.name} Discord. If you are confused, or need help, feel free to respond to this message and someone will get back to you soon.`);
-    
+    target.sendMessage(`Your messages from the past 24 hours have been removed, and you have been kicked from the ${msg.guild.name} Discord.\n**Reason:** ${args.toString().split(",").join(" ")}.\n\nThis action was performed manually by a moderator of the ${msg.guild.name} Discord. If you are confused, or need help, feel free to respond to this message and someone will get back to you soon.`);
+
     //Banning User (Kicks them and deletes their messages)
     msg.guild.member(target).ban(1)
         .then(() => msg.channel.sendMessage(`**${target.username}#${target.discriminator}** was softbanned.`))
@@ -22,7 +22,7 @@ exports.run = (client, msg, [user, ...args]) => {
         const serverLog = new Discord.RichEmbed()
             .setAuthor(`${msg.author.username}#${msg.author.discriminator}`, msg.author.avatarURL)
             .setColor("#ff0000")
-            .setDescription(`**Member:** ${target.username}#${target.discriminator} (${target.id})\n**Action:** SoftBan\n**Reason:** ${args.toString().split(",").join(" ")}`)
+            .setDescription(`**Member:** ${target.username}#${target.discriminator} (${target.id})\n**Action:** Softban\n**Reason:** ${args.toString().split(",").join(" ")}`)
             .setTimestamp();
         client.channels.get(`${msg.guildConf.logChannel}`).sendEmbed(serverLog, '', {
             disableEveryone: true
@@ -54,7 +54,7 @@ exports.conf = {
 
 exports.help = {
     name: "softban",
-    description: "Kicks User from server and removes their messages.",
+    description: "Kicks user from server and removes all their messages that were sent in the past 24 hours.",
     usage: "<user:user> <reason:str> [...]",
     usageDelim: " ",
 };

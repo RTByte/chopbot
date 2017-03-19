@@ -5,7 +5,7 @@ exports.run = (client, guild) => {
                 name: 'Muted',
                 hoist: false,
                 poistion: 0,
-                permissions: ["READ_MESSAGES", "READ_MESSAGE_HISTORY", "CONNECT"],
+                permissions: [],
                 mentionable: false
             })
             .then(role => console.log(`Created role ${role} on ${guild}.`)
@@ -16,7 +16,7 @@ exports.run = (client, guild) => {
                 .edit({
                     hoist: false,
                     poistion: 0,
-                    permissions: ["READ_MESSAGES", "READ_MESSAGE_HISTORY", "CONNECT"],
+                    permissions: [],
                     mentionable: false
                 })
                 .then(r => console.log(`Edited role ${r}`))
@@ -25,7 +25,7 @@ exports.run = (client, guild) => {
     let voiceBanRole = guild.roles.find("name", "Voice Chat Banned");
     if (!voiceBanRole) {
         guild.createRole({
-                name: 'Voice Chat Banned',
+                name: 'VC Banned',
                 hoist: false,
                 poistion: 0,
                 permissions: [],
@@ -35,7 +35,7 @@ exports.run = (client, guild) => {
                 .catch(console.error));
             }
         else {
-            guild.roles.find("name", "Voice Chat Banned")
+            guild.roles.find("name", "VC Banned")
                 .edit({
                     hoist: false,
                     poistion: 0,

@@ -13,6 +13,7 @@ exports.run = (client, msg, [cmd]) => {
             .addField("-coinflip", "Flips a (pseudo) coin. 🙂 for heads, 🙃 for tails.\nAliases: *'coin'*, *'flip'*")
             .addField("-servers", "Links to all RT Family Discord servers\nAliases: *'serv'*, *'rtfam'*")
             .addField("-report <user> <reason>", "Reports mentioned user to the mod team, reason required. Screenshots appreciated.")
+            .addField("-sreport <user> <reason>", "Silent version of the report command. Deletes all traces of the report being made.\nAliases: *'silentr'*, *'silentreport'*")
         msg.author.sendEmbed(helpMessage, '', {
             disableEveryone: true
         });
