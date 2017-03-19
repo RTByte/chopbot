@@ -41,7 +41,7 @@ exports.run = (client, msg, [user]) => {
 exports.conf = {
     enabled: true,
     guildOnly: true,
-    aliases: ["vunban", "vub"],
+    aliases: ["vunban", "vub", "vcunban"],
     permLevel: 2,
     botPerms: ["MANAGE_ROLES_OR_PERMISSIONS"],
     requiredFuncs: []
