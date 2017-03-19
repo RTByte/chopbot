@@ -1,25 +1,48 @@
 exports.run = (client, guild) => {
-    let requestedRole = guild.roles.find("name", "Muted");
-    if (!requestedRole) {
+    let mutedRole = guild.roles.find("name", "Muted");
+    if (!mutedRole) {
         guild.createRole({
                 name: 'Muted',
                 hoist: false,
                 poistion: 0,
-                permissions: [0x400, 0x10000, 0x100000],
+                permissions: [],
                 mentionable: false
             })
             .then(role => console.log(`Created role ${role} on ${guild}.`)
-                .catch(console.error);
+                .catch(console.error));
             }
         else {
             guild.roles.find("name", "Muted")
                 .edit({
                     hoist: false,
                     poistion: 0,
-                    permissions: [0x400, 0x10000, 0x100000],
+                    permissions: [],
                     mentionable: false
                 })
                 .then(r => console.log(`Edited role ${r}`))
+                .catch(console.error);
+    }
+    let voiceBanRole = guild.roles.find("name", "Voice Chat Banned");
+    if (!voiceBanRole) {
+        guild.createRole({
+                name: 'VC Banned',
+                hoist: false,
+                poistion: 0,
+                permissions: [],
+                mentionable: false
+            })
+            .then(role => console.log(`Created role ${role} on ${guild}.`)
                 .catch(console.error));
+            }
+        else {
+            guild.roles.find("name", "VC Banned")
+                .edit({
+                    hoist: false,
+                    poistion: 0,
+                    permissions: [],
+                    mentionable: false
+                })
+                .then(r => console.log(`Edited role ${r}`))
+                .catch(console.error);
     }
 }

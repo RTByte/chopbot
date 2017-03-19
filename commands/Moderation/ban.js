@@ -5,7 +5,7 @@ exports.run = (client, msg, [user, ...args]) => {
 
     client.fetchUser(target.id)
     target.sendMessage(`You have been banned from the ${msg.guild.name} Discord.\n**Reason:** ${args.toString().split(",").join(" ")}\n\nTo appeal your ban, please respond to this message, detailing why you think you should be unbanned. The owner of the server you were banned from will get back to you when possible.`)
-    msg.guild.member(user).ban()
+    msg.guild.member(user).ban(1)
         .then(() => msg.channel.sendMessage(`**${user.username}#${user.discriminator}** was banned.`))
         .catch(e => msg.reply(`There was an error trying to ban: ${e}`));
 
