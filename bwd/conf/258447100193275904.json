@@ -8,7 +8,7 @@
     "type": "String"
   },
   "modRole": {
-    "data": "Helpers",
+    "data": "Server Staff",
     "type": "String"
   },
   "whitelistedRole": {
