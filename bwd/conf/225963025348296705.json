@@ -12,7 +12,7 @@
     "type": "String"
   },
   "prefix": {
-    "data": "--",
+    "data": "-",
     "type": "String"
   },
   "whitelistedRole": {
