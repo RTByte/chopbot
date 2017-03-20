@@ -3,7 +3,7 @@ const answers = ["Maybe.", "Certainly not.", "I hope so.", "Not in your wildest 
 const noQuestion = ["That doesn't look like a question, try again please.", "That's not a question, silly. Use a question mark.", "I don't know why the developers set me to only respond to 8ball prompts that end in a question mark, but they did, so use one.", "No '?', no answer.", "\nQuestion mark = 👍\nNo question mark = 👎"]
 
 exports.run = (client, msg) => {
-    if (msg.content.endsWith("?")) {
+    if (msg.content.includes("?")) {
         msg.reply(`🎱 ${answers[Math.floor(Math.random() * answers.length)]}`).catch(err => client.funcs.log(err.stack, "error"));
     } else {
         msg.reply(`🎱 ${noQuestion[Math.floor(Math.random() * noQuestion.length)]}`).catch(err => client.funcs.log(err.stack, "error"));
