@@ -3,10 +3,10 @@ ChopBot
 A Discord bot for the RT Family Discord servers.
 
 Find us here:
-[Rooster Teeth Community](https://https//discord.gg/roosterteeth)
-[Cow Chop Community](https://discord.gg/cowchop)
+[Rooster Teeth Community](https://https//discord.gg/roosterteeth)  
+[Cow Chop Community](https://discord.gg/cowchop)  
 [Achievement Hunter Community](https://discord.gg/P8cJ9vC)  
-[Kinda Funny](https://discord.gg/kindafunny)
+[Kinda Funny](https://discord.gg/kindafunny)  
 [FunHaus Community](https://discord.gg/ecWNNZx)  
 [The Creatures Community](https://discord.gg/d5YjjdP)  
 [Game Attack/ScrewAttack G1](https://discord.gg/F8fncjr)  
