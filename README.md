@@ -2,7 +2,7 @@ ChopBot
 ------
 A Discord bot for the RT Family Discord servers.
 
-Find us here:
+Find us here:  
 [Rooster Teeth Community](https://https//discord.gg/roosterteeth)  
 [Cow Chop Community](https://discord.gg/cowchop)  
 [Achievement Hunter Community](https://discord.gg/P8cJ9vC)  
