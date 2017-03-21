@@ -1,6 +1,6 @@
 {
   "name": "chopbot",
-  "version": "0.0.1",
+  "version": "1.0.1",
   "description": "ChopBot, a Discord bot for the RT Family Discord servers.",
   "main": "bot.js",
   "dependencies": {
