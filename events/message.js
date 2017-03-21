@@ -2,8 +2,7 @@ exports.run = (client, msg) => {
     const Discord = require('discord.js');
 
     // DEV MENTIONS BELOW
-    if (!msg.channel.id === 255839946093494273) {
-      if (msg.content.toLowerCase().includes("rasmus")) {
+    if (msg.content.toLowerCase().includes("rasmus")) {
           try {
               const rasMention = new Discord.RichEmbed()
                   .setAuthor(`${msg.guild.name}`, msg.guild.iconURL)
@@ -63,5 +62,4 @@ exports.run = (client, msg) => {
               return;
           }
       }
-    }
 };
