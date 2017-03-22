@@ -10,8 +10,9 @@ exports.run = (client, msg, [user]) => {
         .then(() => msg.channel.sendMessage(`Voice-unbanned **${target.username}#${target.discriminator}**.`))
         .catch(e => msg.reply(`There was an error trying to remove ${target.username}'s voice-ban (${e})`));
     //DMing the user to inform them of their ban being lifted
-    targetID.sendMessage(`Your voice-ban on the ${msg.guild.name} has been lifted. You can connect to voice channels again.`);
-
+    if(!msg.content.includes("-s")) {
+      targetID.sendMessage(`Your voice-ban on the ${msg.guild.name} has been lifted. You can connect to voice channels again.`);
+    }
 
     try {
         const serverLog = new Discord.RichEmbed()

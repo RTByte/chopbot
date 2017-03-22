@@ -3,8 +3,8 @@ const Discord = require('discord.js');
 exports.run = (client, msg, [user, ...args]) => {
     const target = msg.mentions.users.first();
     const targetID = client.fetchUser(target.id);
-
-    target.sendMessage(`Your messages from the past 24 hours have been removed, and you have been kicked from the ${msg.guild.name} Discord.\n**Reason:** ${args.toString().split(",").join(" ")}.\n\nThis action was performed manually by a moderator of the ${msg.guild.name} Discord. If you are confused, or need help, feel free to respond to this message and someone will get back to you soon.`);
+    if(!msg.content.includes("-s")) {
+      target.sendMessage(`Your messages from the past 24 hours have been removed, and you have been kicked from the ${msg.guild.name} Discord.\n**Reason:** ${args.toString().split(",").join(" ")}.\n\nThis action was performed manually by a moderator of the ${msg.guild.name} Discord. If you are confused, or need help, feel free to respond to this message and someone will get back to you soon.`);}
 
     //Banning User (Kicks them and deletes their messages)
     msg.guild.member(target).ban(1)
