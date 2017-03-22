@@ -5,7 +5,8 @@ exports.run = (client, msg, [user, ...args]) => {
 
     let role = msg.guild.roles.find("name", "Muted")
     client.fetchUser(target.id)
-    target.sendMessage(`You have been muted in the ${msg.guild.name} Discord.\n**Reason:** ${args.toString().split(",").join(" ")}.\n\nThis action was performed manually by a moderator of the ${msg.guild.name} Discord. If you are confused, or need help, feel free to respond to this message and someone will get back to you soon.`);
+    if(!msg.content.includes("-s")) {
+      target.sendMessage(`You have been muted in the ${msg.guild.name} Discord.\n**Reason:** ${args.toString().split(",").join(" ")}.\n\nThis action was performed manually by a moderator of the ${msg.guild.name} Discord. If you are confused, or need help, feel free to respond to this message and someone will get back to you soon.`); }
     msg.guild.member(user).addRole(role)
         .then(() => msg.channel.sendMessage(`Muted <@${user.id}>.`))
         .catch(e => msg.reply(`There was an error trying to mute: ${e}`));
