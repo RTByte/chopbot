@@ -2,7 +2,7 @@ exports.run = (client, msg) => {
     const Discord = require('discord.js');
     msg.channel.fetchMessage(msg.id)
         .then(newMessage => {
-            if(msg.edits[0] !== newMessage.content){
+            if(!newMessage.embeds[0]){
                 try {
                     const editEmbed = new Discord.RichEmbed()
                         .setAuthor(`#${msg.channel.name}`, msg.guild.iconURL)
