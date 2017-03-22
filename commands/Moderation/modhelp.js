@@ -19,6 +19,7 @@ exports.run = (client, msg, [cmd]) => {
             .addField("-userinfo [@user]", "Displays user information. Returns your info if no other user is specified.\nAliases: *'uinfo'*, *'whois'*", true)
             .addField("-serverinfo", "Displays server information.\nAliases: *'sinfo'*", true)
             .addField("-stats", "Displays bot statistics.\nAliases: *'statistics'*");
+            .setFooter('Add "-s" to the end of any command that requires a reason to bypass DMing the targeted user with it.')
         msg.author.sendEmbed(helpMessage, '', {
             disableEveryone: true
         });
