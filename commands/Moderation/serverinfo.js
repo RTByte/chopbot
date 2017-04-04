@@ -10,7 +10,7 @@ exports.run = (client, msg) => {
         .addField("Members", `${msg.guild.memberCount}`, true)
         .addField("Channels", `${msg.guild.channels.size}`, true)
         .addField("Emojis", `${msg.guild.emojis.size}/50`, true)
-        .addField("Roles", `${msg.guild.roles.size}, true`, true)
+        .addField("Roles", `${msg.guild.roles.size}`, true)
         .addField("Region", `${msg.guild.region}`, true)
         .addField("Created on", `${msg.guild.createdAt}`, true)
         .setThumbnail("http://i.imgur.com/7lSighC.png", 50, 50)
