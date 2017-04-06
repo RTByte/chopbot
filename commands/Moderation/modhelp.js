@@ -15,6 +15,7 @@ exports.run = (client, msg, [cmd]) => {
             .addField("-softban <@user> <...reason>", "Kicks mentioned user and deletes all of their messages from the past 24h, logs reason.\nAliases: *'sb'*")
             .addField("-vcban <@user> <...reason>", "Voice-bans mentioned user and logs reason.\nAliases: *'vban'*, *'vb'*", true)
             .addField("-vcunban <@user>", "Remove mentioned user's voice-ban and logs it.\nAliases: *'vub'*, *'voiceunban'*", true)
+            .addField("-sendmessage <@user/#channel> <message>", "Has ChopBot send a message to either a user or channel.\nAliases: *'sendmsg'*, *'message'*, *'msg'*")
             .addField("-purge [@user] <amount>", "Removes specified amount of messages from a channel, by user, if specified.\nAliases: *'prune'*, *'p'*")
             .addField("-userinfo [@user]", "Displays user information. Returns your info if no other user is specified.\nAliases: *'uinfo'*, *'whois'*", true)
             .addField("-serverinfo", "Displays server information.\nAliases: *'sinfo'*", true)
