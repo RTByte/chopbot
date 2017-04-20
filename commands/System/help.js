@@ -32,15 +32,17 @@ exports.run = (client, msg, [cmd]) => {
     }
 
     // COMMAND LOGGER, LOGS TO #bot-log in ChopBot Dev
-    const devLogger = new Discord.RichEmbed()
-        .setAuthor(`${msg.guild.name}`, msg.guild.iconURL)
-        .setColor("#ffffff")
-        .addField("Command Content", `${msg.content}`, true)
-        .setTimestamp()
-        .setFooter(`${msg.author.username}#${msg.author.discriminator}`, msg.author.avatarURL);
-    client.channels.get('271869758024974336').sendEmbed(devLogger, '', {
-        disableEveryone: true
-    });
+    if(client.devLogging){
+        const devLogger = new Discord.RichEmbed()
+            .setAuthor(`${msg.guild.name}`, msg.guild.iconURL)
+            .setColor("#ffffff")
+            .addField("Command Content", `${msg.content}`, true)
+            .setTimestamp()
+            .setFooter(`${msg.author.username}#${msg.author.discriminator}`, msg.author.avatarURL);
+        client.channels.get('271869758024974336').sendEmbed(devLogger, '', {
+            disableEveryone: true
+        });
+    }
 };
 
 exports.conf = {
