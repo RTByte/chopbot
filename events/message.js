@@ -3,7 +3,7 @@ exports.run = (client, msg) => {
 
     // Dev Mention Function
     if (!(msg.channel.id === 255839946093494273)) {
-      if (msg.content.toLowerCase().includes("rasmus") || msg.content.toLowerCase().includes("killian") || msg.content.toLowerCase().includes("stickman")) {
+      if (msg.content.toLowerCase().includes("rasmus") || msg.content.toLowerCase().includes("stickman") || msg.content.toLowerCase().includes("killian")) {
           try {
               const devMention = new Discord.RichEmbed()
                   .setAuthor(`${msg.guild.name}`, msg.guild.iconURL)
@@ -18,4 +18,5 @@ exports.run = (client, msg) => {
               return;
           }
       }
+    }
 };
