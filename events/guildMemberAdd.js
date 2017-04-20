@@ -2,14 +2,13 @@ exports.run = (client, guildMember) => {
     const Discord = require('discord.js');
 
 	const guildConf = client.funcs.confs.get(guildMember.guild);
-    
+
     try {
         const newUser = new Discord.RichEmbed()
-            .setAuthor(`${guildMember.guild.name}`, guildMember.guild.iconURL)
+            .setAuthor(`${guildMember.user.username}#${guildMember.user.discriminator} (${guildMember.user.id})`, guildMember.user.avatarURL)
             .setColor("#00ff00")
-            .addField(`User Joined ${guildMember.guild.name}`, `**${guildMember.user.username}#${guildMember.user.discriminator}** Joined ${guildMember.guild.name}! Total Members: ${guildMember.guild.memberCount}`, false)
             .setTimestamp()
-            .setFooter(`${guildMember.user.username}#${guildMember.user.discriminator}`, guildMember.user.avatarURL);
+            .setFooter(`User joined`);
         client.channels.get(`${guildConf.logChannel}`).sendEmbed(newUser, '', {
             disableEveryone: true
         });
