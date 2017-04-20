@@ -11,6 +11,7 @@ exports.run = (client, msg, [cmd]) => {
             .addField("-8ball <question>?", "Magic 8-Ball, does exactly what the toy does (Results may vary).\nAliases: *'8'*, *'magic'*, *'mirror'*, *'magicconch'*")
             .addField("-choice <first choice>, <second choice>", "Makes a decision for you given some choices.\nAliases: *'choose'*, *'decide'*")
             .addField("-coinflip", "Flips a (pseudo) coin. 🙂 for heads, 🙃 for tails.\nAliases: *'coin'*, *'flip'*")
+            .addField("-quote <message id>", "Allows you to quote any message from any channel that you have access to. Enable Developer Mode in User Settings to fetch message IDs by right-clicking.")
             .addField("-servers", "Links to all RT Family Discord servers\nAliases: *'serv'*, *'rtfam'*")
             .addField("-report <user> <reason>", "Reports mentioned user to the mod team, reason required. Screenshots appreciated.")
             .addField("-sreport <user> <reason>", "Silent version of the report command. Deletes all traces of the report being made.\nAliases: *'silentr'*, *'silentreport'*")
