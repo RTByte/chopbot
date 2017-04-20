@@ -18,5 +18,4 @@ exports.run = (client, msg) => {
               return;
           }
       }
-    }
 };

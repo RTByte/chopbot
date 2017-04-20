@@ -6,5 +6,9 @@
   "whitelistedRole": {
     "data": "179294179833151488",
     "type": "String"
+  },
+  "modChat": {
+    "data": "180031705170575360",
+    "type": "String"
   }
 }

@@ -8,8 +8,8 @@ exports.run = (client, msg) => {
                         .setAuthor(`#${msg.channel.name}`, msg.guild.iconURL)
                         .setColor("#4286f4")
                         .setTitle("Message Edited")
-                        .addField("BEFORE", `${msg.edits[0]}`, true)
-                        .addField("AFTER", `${newMessage.content}`, true)
+                        .addField("BEFORE", `${msg.edits[0]}`)
+                        .addField("AFTER", `${newMessage.content}`)
                         .setTimestamp()
                         .setFooter(`${msg.author.username}#${msg.author.discriminator}`, msg.author.avatarURL);
                     client.channels.get(`${msg.guildConf.logChannel}`).sendEmbed(editEmbed, '', {
