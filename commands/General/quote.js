@@ -11,7 +11,7 @@ exports.run = (client, msg, [messageID, origin]) => {
                             .setAuthor(`${quotedMessage.author.username}#${quotedMessage.author.discriminator}`, quotedMessage.author.avatarURL)
                             .setColor("#ffffff")
                             .addField("Message:", `${quotedMessage.content}`, true)
-                            .setFooter(`Originally Sent on ${quotedMessage.createdAt}`);
+                            .setFooter(`Originally Sent on ${quotedMessage.createdAt} in #${quotedMessage.channel.name} on ${quotedMessage.guild.name} Discord`);
                         msg.channel.sendEmbed(quoteEmbed, '', {disableEveryone:true});
                     })
                     .catch(console.error);

@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-let ccdGuild = '225963025348296705';
+let ccdGuild = '175339890832179200';
 let firstRole = '302407219704627200';
 
 exports.run = (client, msg, guild) => {
@@ -35,7 +35,7 @@ exports.conf = {
     enabled: true,
     guildOnly: true,
     aliases: [],
-    permLevel: 2,
+    permLevel: 0,
     botPerms: [0x10000000],
     requiredFuncs: []
 };
