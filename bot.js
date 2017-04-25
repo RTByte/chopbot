@@ -17,6 +17,8 @@ const {
 
 client.once('ready', () => {
 	client.devLogging = true;
+    client.devMentionChannel = "283746370421260289";
+    client.devCommandLogChannel = "271869758024974336";
 	client.dmManager = new DMManager(client, '271111564826902528');
 	client.user.setGame("MOO -help");
     client.user.setStatus("online");
