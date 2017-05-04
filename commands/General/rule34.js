@@ -1,3 +1,4 @@
+// Yes, this is a joke.
 exports.run = (client, msg, [...args]) => {
     msg.reply(`No.`)
     .then(reply => {
