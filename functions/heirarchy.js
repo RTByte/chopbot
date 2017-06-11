@@ -13,9 +13,9 @@ exports.check = function(executor, target, guild = null) {
                     }
 
                     })
-                .catch(console.error);
+                .catch(client.emit("log", err, "error"));
             })
-            .catch(console.error);
+            .catch(client.emit("log", err, "error"));
 
         } else {
             resolve(false);

@@ -1,88 +1,116 @@
-const Discord = require('discord.js');
+exports.run = async (client, msg, [type, name]) => {
+  switch (type) {
+    case "function":
+      if (name === "all") {
+        await client.funcs.loadFunctions();
+        await Promise.all(Object.keys(client.funcs).map((key) => {
+          if (client.funcs[key].init) return client.funcs[key].init(client);
+          return true;
+        }));
+        return msg.sendMessage("✅ Reloaded all functions.");
+      }
+      await msg.sendMessage(`Attempting to reload function ${name}`);
+      return client.funcs.reloadFunction(name)
+          .then(mes => msg.sendMessage(`✅ ${mes}`))
+          .catch(err => msg.sendMessage(`❌ ${err}`));
 
-exports.run = (client, msg, [type, name]) => {
-    switch (type) {
-        case "function":
-            msg.channel.sendMessage(`Attemping to reload function ${name}`).then((m) => {
-                client.funcs.reload.function(client, msg, client.clientBaseDir, name).then(() => {
-                    m.edit(`:white_check_mark: Succesfully reloaded function ${name}`);
-                }).catch((e) => {
-                    m.edit(e);
-                });
-            });
-            break;
-        case "inhibitor":
-            msg.channel.sendMessage(`Attempting to reload inhibitor ${name}`).then((m) => {
-                client.funcs.reload.inhibitor(client, msg, client.clientBaseDir, name).then(() => {
-                    m.edit(`:white_check_mark: Succesfully reloaded inhibitor ${name}`);
-                }).catch((e) => {
-                    m.edit(e);
-                });
-            });
-            break;
-        case "monitor":
-            msg.channel.sendMessage(`Attempting to reload monitor ${name}`).then((m) => {
-                client.funcs.reload.monitor(client, msg, client.clientBaseDir, name).then(() => {
-                    m.edit(`:white_check_mark: Succesfully reloaded monitor ${name}`);
-                }).catch((e) => {
-                    m.edit(e);
-                });
-            });
-            break;
-        case "provider":
-            msg.channel.sendMessage(`Attempting to reload provider ${name}`).then((m) => {
-                client.funcs.reload.provider(client, msg, client.clientBaseDir, name).then(() => {
-                    m.edit(`:white_check_mark: Succesfully reloaded provider ${name}`);
-                }).catch((e) => {
-                    m.edit(e);
-                });
-            });
-            break;
-        case "event":
-            msg.channel.sendMessage(`Attempting to reload event ${name}`).then((m) => {
-                client.funcs.reload.event(client, msg, name).then(() => {
-                    m.edit(`:white_check_mark: Succesfully reloaded event ${name}`);
-                }).catch((e) => {
-                    m.edit(e);
-                });
-            });
-            break;
-        case "command":
-            switch (name) {
-                case "all":
-                    client.funcs.loadCommands(client);
-                    msg.channel.sendMessage(":white_check_mark: Reloaded all commands.");
-                    break;
-                default:
-                    msg.channel.sendMessage(`Attempting to reload command ${name}`).then((m) => {
-                        client.funcs.reload.command(client, msg, client.clientBaseDir, name).then(() => {
-                            m.edit(`:white_check_mark: Succesfully reloaded command ${name}`);
-                        }).catch((e) => {
-                            m.edit(e);
-                        });
-                    });
-                    break;
-            }
-            break;
-    }
+    case "inhibitor":
+      if (name === "all") {
+        await client.funcs.loadCommandInhibitors();
+        await Promise.all(client.commandInhibitors.map((piece) => {
+          if (piece.init) return piece.init(client);
+          return true;
+        }));
+        return msg.sendMessage("✅ Reloaded all inhibitors.");
+      }
+      await msg.sendMessage(`Attempting to reload inhibitor ${name}`);
+      return client.funcs.reloadInhibitor(name)
+          .then(mes => msg.sendMessage(`✅ ${mes}`))
+          .catch(err => msg.sendMessage(`❌ ${err}`));
 
-    // COMMAND LOGGER, LOGS TO #bot-log in ChopBot Dev
-    client.funcs.devLog.devLog(client, msg, true);
+    case "finalizer":
+      if (name === "all") {
+        await client.funcs.loadCommandFinalizers();
+        await Promise.all(client.commandFinalizers.map((piece) => {
+          if (piece.init) return piece.init(client);
+          return true;
+        }));
+        return msg.sendMessage("✅ Reloaded all finalizers.");
+      }
+      await msg.sendMessage(`Attempting to reload finalizer ${name}`);
+      return client.funcs.reloadFinalizer(name)
+          .then(mes => msg.sendMessage(`✅ ${mes}`))
+          .catch(err => msg.sendMessage(`❌ ${err}`));
 
+    case "event":
+      if (name === "all") {
+        await client.funcs.loadEvents();
+        return msg.sendMessage("✅ Reloaded all events.");
+      }
+      await msg.sendMessage(`Attempting to reload event: ${name}`);
+      return client.funcs.reloadEvent(name)
+          .then(mes => msg.sendMessage(`✅ ${mes}`))
+          .catch(err => msg.sendMessage(`❌ ${err}`));
+
+    case "monitor":
+      if (name === "all") {
+        await client.funcs.loadMessageMonitors();
+        await Promise.all(client.messageMonitors.map((piece) => {
+          if (piece.init) return piece.init(client);
+          return true;
+        }));
+        return msg.sendMessage("✅ Reloaded all monitors.");
+      }
+      await msg.sendMessage(`Attempting to reload monitor: ${name}`);
+      return client.funcs.reloadMessageMonitor(name)
+          .then(mes => msg.sendMessage(`✅ ${mes}`))
+          .catch(err => msg.sendMessage(`❌ ${err}`));
+
+    case "provider":
+      if (name === "all") {
+        await client.funcs.loadProviders();
+        await Promise.all(client.providers.map((piece) => {
+          if (piece.init) return piece.init(client);
+          return true;
+        }));
+        return msg.sendMessage("✅ Reloaded all providers.");
+      }
+      await msg.sendMessage(`Attempting to reload provider: ${name}`);
+      return client.funcs.reloadProvider(name)
+          .then(mes => msg.sendMessage(`✅ ${mes}`))
+          .catch(err => msg.sendMessage(`❌ ${err}`));
+
+    case "command":
+      if (name === "all") {
+        await client.funcs.loadCommands();
+        await Promise.all(client.commands.map((piece) => {
+          if (piece.init) return piece.init(client);
+          return true;
+        }));
+        return msg.sendMessage("✅ Reloaded all commands.");
+      }
+      await msg.sendMessage(`Attempting to reload command ${name}`);
+      return client.funcs.reloadCommand(name)
+          .then(mes => msg.sendMessage(`✅ ${mes}`))
+          .catch(err => msg.sendMessage(`❌ ${err}`));
+
+    default:
+      return msg.sendMessage("never going to happen");
+  }
 };
 
 exports.conf = {
-    enabled: true,
-    guildOnly: false,
-    aliases: ["r", "load"],
-    permLevel: 10,
-    botPerms: [],
-    requiredFuncs: [],
+  enabled: true,
+  runIn: ["text", "dm", "group"],
+  aliases: ["r", "load"],
+  permLevel: 10,
+  botPerms: [],
+  requiredFuncs: [],
 };
 
 exports.help = {
-    name: "reload",
-    description: "Reloads the command file, if it's been updated or modified.",
-    usage: "<function|inhibitor|monitor|provider|event|command> <name:str>",
-    usageDelim: " ",
+  name: "reload",
+  description: "Reloads the command file, if it's been updated or modified.",
+  usage: "<function|inhibitor|finalizer|monitor|provider|event|command> <name:str>",
+  usageDelim: " ",
 };

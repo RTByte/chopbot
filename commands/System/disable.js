@@ -1,35 +1,40 @@
-const Discord = require('discord.js');
-
-exports.run = (client, msg, [commandname]) => {
-    let command;
-    if (client.commands.has(commandname)) {
-        command = commandname;
-    } else if (client.aliases.has(commandname)) {
-        command = client.aliases.get(commandname);
+exports.run = async (client, msg, [type, name]) => {
+  switch (type) {
+    case "inhibitor": {
+      const inhibitor = client.commandInhibitors.get(name);
+      if (!inhibitor) return msg.sendCode("diff", `- I cannot find the inhibitor: ${name}`);
+      inhibitor.conf.enabled = false;
+      return msg.sendCode("diff", `+ Successfully disabled inhibitor: ${name}`);
     }
-    if (!command) {
-        return msg.channel.sendMessage(`I cannot find the command: \`${commandname}\``);
+    case "monitor": {
+      const monitor = client.messageMonitors.get(name);
+      if (!monitor) return msg.sendCode("diff", `- I cannot find the monitor: ${name}`);
+      monitor.conf.enabled = false;
+      return msg.sendCode("diff", `+ Successfully disabled monitor: ${name}`);
     }
-    client.commands.get(command).conf.enabled = false;
-    return msg.channel.sendMessage(`Successfully disabled: \`${commandname}\``);
-
-    // COMMAND LOGGER, LOGS TO #bot-log in ChopBot Dev
-    client.funcs.devLog.devLog(client, msg, true);
-
+    case "command": {
+      const command = client.commands.get(name) || client.commands.get(client.aliases.has(name));
+      if (!command) return msg.sendCode("diff", `- I cannot find the command: ${name}`);
+      command.conf.enabled = false;
+      return msg.sendCode("diff", `+ Successfully disabled command: ${name}`);
+    }
+    default:
+      return msg.sendMessage("This will never happen");
+  }
 };
 
 exports.conf = {
-    enabled: true,
-    guildOnly: false,
-    aliases: [],
-    permLevel: 10,
-    botPerms: [],
-    requiredFuncs: [],
+  enabled: true,
+  runIn: ["text", "dm", "group"],
+  aliases: [],
+  permLevel: 10,
+  botPerms: [],
+  requiredFuncs: [],
 };
 
 exports.help = {
-    name: "disable",
-    description: "Temporarily disables the command. Resets upon reboot.",
-    usage: "<commandname:str>",
-    usageDelim: "",
+  name: "disable",
+  description: "Temporarily disables the inhibitor/monitor/command. Resets upon reboot.",
+  usage: "<inhibitor|monitor|command> <name:str>",
+  usageDelim: " ",
 };

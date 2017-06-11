@@ -1,0 +1,12 @@
+{
+	"botToken": "",
+	"ownerID": [""],
+	"prefix": "-",
+	"ytKey": "",
+	"devLogging": false,
+	"devCommandLogChannel": "",
+	"dmManagerServer": "",
+	"playing": "",
+	"status": "online",
+	"wordBlacklist": [""]
+}

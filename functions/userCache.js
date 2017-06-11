@@ -1,7 +1,7 @@
 const fs = require('fs');
 const jsonfile = require('jsonfile');
 
-const XPCooldown = 600000;
+const XPCooldown = 60000;
 
 const storagePath = "./storage/userCache/";
 

@@ -1,18 +1,32 @@
 {
-  "name": "chopbot",
-  "version": "1.0.1",
-  "description": "ChopBot, a Discord bot for the RT Family Discord servers.",
+  "name": "ChopBot",
+  "version": "0.1.0",
+  "description": "A Discord Bot created for the RoosterTeeth family of Discord Servers",
   "main": "bot.js",
+  "scripts": {
+    "test": "echo 'No test yet!'",
+    "start": "node app.js"
+  },
+  "author": "Rasmus Gerdin, Killian Higgins, Michael Cumbers",
+  "license": "MIT",
   "dependencies": {
-    "discord.js": "^11.0.0",
+    "bufferutil": "^3.0.1",
+    "discord.js": "11.0.0",
+    "erlpack": "^0.1.2",
+    "fs-extra": "^3.0.1",
     "jsonfile": "^3.0.0",
-    "komada": "^0.12.4",
+    "komada": "git://github.com/dirigeants/komada.git#indev",
+    "libsodium-wrappers": "^0.5.1",
+    "node-fs-extra": "^0.8.2",
+    "node-opus": "^0.2.6",
+    "opusscript": "0.0.3",
+    "profanity-finder": "^1.0.2",
+    "request": "^2.81.0",
+    "sodium": "^2.0.1",
+    "uws": "^0.14.5",
     "yamdbf-addon-dm-manager": "^0.1.3"
   },
-  "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "author": "Rasmus Gerdin, Michael Cumbers, Killian Higgins",
-  "license": "ISC"
+  "engines": {
+    "node": "^8.1.0"
+  }
 }
