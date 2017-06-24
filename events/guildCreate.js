@@ -9,7 +9,11 @@ exports.run = (client, guild) => {
                 mentionable: false
             })
             .then(role => console.log(`Created role ${role} on ${guild}.`)
-                .catch(console.error));
+                .catch((err) => {
+                    if(err){
+                        client.emit("log", err, "error");
+                    }
+                }));
             }
         else {
             guild.roles.find("name", "Muted")
@@ -20,7 +24,11 @@ exports.run = (client, guild) => {
                     mentionable: false
                 })
                 .then(r => console.log(`Edited role ${r}`))
-                .catch(console.error);
+                .catch((err) => {
+                    if(err){
+                        client.emit("log", err, "error");
+                    }
+                });
     }
     let voiceBanRole = guild.roles.find("name", "Voice Chat Banned");
     if (!voiceBanRole) {
@@ -32,7 +40,11 @@ exports.run = (client, guild) => {
                 mentionable: false
             })
             .then(role => console.log(`Created role ${role} on ${guild}.`)
-                .catch(console.error));
+                .catch((err) => {
+                    if(err){
+                        client.emit("log", err, "error");
+                    }
+                }));
             }
         else {
             guild.roles.find("name", "VC Banned")
@@ -43,6 +55,10 @@ exports.run = (client, guild) => {
                     mentionable: false
                 })
                 .then(r => console.log(`Edited role ${r}`))
-                .catch(console.error);
+                .catch((err) => {
+                    if(err){
+                        client.emit("log", err, "error");
+                    }
+                });
     }
 }

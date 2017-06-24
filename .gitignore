@@ -105,3 +105,5 @@ bwd/conf/
 storage/userCache/
 
 botConfig\.json\.bak
+
+botConfig\.json

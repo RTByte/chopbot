@@ -7,6 +7,7 @@ const ChopBot = new komada.Client({
 	ownerID: botConfig.ownerID,
 	prefix: botConfig.prefix,
 	cmdEditing: true,
+	cmdLogging: true,
 	clientOptions: {
 		fetchAllMembers: true
 	},
