@@ -3,7 +3,7 @@ exports.run = async (client, msg) => msg.sendMessage("Rebooting...")
     .catch(err => client.emit("error", err));
 
 exports.conf = {
-  enabled: true,
+  enabled: false,
   runIn: ["text", "dm", "group"],
   aliases: [],
   permLevel: 10,

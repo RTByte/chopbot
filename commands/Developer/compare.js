@@ -27,13 +27,13 @@ exports.conf = {
     aliases: [""],
     permLevel: 10,
     botPerms: [],
-    requiredFuncs: [],
+    requiredFuncs: ["hierarchyCheck"],
     requiredModules: []
 };
 
 exports.help = {
     name: "compare",
-    description: "",
+    description: "Test command for hierarchyCheck function",
     usage: "<target:user>",
     usageDelim: " ",
     type: "commands"

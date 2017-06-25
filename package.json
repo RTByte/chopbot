@@ -11,6 +11,7 @@
   "license": "MIT",
   "dependencies": {
     "bufferutil": "^3.0.1",
+    "chalk": "^1.1.3",
     "discord.js": "11.0.0",
     "dotenv": "^4.0.0",
     "erlpack": "git://github.com/hammerandchisel/erlpack.git",

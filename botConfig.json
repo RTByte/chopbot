@@ -1,10 +1,10 @@
 {
 	"botToken": "",
 	"ownerID": [""],
-	"prefix": "-",
+	"prefix": "",
 	"ytKey": "",
 	"devLogging": false,
-	"devCommandLogChannel": "",
+	"devLogChannel": "",
 	"dmManagerServer": "",
 	"playing": "",
 	"status": "online",
