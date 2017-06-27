@@ -3,6 +3,10 @@
   "version": "0.1.0",
   "description": "A Discord Bot created for the RoosterTeeth family of Discord Servers",
   "main": "bot.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mcumbers/chopbot.git"
+  },
   "scripts": {
     "test": "echo 'No test yet!'",
     "start": "node app.js"

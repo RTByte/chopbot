@@ -24,17 +24,17 @@ const ChopBot = new komada.Client({
 		})
 		.addLevel(3, false, (client, msg) => {
 			if(!msg.guild) return false;
-			const adminRole = msg.guild.roles.find("name", msg.guild.conf.adminRole);
+			const adminRole = msg.guild.roles.find("id", msg.guild.settings.adminRole);
 			return adminRole && msg.member.roles.has(adminRole.id);
 		})
 		.addLevel(2, false, (client, msg) => {
 			if(!msg.guild) return false;
-			const modRole = msg.guild.roles.find("name", msg.guild.conf.modRole);
+			const modRole = msg.guild.roles.find("id", msg.guild.settings.modRole);
 			return modRole && msg.member.roles.has(modRole.id);
 		})
 		.addLevel(1, false, (client, msg) => {
 			if(!msg.guild) return false;
-			const eventRole = msg.guild.roles.find("name", msg.guild.conf.eventRole);
+			const eventRole = msg.guild.roles.find("id", msg.guild.settings.eventRole);
 			return eventRole && msg.member.roles.has(eventRole.id);
 		})
 		.addLevel(0, false, () => true)

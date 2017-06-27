@@ -1,31 +1,33 @@
 exports.run = async (client, guildMember) => {
-    const guildConf = await client.funcs.confs.get(guildMember.guild);
-
     const userExists = await client.funcs.userCache.userExists(guildMember.user);
 
     if (!userExists) {
         client.funcs.userCache.newUser(guildMember).then((err) => {
-            return userJoined(client, guildMember, guildConf, true);
+            return userJoined(client, guildMember, true);
         });
     }
 
     const serverExists = await client.funcs.userCache.serverExists(guildMember);
 
     if (!serverExists) {
-        return userJoined(client, guildMember, guildConf, true);
+        return userJoined(client, guildMember, true);
     }
 
-    return userJoined(client, guildMember, guildConf, false);
+    return userJoined(client, guildMember, false);
 
 };
 
-userJoined = async (client, guildMember, guildConf, firstTime = true) => {
+userJoined = async (client, guildMember, firstTime = true) => {
     if (firstTime) {
         client.funcs.userCache.newServer(guildMember);
+
+        if (guildMember.guild.settings.welcomeUsers) {
+            await welcomeUser(guildMember);
+        }
     }
 
     try {
-        const newUser = new client.Discord.RichEmbed()
+        const newUser = new client.methods.Embed()
             .setAuthor(`${guildMember.user.tag} (${guildMember.user.id})`, guildMember.user.avatarURL)
             .setColor("#00ff00")
             .setTimestamp()
@@ -35,12 +37,14 @@ userJoined = async (client, guildMember, guildConf, firstTime = true) => {
             newUser.setFooter(`User re-joined`);
         }
 
-        const logChannel = await client.channels.get(guildConf.logChannel);
+        const logChannel = await client.channels.get(guildMember.guild.settings.logChannel);
 
-        logChannel.sendEmbed(newUser, '', {
-            disableEveryone: true
-        });
+        return logChannel.send('', { disableEveryone: true, embed: newUser });
     } catch (err) {
-        client.emit("log", err, "error");
+        return client.emit("log", err, "error");
     }
 }
+
+welcomeUser = async (guildMember) => {
+    //TODO: Welcome users on first join
+};

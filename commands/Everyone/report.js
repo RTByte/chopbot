@@ -17,7 +17,7 @@ exports.run = async (client, msg, [target, ...reason]) => {
             .setDescription(`${reason}`)
             .setTimestamp()
             .setFooter(`Reported by ${msg.author.tag}`, msg.author.avatarURL);
-        return client.channels.get(msg.guildConf.modChat).send('', { disableEveryone: true, embed: modChat });
+        return client.channels.get(msg.guild.settings.modChat).send('', { disableEveryone: true, embed: modChat });
     } catch (err) {
         return client.emit("log", err, "error");
     }

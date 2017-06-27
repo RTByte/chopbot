@@ -5,27 +5,22 @@ exports.init = (client) => {
   wordBlacklist = botConfig.wordBlacklist;
 }
 
-exports.check = function(client, input){
-  return new Promise((resolve, reject) => {
-  	input = input.replace(/[\W_]+/g," ");
-  	let words=input.split(' ');
+exports.check = async (client, input) => {
+  input = input.replace(/[\W_]+/g," ");
+  let words=input.split(' ');
 
-    cycleWords(words).then((hasBadWord) => {
-      if(hasBadWord){
-        resolve(true);
-      } else {
-        resolve(false);
-      }
-    });
-  });
+  return (await cycleWords(words));
 };
 
-cycleWords = function(words){
+cycleWords = (words) => {
   return new Promise((resolve, reject) => {
+    
     words.forEach((word) => {
       if(wordBlacklist.includes(word.toLowerCase())){
         resolve(true);
       };
     });
+
+    resolve(false);
   });
 }

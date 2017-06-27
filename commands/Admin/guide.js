@@ -1,7 +1,5 @@
-const Discord = require('discord.js');
-
 exports.run = async (client, msg) => {
-    const guideEmbed = new Discord.RichEmbed()
+    const guideEmbed = new client.methods.Embed()
         .setAuthor("ChopBot Mod Setup Guide", client.user.avatarURL)
         .setColor("#ffffff")
         .setDescription("In order to set up ChopBot for your RT Family Discord server, there are some commands you'll need to run. Sections marked with \`⚠️\`️ are *required*, and need to be set up in order for the bot to work correctly on your server. This will also describe each configuration option available to you.")

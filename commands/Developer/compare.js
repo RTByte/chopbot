@@ -1,6 +1,6 @@
 exports.run = async (client, msg, [target]) => {
     const executor = msg.author;
-    const canMod = await client.funcs.hierarchyCheck(client, executor, target, msg.guild).catch((err) =>{
+    const canMod = await client.funcs.hierarchyCheck(client, executor, target, msg.guild).catch((err) => {
         if(err){
             fail("User not in guild.", msg);
         }

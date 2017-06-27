@@ -1,15 +1,12 @@
 exports.run = async (client, guildMember) => {
-	const guildConf = await client.funcs.confs.get(guildMember.guild);
 
     try {
-        const userLeft = new client.Discord.RichEmbed()
+        const userLeft = new client.methods.Embed()
             .setAuthor(`${guildMember.user.tag} (${guildMember.user.id})`, guildMember.user.avatarURL)
             .setColor("#ff9b9b")
             .setTimestamp()
             .setFooter(`User left`);
-        client.channels.get(guildConf.logChannel).sendEmbed(userLeft, '', {
-            disableEveryone: true
-        });
+        return client.channels.get(guildMember.guild.settings.logChannel).send('', { disableEveryone: true, embed: userLeft });
     } catch (err) {
         return client.emit("log", err, "error");
     }

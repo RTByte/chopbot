@@ -5,7 +5,7 @@ exports.run =  async (client, msg, [messageID, origin]) => {
             //Grabbing message from specified channel
             try{
                 client.channels.get(origin.id).fetchMessage(messageID).then(quotedMessage => {
-                        let quoteEmbed = new client.Discord.RichEmbed()
+                        let quoteEmbed = new client.methods.Embed()
                             .setAuthor(`${quotedMessage.author.username}#${quotedMessage.author.discriminator}`, quotedMessage.author.avatarURL)
                             .setColor("#ffffff")
                             .addField("Message:", `${quotedMessage.content}`, true)
@@ -30,7 +30,7 @@ exports.run =  async (client, msg, [messageID, origin]) => {
             
             msg.channel.fetchMessage(messageID)
                 .then(quotedMessage => {
-                    let quoteEmbed = new client.Discord.RichEmbed()
+                    let quoteEmbed = new client.methods.Embed()
                         .setAuthor(`${quotedMessage.author.username}#${quotedMessage.author.discriminator}`, quotedMessage.author.avatarURL)
                         .setColor("#ffffff")
                         .addField("Message:", `${quotedMessage.content}`, true)

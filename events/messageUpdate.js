@@ -6,7 +6,7 @@ exports.run = async (client, msg) => {
     }
 
     try {
-        const editEmbed = new client.Discord.RichEmbed()
+        const editEmbed = new client.methods.Embed()
             .setAuthor(`#${msg.channel.name}`, msg.guild.iconURL)
             .setColor("#4286f4")
             .setTitle("Message Edited")
@@ -14,9 +14,7 @@ exports.run = async (client, msg) => {
             .addField("AFTER", `${newMessage.content}`)
             .setTimestamp()
             .setFooter(msg.author.tag, msg.author.avatarURL);
-        return client.channels.get(msg.guildConf.logChannel).sendEmbed(editEmbed, '', {
-            disableEveryone: true
-        });
+        return client.channels.get(msg.guild.settings.logChannel).send('', { disableEveryone: true, embed: editEmbed });
     } catch (err) {
         return client.emit("log", err, "error");
     }

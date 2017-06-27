@@ -18,12 +18,12 @@ exports.run = async (client, msg, guild) => {
     }
 
     try {
-        const serverLog = new client.Discord.RichEmbed()
-            .setAuthor(`${msg.author.username}#${msg.author.discriminator}`, msg.author.avatarURL)
+        const serverLog = new client.methods.Embed()
+            .setAuthor(msg.author.tag, msg.author.avatarURL)
             .setColor("#ff0fef")
             .setDescription(`Got RT First role.`)
             .setTimestamp();
-        return client.channels.get(msg.guildConf.logChannel).sendEmbed(serverLog, '', { disableEveryone: true });
+        return client.channels.get(msg.guild.settings.logChannel).send('', { disableEveryone: true, embed: serverLog });
     } catch (err) {
         return client.emit("log", err, "error");
     }
