@@ -38,7 +38,7 @@ exports.conf = {
     runIn: ["text"],
     aliases: ["vunban", "vub", "vcunban"],
     permLevel: 2,
-    botPerms: ["MANAGE_ROLES_OR_PERMISSIONS"],
+    botPerms: [],
     requiredFuncs: []
 };
 

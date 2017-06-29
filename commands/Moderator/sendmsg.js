@@ -2,10 +2,10 @@ exports.run = async (client, msg, [target, ...message]) => {
     if (await canSend(client, msg, target)) {
         try {
             await msg.delete();
-            return target.sendMessage(message.join(" "));
+            return target.send(message.join(" "));
         } catch (err) {
             await client.emit("log", err, "error");
-            return msg.channel.sendMessage(`It looks like ${target} is not a valid user or channel.`);
+            return msg.channel.send(`It looks like ${target} is not a valid user or channel.`);
         }
     }
     

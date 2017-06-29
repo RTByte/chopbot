@@ -34,7 +34,7 @@ exports.conf = {
     runIn: ["text"],
     aliases: [],
     permLevel: 0,
-    botPerms: [0x10000000],
+    botPerms: [],
     requiredFuncs: []
 };
 

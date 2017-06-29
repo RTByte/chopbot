@@ -49,7 +49,7 @@ exports.conf = {
     runIn: ["text"],
     aliases: ["vkick", "vk"],
     permLevel: 2,
-    botPerms: ["MANAGE_CHANNELS", "MOVE_MEMBERS"],
+    botPerms: [],
     requiredFuncs: [],
 };
 

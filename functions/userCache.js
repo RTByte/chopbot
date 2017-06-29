@@ -1,3 +1,4 @@
+//TODO: Change userCache to use JSON provider instead of jsonfile
 const fs = require('fs');
 const jsonfile = require('jsonfile');
 

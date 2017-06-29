@@ -17,7 +17,7 @@ exports.conf = {
     runIn: ["text", "dm", "group"],
     aliases: [],
     permLevel: 10,
-    botPerms: [],
+    botPerms: ["MANAGE_ROLES", "MOVE_MEMBERS", "DEAFEN_MEMBERS", "MUTE_MEMBERS", "SPEAK", "CONNECT", "USE_EXTERNAL_EMOJIS", "MENTION_EVERYONE", "READ_MESSAGE_HISTORY", "ATTACH_FILES", "EMBED_LINKS", "MANAGE_MESSAGES", "SEND_MESSAGES", "READ_MESSAGES", "VIEW_AUDIT_LOG", "ADD_REACTIONS", "MANAGE_CHANNELS", "BAN_MEMBERS", "KICK_MEMBERS"],
     requiredFuncs: [],
 };
 

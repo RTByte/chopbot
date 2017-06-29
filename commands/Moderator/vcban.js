@@ -54,7 +54,7 @@ exports.conf = {
     runIn: ["text"],
     aliases: ["vban", "vb"],
     permLevel: 2,
-    botPerms: ["MANAGE_CHANNELS", "MOVE_MEMBERS", "MANAGE_ROLES_OR_PERMISSIONS"],
+    botPerms: [],
     requiredFuncs: [],
 };
 

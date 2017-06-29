@@ -14,11 +14,6 @@
     "default": null,
     "array": false
   },
-  "modChat": {
-    "type": "Channel",
-    "default": null,
-    "array": false
-  },
   "logChannel": {
     "type": "Channel",
     "default": null,
