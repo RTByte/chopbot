@@ -1,42 +1,34 @@
-exports.run = (client, guildMember) => {
-    const Discord = require('discord.js');
+exports.run = async (client, guildMember) => {
+    const userExists = await client.funcs.userCache.userExists(guildMember.user);
 
-	const guildConf = client.funcs.confs.get(guildMember.guild);
+    if (!userExists) {
+        client.funcs.userCache.newUser(guildMember).then((err) => {
+            return userJoined(client, guildMember, true);
+        });
+    }
 
-    client.funcs.userCache.userExists(guildMember.user)
-    .then((userExists) => {
-        if(userExists){
-            client.funcs.userCache.serverExists(guildMember)
-            .then((serverExists) => {
-                if(serverExists){
-                    //User is re-joining this server
-                    userJoined(client, guildMember, Discord, guildConf, false);
-                } else {
-                    //User is joining this server for the first time
-                    client.funcs.userCache.newServer(guildMember)
-                    .then((err) => {
-                        userJoined(client, guildMember, Discord, guildConf, true);
-                    });
-                }
-            });
-        } else {
-            //User is new to both ChopBot and this server
-            client.funcs.userCache.newUser(guildMember)
-            .then((err) => {
-                client.funcs.userCache.newServer(guildMember)
-                .then((err) => {
-                    userJoined(client, guildMember, Discord, guildConf, true);
-                });
-            });
-        }
-    });
+    const serverExists = await client.funcs.userCache.serverExists(guildMember);
+
+    if (!serverExists) {
+        return userJoined(client, guildMember, true);
+    }
+
+    return userJoined(client, guildMember, false);
 
 };
 
-function userJoined(client, guildMember, Discord, guildConf, firstTime = true){
+userJoined = async (client, guildMember, firstTime = true) => {
+    if (firstTime) {
+        client.funcs.userCache.newServer(guildMember);
+
+        if (guildMember.guild.settings.welcomeUsers) {
+            await welcomeUser(guildMember);
+        }
+    }
+
     try {
-        const newUser = new Discord.RichEmbed()
-            .setAuthor(`${guildMember.user.username}#${guildMember.user.discriminator} (${guildMember.user.id})`, guildMember.user.avatarURL)
+        const newUser = new client.methods.Embed()
+            .setAuthor(`${guildMember.user.tag} (${guildMember.user.id})`, guildMember.user.avatarURL)
             .setColor("#00ff00")
             .setTimestamp()
             .setFooter(`User joined`);
@@ -45,10 +37,14 @@ function userJoined(client, guildMember, Discord, guildConf, firstTime = true){
             newUser.setFooter(`User re-joined`);
         }
 
-        client.channels.get(`${guildConf.logChannel}`).sendEmbed(newUser, '', {
-            disableEveryone: true
-        });
+        const logChannel = await client.channels.get(guildMember.guild.settings.logChannel);
+
+        return logChannel.send('', { disableEveryone: true, embed: newUser });
     } catch (err) {
-        return;
+        return client.emit("log", err, "error");
     }
 }
+
+welcomeUser = async (guildMember) => {
+    //TODO: Welcome users on first join
+};

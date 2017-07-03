@@ -1,0 +1,77 @@
+{
+  "prefix": {
+    "type": "String",
+    "default": "-",
+    "array": false
+  },
+  "modRole": {
+    "type": "Role",
+    "default": null,
+    "array": false
+  },
+  "adminRole": {
+    "type": "Role",
+    "default": null,
+    "array": false
+  },
+  "logChannel": {
+    "type": "Channel",
+    "default": null,
+    "array": false
+  },
+  "whitelistedRole": {
+  	"type": "Role",
+  	"default": null,
+  	"array": false
+  },
+  "eventRole": {
+  	"type": "Role",
+  	"default": null,
+  	"array": false
+  },
+  "mutedRole": {
+    "type": "Role",
+    "default": null,
+    "array": false
+  },
+  "voiceBannedRole": {
+    "type": "Role",
+    "default": null,
+    "array": false
+  },
+  "disabledCommands": {
+    "type": "Command",
+    "default": [],
+    "array": true
+  },
+  "joinableRoles": {
+    "type": "Role",
+    "default": [],
+    "array": true
+  },
+  "macros": {
+  	"type": "Object",
+  	"default": {},
+  	"array": false
+  },
+  "macroPrefix": {
+  	"type": "String",
+  	"default": "!",
+  	"array": false
+  },
+  "welcomeUsers": {
+    "type": "Boolean",
+    "default": false,
+    "array": false
+  },
+  "welcomeMessage": {
+    "type": "String",
+    "default": false,
+    "array": false
+  },
+  "levelUpNotification": {
+    "type": "Boolean",
+    "default": false,
+    "array": false
+  }
+}

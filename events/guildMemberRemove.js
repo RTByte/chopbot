@@ -1,19 +1,20 @@
-exports.run = (client, guildMember) => {
-    const Discord = require('discord.js');
+exports.run = async (client, guildMember) => {
 
-	const guildConf = client.funcs.confs.get(guildMember.guild);
+    //Stop the bot from trying to post if it's the one leaving the server
+    if (guildMember.id === client.user.id) {
+        //TODO: Notify developer log that bot was removed from a server
+        return;
+    }
 
     try {
-        const userLeft = new Discord.RichEmbed()
-            .setAuthor(`${guildMember.user.username}#${guildMember.user.discriminator} (${guildMember.user.id})`, guildMember.user.avatarURL)
+        const userLeft = new client.methods.Embed()
+            .setAuthor(`${guildMember.user.tag} (${guildMember.user.id})`, guildMember.user.avatarURL)
             .setColor("#ff9b9b")
             .setTimestamp()
             .setFooter(`User left`);
-        client.channels.get(`${guildConf.logChannel}`).sendEmbed(userLeft, '', {
-            disableEveryone: true
-        });
+        return client.channels.get(guildMember.guild.settings.logChannel).send('', { disableEveryone: true, embed: userLeft });
     } catch (err) {
-        return;
+        return client.emit("log", err, "error");
     }
 
 };
