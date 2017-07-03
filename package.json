@@ -20,7 +20,7 @@
     "dotenv": "^4.0.0",
     "erlpack": "github:hammerandchisel/erlpack",
     "fs-extra": "^3.0.1",
-    "fs-nextra": "^0.1.1",
+    "fs-nextra": "^0.1.6",
     "jsonfile": "^3.0.0",
     "komada": "github:dirigeants/komada#indev",
     "libsodium-wrappers": "^0.5.1",
@@ -32,7 +32,7 @@
     "prism-media": "0.0.1",
     "profanity-finder": "^1.0.2",
     "request": "^2.81.0",
-    "snekfetch": "^3.1.8",
+    "snekfetch": "^3.2.1",
     "sodium": "^2.0.1",
     "uws": "^0.14.5",
     "yamdbf-addon-dm-manager": "^0.1.3"

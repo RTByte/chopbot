@@ -1,36 +1,53 @@
-exports.run = async (client, msg, [user, amount, all = null]) => {
-    const executor = msg.author;
+exports.run = async (client, msg, [target = null, amount, all = null]) => {
+  //TODO: Make purging >100 messages possible (Loop?)
 
-    try {
-        let messages = await msg.channel.fetchMessages({ limit: amount+1 });
-        const messagesFiltered = await filterMessages(client, executor, messages, all);
+  //Fetching <amount> of messages in this channel
+  let messages = await msg.channel.fetchMessages({ limit: amount });
 
-        await msg.channel.bulkDelete(messagesFiltered);
-    
-    } catch (err) {
-        client.emit("log", err, "error");
-    }
+  //Filtering out messages that weren't sent by target user, if one is specified
+  if (target) {
+    messages = messages.filter(m => m.author.id === target.id);
+  }
+  
+  //Filtering messages from non-modable users if 'all' override isn't used
+  if (all !== "all"){
+    modableMessages = await findModableMessages(client, msg, messages);
 
-    return msg.reply("Messages deleted.");
+    messages = messages.filter(m => modableMessages.includes(m.id))
+  }
+  
+  try {
+    //Regular purge, doesn't show in mod logs
+    await msg.channel.bulkDelete(messages);
+  } catch (err) {
+    //Purging <3 messages at a time
+    await messages.deleteAll();
+  }
+
+  return msg.reply("Messages Deleted.");
+
+};
+
+findModableMessages = async (client, msg, messages) => {
+  let messageArray = [];
+
+  await messages.every((m) => messageArray.push(m));
+
+  var IDsToDelete = [];
+
+  for (let i = 0; i <= messageArray.length-1; i++) {
+      let canMod = await client.funcs.hierarchyCheck(client, msg.author, messageArray[i].author, messageArray[i].guild).catch(err => client.emit("log", err, "error"));
+      
+      if (canMod){
+        IDsToDelete.push(messageArray[i].id);
+      }
+    };
+
+  return IDsToDelete;
 
 };
 
-filterMessages = async (client, executor, messages, all) => {
-    if (all === "all") {
-        return messages;
-    }
 
-    //TODO: Make purge actually work, also purge by user
-
-    const messagesFiltered = await messages.filter(async (m) => {
-        const canMod = await client.funcs.hierarchyCheck(client, executor, m.author, m.guild).catch((err) => client.emit("log", err, "error"));
-        console.log(!canMod);
-        return(!canMod);
-    });
-
-    return messagesFiltered;
-
-};
 
 exports.conf = {
   enabled: true,
@@ -39,14 +56,14 @@ exports.conf = {
   aliases: [],
   permLevel: 0,
   botPerms: [],
-  requiredFuncs: [],
+  requiredFuncs: ["hierarchyCheck"],
   requiredModules: [],
 };
 
 exports.help = {
   name: "purge",
-  description: "This will remove X amount of messages sent in a channel, or by Y user.",
-  usage: "[user:mention] <amount:int{1,100}> [all:string]",
+  description: "This will remove X amount of messages sent in a channel, or by Y user. Append the word 'all' to ignore the role hierarchy and be able to delete messages from roles higher than yourself.",
+  usage: "[user:mention] <amount:int{2,100}> [all:string]",
   usageDelim: " ",
   type: "commands",
 };
