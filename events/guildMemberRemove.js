@@ -2,7 +2,21 @@ exports.run = async (client, guildMember) => {
 
     //Stop the bot from trying to post if it's the one leaving the server
     if (guildMember.id === client.user.id) {
-        //TODO: Notify developer log that bot was removed from a server
+        //Sending a message to dev log that bot is on a new guild
+        try {
+            const newGuild = new client.methods.Embed()
+                .setAuthor(`${guildMember.guild.name} (${guildMember.guild.id})`, guildMember.guild.iconURL)
+                .setColor("#ff0000")
+                .setTimestamp()
+                .setFooter("Bot Removed from Guild!");
+        
+            const logChannel = await client.channels.get(client.devLogChannel);
+
+            await logChannel.send('', { disableEveryone: true, embed: newGuild });
+        } catch (err) {
+            await client.emit("log", err, "error");
+        }
+        
         return;
     }
 
