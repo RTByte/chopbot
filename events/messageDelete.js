@@ -1,7 +1,7 @@
 exports.run = (client, msg) => {
     try {
         const deleteEmbed = new client.methods.Embed()
-            .setAuthor(`#${msg.channel.name}`, msg.guild.avatarURL())
+            .setAuthor(`#${msg.channel.name}`, msg.guild.iconURL())
             .setColor("#4286f4")
             .addField("Message Deleted", `${msg.content}`, true)
             .setTimestamp()

@@ -3,6 +3,8 @@ exports.run = async (client, msg, [target, ...reason]) => {
         return msg.reply("You must enter a reason for your report");
     }
 
+    reason = reason.join(" ");
+
     target = await client.fetchUser(target.id);
 
     msg.delete();
