@@ -51,7 +51,7 @@ exports.run = async (client, guild) => {
     //Sending a message to dev log that bot is on a new guild
     try {
         const newGuild = new client.methods.Embed()
-            .setAuthor(`${guild.name} (${guild.id})`, guild.iconURL)
+            .setAuthor(`${guild.name} (${guild.id})`, guild.avatarURL())
             .setColor("#00ff00")
             .setTimestamp()
             .setFooter("Bot Added to new Guild!");

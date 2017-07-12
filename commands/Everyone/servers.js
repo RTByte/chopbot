@@ -9,7 +9,7 @@ exports.run = async (client, msg) => {
         .addField("Rooster Teeth Shows", "• [/r/RWBY](https://discord.gg/rwby)\n• [Red vs. Blue](https://discord.gg/TkeEJ9D)", true)
         .setThumbnail("http://i.imgur.com/7lSighC.png", 50, 50)
         .setTimestamp()
-        .setFooter(`Requested by ${msg.author.username}#${msg.author.discriminator}`, msg.author.avatarURL);
+        .setFooter(`Requested by ${msg.author.username}#${msg.author.discriminator}`, msg.author.avatarURL());
     return msg.send('', { disableEveryone: true, embed: serverEmbed });
 
 };

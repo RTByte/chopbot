@@ -19,7 +19,7 @@ exports.run = async (client, msg, guild) => {
 
     try {
         const serverLog = new client.methods.Embed()
-            .setAuthor(msg.author.tag, msg.author.avatarURL)
+            .setAuthor(msg.author.tag, msg.author.avatarURL())
             .setColor("#ff0fef")
             .setDescription(`Got RT First role.`)
             .setTimestamp();

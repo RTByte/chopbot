@@ -5,7 +5,7 @@ exports.run = async (client, msg) => {
     await client.emit("log", "Testing Error", "error");
     
     const testEmbed = new client.methods.Embed()
-        .setAuthor(msg.author.tag, msg.author.avatarURL)
+        .setAuthor(msg.author.tag, msg.author.avatarURL())
         .setColor("#4286f4")
         .addField("Status:", "Test Executed", true);
 

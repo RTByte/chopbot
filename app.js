@@ -9,7 +9,7 @@ const ChopBot = new komada.Client({
 	cmdEditing: true,
 	cmdLogging: true,
 	clientOptions: {
-		fetchAllMembers: true
+		fetchAllMembers: false //Temporarily disabling this due to issues with Discord.js v12dev
 	},
 	//Permission Structure using ownerID as an array
 	permStructure: new komada.PermLevels()

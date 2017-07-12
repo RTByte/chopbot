@@ -4,7 +4,7 @@ const func = async (client, executor, target, channel, action, reason, silent = 
 	channel = client.channels.get(channel.id);
 
     const modLog = new client.methods.Embed()
-        .setAuthor(executor.tag, executor.avatarURL)
+        .setAuthor(executor.tag, executor.avatarURL())
         .setTimestamp();
     
     switch (action.toLowerCase()) {

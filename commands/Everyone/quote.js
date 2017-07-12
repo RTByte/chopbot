@@ -6,7 +6,7 @@ exports.run =  async (client, msg, [messageID, origin]) => {
             try{
                 client.channels.get(origin.id).fetchMessage(messageID).then(quotedMessage => {
                         let quoteEmbed = new client.methods.Embed()
-                            .setAuthor(`${quotedMessage.author.username}#${quotedMessage.author.discriminator}`, quotedMessage.author.avatarURL)
+                            .setAuthor(`${quotedMessage.author.username}#${quotedMessage.author.discriminator}`, quotedMessage.author.avatarURL())
                             .setColor("#ffffff")
                             .addField("Message:", `${quotedMessage.content}`, true)
                             .setFooter(`Originally Sent on ${quotedMessage.createdAt} in #${quotedMessage.channel.name} on ${quotedMessage.guild.name} Discord`);
@@ -31,7 +31,7 @@ exports.run =  async (client, msg, [messageID, origin]) => {
             msg.channel.fetchMessage(messageID)
                 .then(quotedMessage => {
                     let quoteEmbed = new client.methods.Embed()
-                        .setAuthor(`${quotedMessage.author.username}#${quotedMessage.author.discriminator}`, quotedMessage.author.avatarURL)
+                        .setAuthor(`${quotedMessage.author.username}#${quotedMessage.author.discriminator}`, quotedMessage.author.avatarURL())
                         .setColor("#ffffff")
                         .addField("Message:", `${quotedMessage.content}`, true)
                         .setFooter(`Originally Sent on ${quotedMessage.createdAt}`);
