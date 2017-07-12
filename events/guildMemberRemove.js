@@ -5,7 +5,7 @@ exports.run = async (client, guildMember) => {
         //Sending a message to dev log that bot is on a new guild
         try {
             const newGuild = new client.methods.Embed()
-                .setAuthor(`${guildMember.guild.name} (${guildMember.guild.id})`, guildMember.guild.avatarURL())
+                .setAuthor(`${guildMember.guild.name} (${guildMember.guild.id})`, guildMember.guild.iconURL())
                 .setColor("#ff0000")
                 .setTimestamp()
                 .setFooter("Bot Removed from Guild!");

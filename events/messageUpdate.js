@@ -7,7 +7,7 @@ exports.run = async (client, msg) => {
 
     try {
         const editEmbed = new client.methods.Embed()
-            .setAuthor(`#${msg.channel.name}`, msg.guild.avatarURL())
+            .setAuthor(`#${msg.channel.name}`, msg.guild.iconURL())
             .setColor("#4286f4")
             .setTitle("Message Edited")
             .addField("BEFORE", `${msg.edits[0]}`)
