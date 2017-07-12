@@ -10,7 +10,7 @@ exports.run = async (client, msg) => {
         .setThumbnail("http://i.imgur.com/7lSighC.png", 50, 50)
         .setTimestamp()
         .setFooter(`Requested by ${msg.author.username}#${msg.author.discriminator}`, msg.author.avatarURL);
-    return msg.channel.send(serverEmbed, '', { disableEveryone: true, embed: serverEmbed });
+    return msg.send('', { disableEveryone: true, embed: serverEmbed });
 
 };
 
