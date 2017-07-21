@@ -2,7 +2,7 @@ exports.run = async (client, msg, [cmd]) => {
   const method = client.user.bot ? "author" : "channel";
   if (cmd) {
     cmd = client.commands.get(cmd) || client.commands.get(client.aliases.get(cmd));
-    if (!cmd) return msg.sendMessage("❌ | Unknown command, please run the help command with no arguments to get a list of them all.");
+    if (!cmd) return msg.sendMessage("Unknown command. Try running the command with no arguments to get a list of all commands.");
     const info = [
       `= ${cmd.help.name} = `,
       cmd.help.description,
@@ -22,8 +22,8 @@ exports.run = async (client, msg, [cmd]) => {
     helpMessage.push("```\n\u200b");
   }
   return msg[method].send(helpMessage, { split: { char: "\u200b" } })
-    .then(() => { if (msg.channel.type !== "dm" && client.user.bot) msg.sendMessage("📥 | Commands have been sent to your DMs."); })
-    .catch(() => { if (msg.channel.type !== "dm" && client.user.bot) msg.sendMessage("❌ | You have DMs disabled, I couldn't send you the commands in DMs."); });
+    .then(() => { if (msg.channel.type !== "dm" && client.user.bot) msg.react("📨"); })
+    .catch(() => { if (msg.channel.type !== "dm" && client.user.bot) msg.sendMessage("Looks like you have DMs from non-friends disabled, DM not sent."); });
 };
 
 exports.conf = {
@@ -38,7 +38,7 @@ exports.conf = {
 
 exports.help = {
   name: "help",
-  description: "Display help for a command.",
+  description: "Displays a list of commands, or extended help for a specified command.",
   usage: "[command:str]",
   usageDelim: "",
 };

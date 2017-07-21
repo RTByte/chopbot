@@ -1,6 +1,6 @@
 exports.run = async (client, msg) => {
   const message = await msg.sendMessage("Ping?");
-  return msg.sendMessage(`Pong! (Roundtrip took: ${message.createdTimestamp - msg.createdTimestamp}ms. Heartbeat: ${Math.round(client.ping)}ms.)`);
+  return msg.sendMessage(`Pong! \`${Math.round(client.ping)}ms\``);
 };
 
 exports.conf = {
@@ -14,7 +14,7 @@ exports.conf = {
 
 exports.help = {
   name: "ping",
-  description: "Ping/Pong command. I wonder what this does? /sarcasm",
+  description: "Pings the bot.",
   usage: "",
   usageDelim: "",
 };

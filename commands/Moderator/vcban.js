@@ -2,7 +2,7 @@ exports.run = async (client, msg, [target, ...reason]) => {
     //Making sure target is fetched, and setting the executor
     target = await client.fetchUser(target.id);
     const executor = msg.author;
-    const action = "VCBan";
+    const action = "VC Ban";
     reason = reason.toString().split(",").join(" ");
 
     //Checking to see if executor can act on target
@@ -14,37 +14,39 @@ exports.run = async (client, msg, [target, ...reason]) => {
     //Notify if user can't moderate target
     if (!canMod) {
         msg.delete();
-        return msg.reply(`You don't have permission to moderate ${target}`);
+        return msg.reply(`You don't have permission to moderate ${target}.`);
     }
 
     if (msg.content.includes ("-s")) {
         //Run silently if specified
-        await client.funcs.modNotification(client, executor, target, msg.channel, action, reason, true);
+        await client.funcs.modNotification(client, executor, target, msg, action, reason, true);
     } else {
         //Run normally
-        await client.funcs.modNotification(client, executor, target, msg.channel, action, reason, false);
+        await client.funcs.modNotification(client, executor, target, msg, action, reason, false);
     }
-    
+
     /**  ~~~~   Action-specific Code starts here   ~~~~  **/
 
+    const targetMember = await guild.fetchMember(target);
+
     //Kick user from voice channel if they're in one
-    if (target.voiceChannel) {
-        const oirginChannel = target.voiceChannel;
+    if (targetMember.voiceChannel) {
+        const originChannel = targetMember.voiceChannel;
 
         try {
             const kickChannel = await msg.guild.createChannel(`kick${target.username}`, 'voice');
-            await target.setVoiceChannel(kickChannel);
+            await targetMember.setVoiceChannel(kickChannel);
             await setTimeout(() => {
-                kickChannel.delete();
+                return kickChannel.delete();
             }, 250);
         } catch (err) {
-            client.emit("log", err, "error");
+            return client.emit("log", err, "error");
         }
     }
 
     //Voice Banning the target user
     return msg.guild.member(target).addRole(msg.guild.settings.voiceBannedRole)
-        .catch((err) => msg.reply(`There was an error trying to voice ban ${target}: ${err}`));
+        .catch((err) => msg.reply(`There was an error trying to voice ban ${target}: ${err}.`));
 
 
 };
@@ -60,7 +62,7 @@ exports.conf = {
 
 exports.help = {
     name: "vcban",
-    description: "Bans user from entering voice channels.",
+    description: "Bans mentioned user from entering voice channels.",
     usage: "<user:user> <reason:str> [...]",
     usageDelim: " ",
 };

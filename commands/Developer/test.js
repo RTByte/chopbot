@@ -3,9 +3,9 @@ exports.run = async (client, msg) => {
     await client.emit("log", "Testing Debug", "debug");
     await client.emit("log", "Testing Warn", "warn");
     await client.emit("log", "Testing Error", "error");
-    
+
     const testEmbed = new client.methods.Embed()
-        .setAuthor(msg.author.tag, msg.author.avatarURL)
+        .setAuthor(msg.author.tag, msg.author.avatarURL())
         .setColor("#4286f4")
         .addField("Status:", "Test Executed", true);
 
@@ -23,7 +23,7 @@ exports.conf = {
 
 exports.help = {
     name: "test",
-    description: "This is a test command. Expect it to change a lot...",
+    description: "This is a test command.",
     usage: "",
     usageDelim: "",
     type: "debug",

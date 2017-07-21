@@ -21,7 +21,7 @@ exports.conf = {
 
 exports.help = {
     name: "rule34",
-    description: "Search for rule34",
+    description: "This is a meme, we didn't actually add a rule34 command.",
     usage: "[subject:str]",
     usageDelim: " "
 };
