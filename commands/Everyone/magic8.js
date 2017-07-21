@@ -43,7 +43,7 @@ exports.run = (client, msg) => {
   if (msg.content.endsWith("?")) {
     return msg.reply(`🎱 ${answers[Math.floor(Math.random() * answers.length)]}`).catch(err => client.funcs.log(err, "error"));
   } else {
-    return msg.reply(`🎱 ${noQuestion[Math.floor(Math.random() * noQuestion.length)]}`).catch(err => client.funcs.log(err, "error"));
+    return msg.reply("🎱 ${noQuestion[Math.floor(Math.random() * noQuestion.length)]}").catch(err => client.funcs.log(err, "error"));
   }
 };
 

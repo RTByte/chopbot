@@ -2,7 +2,7 @@ exports.run = async (client, msg, [user]) => {
     const target = msg.mentions.users.first() || msg.author;
 
     const userInfo = new client.methods.Embed()
-        .setAuthor(target.username, target.avatarURL())
+        .setAuthor(target.username, target.avatarURL)
         .setColor("#ffffff")
         .addField("ID", target.id, true)
         .addField("Name & Discriminator", target.tag, true)
@@ -11,7 +11,7 @@ exports.run = async (client, msg, [user]) => {
         .addField("Joined Discord", target.createdAt, true)
         .setThumbnail("http://i.imgur.com/7lSighC.png", 50, 50)
         .setTimestamp()
-        .setFooter(`Requested by ${msg.author.tag}`, msg.author.avatarURL());
+        .setFooter(`Requested by ${msg.author.tag}`, msg.author.avatarURL);
     return msg.channel.send('', { disableEveryone: true, embed: userInfo });
 };
 

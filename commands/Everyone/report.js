@@ -3,8 +3,6 @@ exports.run = async (client, msg, [target, ...reason]) => {
         return msg.reply("You must enter a reason for your report");
     }
 
-    reason = reason.join(" ");
-
     target = await client.fetchUser(target.id);
 
     msg.delete();
@@ -13,13 +11,13 @@ exports.run = async (client, msg, [target, ...reason]) => {
 
     try {
         const modChat = new client.methods.Embed()
-            .setAuthor(target.tag, target.avatarURL())
+            .setAuthor(target.tag, target.avatarURL)
             .setColor("#fff200")
             .setTitle(`User report in #${msg.channel.name}`)
             .setDescription(`${reason}`)
             .setTimestamp()
-            .setFooter(`Reported by ${msg.author.tag}`, msg.author.avatarURL());
-        return client.channels.get(msg.guild.settings.logChannel).send(`${msg.guild.roles.find("id", msg.guild.settings.modRole)} ${msg.guild.roles.find("id", msg.guild.settings.adminRole)}`, { disableEveryone: true, embed: modChat });
+            .setFooter(`Reported by ${msg.author.tag}`, msg.author.avatarURL);
+        return client.channels.get(msg.guild.settings.modChat).send('', { disableEveryone: true, embed: modChat });
     } catch (err) {
         return client.emit("log", err, "error");
     }
