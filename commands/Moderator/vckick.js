@@ -2,7 +2,7 @@ exports.run = async (client, msg, [target, ...reason]) => {
     //Making sure target is fetched, and setting the executor
     target = await client.fetchUser(target.id);
     const executor = msg.author;
-    const action = "VCKick";
+    const action = "VC Kick";
     reason = reason.toString().split(",").join(" ");
 
     //Checking to see if executor can act on target
@@ -14,26 +14,28 @@ exports.run = async (client, msg, [target, ...reason]) => {
     //Notify if user can't moderate target
     if (!canMod) {
         msg.delete();
-        return msg.reply(`You don't have permission to moderate ${target}`);
+        return msg.reply(`You don't have permission to moderate ${target}.`);
     }
 
     if (msg.content.includes ("-s")) {
         //Run silently if specified
-        await client.funcs.modNotification(client, executor, target, msg.channel, action, reason, true);
+        await client.funcs.modNotification(client, executor, target, msg, action, reason, true);
     } else {
         //Run normally
-        await client.funcs.modNotification(client, executor, target, msg.channel, action, reason, false);
+        await client.funcs.modNotification(client, executor, target, msg, action, reason, false);
     }
-    
+
     /**  ~~~~   Action-specific Code starts here   ~~~~  **/
 
+    const targetMember = await guild.fetchMember(target);
+
     //Kick user from voice channel if they're in one
-    if (target.voiceChannel) {
-        const oirginChannel = target.voiceChannel;
+    if (targetMember.voiceChannel) {
+        const originChannel = targetMember.voiceChannel;
 
         try {
             const kickChannel = await msg.guild.createChannel(`kick${target.username}`, 'voice');
-            await target.setVoiceChannel(kickChannel);
+            await targetMember.setVoiceChannel(kickChannel);
             await setTimeout(() => {
                 return kickChannel.delete();
             }, 250);
@@ -55,7 +57,7 @@ exports.conf = {
 
 exports.help = {
     name: "vckick",
-    description: "Kicks user out of voice channel.",
+    description: "Kicks user from voice if they are in a voice channel.",
     usage: "<user:user> <reason:str> [...]",
     usageDelim: " ",
 };

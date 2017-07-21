@@ -14,22 +14,22 @@ exports.run = async (client, msg, [target, ...reason]) => {
     //Notify if user can't moderate target
     if (!canMod) {
         msg.delete();
-        return msg.reply(`You don't have permission to moderate ${target}`);
+        return msg.reply(`You don't have permission to moderate ${target}.`);
     }
 
     if (msg.content.includes ("-s")) {
         //Run silently if specified
-        await client.funcs.modNotification(client, executor, target, msg.channel, action, reason, true);
+        await client.funcs.modNotification(client, executor, target, msg, action, reason, true);
     } else {
         //Run normally
-        await client.funcs.modNotification(client, executor, target, msg.channel, action, reason, false);
+        await client.funcs.modNotification(client, executor, target, msg, action, reason, false);
     }
-    
+
     /**  ~~~~   Action-specific Code starts here   ~~~~  **/
 
     //Banning the target user
     return msg.guild.member(target).ban(1, reason)
-        .catch((err) => msg.reply(`There was an error trying to ban ${target}: ${err}`));
+        .catch((err) => msg.reply(`There was an error trying to ban ${target}: ${err}.`));
 
 };
 

@@ -8,11 +8,11 @@ exports.run = async (client, msg, [target]) => {
 
     if (!canMod) {
         //Notify user of command cancellation
-        return msg.channel.sendMessage("Can't moderate user");
+        return msg.react("❌");
     }
 
     //Perform command operations
-    return msg.channel.sendMessage("Can moderate user");
+    return msg.react("✅");
 
 };
 
@@ -33,7 +33,7 @@ exports.conf = {
 
 exports.help = {
     name: "compare",
-    description: "Test command for hierarchyCheck function",
+    description: "Test command for hierarchyCheck function.",
     usage: "<target:user>",
     usageDelim: " ",
     type: "commands"

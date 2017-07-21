@@ -14,17 +14,17 @@ exports.run = async (client, msg, [target, ...reason]) => {
     //Notify if user can't moderate target
     if (!canMod) {
         msg.delete();
-        return msg.reply(`You don't have permission to moderate ${target}`);
+        return msg.reply(`You don't have permission to moderate ${target}.`);
     }
 
     if (msg.content.includes ("-s")) {
         //Run silently if specified
-        await client.funcs.modNotification(client, executor, target, msg.channel, action, reason, true);
+        await client.funcs.modNotification(client, executor, target, msg, action, reason, true);
     } else {
         //Run normally
-        await client.funcs.modNotification(client, executor, target, msg.channel, action, reason, false);
+        await client.funcs.modNotification(client, executor, target, msg, action, reason, false);
     }
-    
+
     /**  ~~~~   Action-specific Code starts here   ~~~~  **/
 
     //Nothing to do here as warning messages are handled by modNotification function
@@ -43,7 +43,7 @@ exports.conf = {
 
 exports.help = {
     name: "warn",
-    description: "Warns mentioned user and logs reason.",
+    description: "Sends a formal warning to the mentioned user with the specified reason, and logs it.",
     usage: "<user:user> <reason:str> [...]",
     usageDelim: " "
 };

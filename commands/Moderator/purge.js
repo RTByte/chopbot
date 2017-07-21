@@ -8,14 +8,14 @@ exports.run = async (client, msg, [target = null, amount, all = null]) => {
   if (target) {
     messages = messages.filter(m => m.author.id === target.id);
   }
-  
+
   //Filtering messages from non-modable users if 'all' override isn't used
   if (all !== "all"){
     modableMessages = await findModableMessages(client, msg, messages);
 
     messages = messages.filter(m => modableMessages.includes(m.id))
   }
-  
+
   try {
     //Regular purge, doesn't show in mod logs
     await msg.channel.bulkDelete(messages);
@@ -24,7 +24,7 @@ exports.run = async (client, msg, [target = null, amount, all = null]) => {
     await messages.deleteAll();
   }
 
-  return msg.reply("Messages Deleted.");
+  return msg.react("✅");
 
 };
 
@@ -37,7 +37,7 @@ findModableMessages = async (client, msg, messages) => {
 
   for (let i = 0; i <= messageArray.length-1; i++) {
       let canMod = await client.funcs.hierarchyCheck(client, msg.author, messageArray[i].author, messageArray[i].guild).catch(err => client.emit("log", err, "error"));
-      
+
       if (canMod){
         IDsToDelete.push(messageArray[i].id);
       }
@@ -54,7 +54,7 @@ exports.conf = {
   runIn: ["text"],
   selfbot: false,
   aliases: [],
-  permLevel: 0,
+  permLevel: 2,
   botPerms: [],
   requiredFuncs: ["hierarchyCheck"],
   requiredModules: [],
@@ -62,7 +62,7 @@ exports.conf = {
 
 exports.help = {
   name: "purge",
-  description: "This will remove X amount of messages sent in a channel, or by Y user. Append the word 'all' to ignore the role hierarchy and be able to delete messages from roles higher than yourself.",
+  description: "Removes X amount of messages, optionally sent by Y user. Append the word 'all' to ignore the role hierarchy.",
   usage: "[user:mention] <amount:int{2,100}> [all:string]",
   usageDelim: " ",
   type: "commands",

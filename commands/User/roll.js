@@ -21,13 +21,13 @@ exports.run = async (client, msg, [amount = 1, type = "d6"]) => {
 
   //Exiting if the args aren't valid
   if (!valid) {
-    return msg.send(`${msg.author}, Sorry, I can only roll up to 10 of these dice:\n d20, d12, d10, d8, d6, d4`);
+    return msg.reply(`Sorry, I can only roll up to 10 of these dice:\n d20, d12, d10, d8, d6, d4.`);
   }
 
   //Rolling the dice
   let dice = await rollDice(faces, amount);
 
-  return msg.send(`${msg.author}, here are the dice you rolled: 🎲**${dice.join('**, 🎲**')}**\nTotal: **${dice.reduce((a, b) => a + b, 0)}**`);
+  return msg.reply(`here are the dice you rolled.\n 🎲**${dice.join('**, 🎲**')}**\n\nTotal: **${dice.reduce((a, b) => a + b, 0)}**`);
 
 };
 
@@ -35,7 +35,7 @@ rollDice = async (faces, amount) => {
   let dice = [];
 
   for (let i = 0; i < amount; i++) {
-    dice.push(Math.floor(Math.random() * faces) + 1)
+    dice.push(Math.floor(Math.random() * faces) + 1);
   }
 
   return dice;
@@ -55,7 +55,7 @@ exports.conf = {
 
 exports.help = {
   name: "roll",
-  description: "Rolls a die. Optionally specify amount of dice (up to 10) and their type (d6, d20, etc)",
+  description: "Rolls a die. Optionally specify the amount of dice and their type.",
   usage: "[amount:int{1,10}] [type:str]",
   usageDelim: " ",
   type: "commands",

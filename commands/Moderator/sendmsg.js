@@ -8,7 +8,7 @@ exports.run = async (client, msg, [target, ...message]) => {
             return msg.channel.send(`It looks like ${target} is not a valid user or channel.`);
         }
     }
-    
+
     return;
 };
 
@@ -36,7 +36,7 @@ exports.conf = {
 
 exports.help = {
     name: "sendmsg",
-    description: "Sends message to destination channel or user",
+    description: "Sends a message to the specified channel using ChopBot.",
     usage: "<target:user|target:channel> <message:str> [...]",
     usageDelim: " ",
 };

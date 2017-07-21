@@ -1,6 +1,6 @@
 exports.run = (client, msg) => {
     const serverInfo = new client.methods.Embed()
-        .setAuthor(`${msg.guild.name}`, msg.guild.iconURL)
+        .setAuthor(`${msg.guild.name}`, msg.guild.iconURL())
         .setColor("#ffffff")
         .addField("ID", `${msg.guild.id}`, true)
         .addField("Name", `${msg.guild.name}`, true)
@@ -13,7 +13,7 @@ exports.run = (client, msg) => {
         .addField("Created on", `${msg.guild.createdAt}`, true)
         .setThumbnail("http://i.imgur.com/7lSighC.png", 50, 50)
         .setTimestamp()
-        .setFooter(`Requested by ${msg.author.username}#${msg.author.discriminator}`, msg.author.avatarURL);
+        .setFooter(`Requested by ${msg.author.username}#${msg.author.discriminator}`, msg.author.avatarURL());
     return msg.channel.send('', { disableEveryone: true, embed: serverInfo });
 };
 

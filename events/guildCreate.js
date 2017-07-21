@@ -6,7 +6,7 @@ exports.run = async (client, guild) => {
     const modRole = await guild.createRole({ data: { name: "Moderator" } });
     const whitelistedRole = await guild.createRole({ data: { name: "Whitelisted" } });
     const eventRole = await guild.createRole({ data: { name: "Event" } });
-    const voiceBannedRole = await guild.createRole({ data: { name: "Voice Chat Banned" } });
+    const voiceBannedRole = await guild.createRole({ data: { name: "VC Banned" } });
     const mutedRole = await guild.createRole({ data: { name: "Muted" } });
 
     //Pre-Configuring these roles in the guild settings
@@ -51,11 +51,11 @@ exports.run = async (client, guild) => {
     //Sending a message to dev log that bot is on a new guild
     try {
         const newGuild = new client.methods.Embed()
-            .setAuthor(`${guild.name} (${guild.id})`, guild.iconURL)
+            .setAuthor(`${guild.name} (${guild.id})`, guild.iconURL())
             .setColor("#00ff00")
             .setTimestamp()
-            .setFooter("Bot Added to new Guild!");
-        
+            .setFooter("Bot added to new guild");
+
         const logChannel = await client.channels.get(client.devLogChannel);
 
         await logChannel.send('', { disableEveryone: true, embed: newGuild });
@@ -64,6 +64,6 @@ exports.run = async (client, guild) => {
     }
 
 
-    return guild.owner.send(`Roles initialized on **${guild.name} Discord**!\nPlease follow \`-guide\` to finish setting up the bot on your server!`);
+    return guild.owner.send(`Roles initialized on the **${guild.name} Discord**!\nPlease follow \`-guide\` to finish setting up the bot on your server.`);
 
 };

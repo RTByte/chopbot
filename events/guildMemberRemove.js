@@ -5,24 +5,24 @@ exports.run = async (client, guildMember) => {
         //Sending a message to dev log that bot is on a new guild
         try {
             const newGuild = new client.methods.Embed()
-                .setAuthor(`${guildMember.guild.name} (${guildMember.guild.id})`, guildMember.guild.iconURL)
+                .setAuthor(`${guildMember.guild.name} (${guildMember.guild.id})`, guildMember.guild.iconURL())
                 .setColor("#ff0000")
                 .setTimestamp()
-                .setFooter("Bot Removed from Guild!");
-        
+                .setFooter("Bot removed from guild");
+
             const logChannel = await client.channels.get(client.devLogChannel);
 
             await logChannel.send('', { disableEveryone: true, embed: newGuild });
         } catch (err) {
             await client.emit("log", err, "error");
         }
-        
+
         return;
     }
 
     try {
         const userLeft = new client.methods.Embed()
-            .setAuthor(`${guildMember.user.tag} (${guildMember.user.id})`, guildMember.user.avatarURL)
+            .setAuthor(`${guildMember.user.tag} (${guildMember.user.id})`, guildMember.user.avatarURL())
             .setColor("#ff9b9b")
             .setTimestamp()
             .setFooter(`User left`);

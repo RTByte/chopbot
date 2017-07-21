@@ -1,6 +1,6 @@
 exports.run = async (client, msg) => {
     const guideEmbed = new client.methods.Embed()
-        .setAuthor("ChopBot Setup Guide", client.user.avatarURL)
+        .setAuthor("ChopBot Setup Guide", client.user.avatarURL())
         .setColor("#ffffff")
         .setDescription("Thanks for choosing ChopBot! This short guide will help you set up the bot on your Discord Server!")
         .addField("⚠️ IMMEDIATE ACTION ⚠️", "What you'll need to do is create a new text channel where ChopBot will post logs of certain events that happen in your server. Once you've made this channel, make sure ChopBot has full access to it.\nAfter this, run the command `-conf set logChannel <Your New Channel Here>`")
@@ -22,7 +22,7 @@ exports.conf = {
 
 exports.help = {
     name: "guide",
-    description: "A guide on how to set the bot up.",
+    description: "A guide on how to set the bot up for usage on your server.",
     usage: "",
     usageDelim: "",
 };

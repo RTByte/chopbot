@@ -31,7 +31,7 @@ exports.conf = {
 
 exports.help = {
   name: "download",
-  description: "Downloads a piece, either from a link or our Pieces Repository, and installs it.",
+  description: "Downloads a piece, either from a link or the Komada Pieces Repository, and installs it.",
   usage: "<commands|functions|monitors|inhibitors|providers|finalizers|extendables|url:url> [location:str] [folder:str]",
   usageDelim: " ",
 };
