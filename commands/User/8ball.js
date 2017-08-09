@@ -36,7 +36,12 @@ const answers = [
   "I could tell you but I'd have to permanently ban you.",
   "Do you *really* want me to answer that?",
   "If it fits.",
-  "That's my fetish!"
+  "That's my fetish!",
+  "I'm sorry, but yes.",
+  "I'm sorry, but no.",
+  "What?",
+  "Sorry, what was that?",
+  "ban rasmus"
 ];
 
 const noQuestion = [
