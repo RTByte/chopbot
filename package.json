@@ -32,7 +32,7 @@
     "prism-media": "0.0.1",
     "profanity-finder": "^1.0.2",
     "request": "^2.81.0",
-    "snekfetch": "^3.2.1",
+    "snekfetch": "^3.2.4",
     "sodium": "^2.0.1",
     "uws": "^0.14.5",
     "yamdbf-addon-dm-manager": "^0.1.3"
