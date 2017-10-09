@@ -29,7 +29,7 @@ exports.run = async (client, msg, [cmd]) => {
 exports.conf = {
   enabled: true,
   runIn: ["text", "dm", "group"],
-  aliases: ["commands"],
+  aliases: ["commands", "helpme", "call911"],
   permLevel: 0,
   botPerms: [],
   requiredFuncs: [],
