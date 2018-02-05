@@ -5,7 +5,7 @@ exports.run = async (client, msg, [target, ...reason]) => {
 
     reason = reason.join(" ");
 
-    target = await client.fetchUser(target.id);
+    target = await client.users.resolve(target.id);
 
     msg.delete();
 

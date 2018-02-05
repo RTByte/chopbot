@@ -1,6 +1,6 @@
 const boilerplate = "This action was performed manually by a moderator. If you are confused, or need help, feel free to respond to this message and someone will get back to you soon.";
 
-const func = async (client, executor, target, msg, action, reason, silent = false) => {
+module.exports = async (client, executor, target, msg, action, reason, silent = false) => {
 	const channel = client.channels.get(msg.channel.id);
 
     const modLog = new client.methods.Embed()
@@ -9,16 +9,16 @@ const func = async (client, executor, target, msg, action, reason, silent = fals
 
     switch (action.toLowerCase()) {
 			case "ban":
-    	case "vcban":
+    	case "vc ban":
     	case "softban":
     	case "kick":
-    	case "vckick":
+    	case "vc kick":
     	case "mute":
     		modLog.setDescription(`**Member:** ${target.tag} (${target.id})\n**Action:** ${action}\n**Reason:** ${reason}`);
     		modLog.setColor("#ff0000");
     		break;
     	case "unmute":
-    	case "vcunban":
+    	case "vc unban":
     	case "report":
     		modLog.setDescription(`**Member:** ${target.tag} (${target.id})\n**Action:** ${action}`);
     		modLog.setColor("#fff200");
@@ -43,15 +43,15 @@ const func = async (client, executor, target, msg, action, reason, silent = fals
     			break;
     		case "warning": actionMessage = `You have recieved a warning in the ${channel.guild.name} Discord. \n **Reason:** ${reason}\n\n` + boilerplate
     			break;
-    		case "vckick": actionMessage = `You have been kicked from voice chat in the ${channel.guild.name} Discord. \n **Reason:** ${reason}\n\n` + boilerplate
+    		case "vc kick": actionMessage = `You have been kicked from voice chat in the ${channel.guild.name} Discord. \n **Reason:** ${reason}\n\n` + boilerplate
     			break;
-    		case "vcban": actionMessage = `You have been banned from voice chat in the ${channel.guild.name} Discord. \n **Reason:** ${reason}\n\n` + boilerplate
+    		case "vc ban": actionMessage = `You have been banned from voice chat in the ${channel.guild.name} Discord. \n **Reason:** ${reason}\n\n` + boilerplate
     			break;
     		case "softban": actionMessage = `You have been kicked from the ${channel.guild.name} Discord, and your messages from the past 24 hours have been removed. \n **Reason:** ${reason}\n\n` + boilerplate
     			break;
     		case "unmute": actionMessage = `Your mute on the ${channel.guild.name} Discord has been lifted. You can now use the text and voice chat again.\n\n`
     			break;
-    		case "vcunban": actionMessage = `Your voice chat ban on the ${channel.guild.name} Discord has been lifted. You can now use the voice chat again.\n\n`
+    		case "vc unban": actionMessage = `Your voice chat ban on the ${channel.guild.name} Discord has been lifted. You can now use the voice chat again.\n\n`
     			break;
     		default:
     			break;
@@ -67,12 +67,10 @@ const func = async (client, executor, target, msg, action, reason, silent = fals
     return client.channels.get(channel.guild.settings.logChannel).send('', { disableEveryone: true, embed: modLog });
 }
 
-func.conf = { requiredModules: [] };
+module.exports.conf = { requiredModules: [] };
 
-func.help = {
+module.exports.help = {
   name: "modAction",
   type: "functions",
   description: "Logs moderator actions to guild's log channel & notifies user who's been acted upon if necessary.",
 };
-
-module.exports = func;

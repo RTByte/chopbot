@@ -8,13 +8,10 @@ const ChopBot = new komada.Client({
 	prefix: botConfig.prefix,
 	cmdEditing: true,
 	cmdLogging: true,
-	clientOptions: {
-		fetchAllMembers: false //Temporarily disabling this due to issues with Discord.js v12dev
-	},
 	//Permission Structure using ownerID as an array
 	permStructure: new komada.PermLevels()
 		.addLevel(10, false, (client, msg) => {
-			return client.config.ownerID.includes(msg.author.id);
+			return (client.config.ownerID === msg.author.id);
 		})
 		.addLevel(4, false, (client, msg) => {
 			if(!msg.guild) return false;

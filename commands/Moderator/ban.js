@@ -1,9 +1,9 @@
 exports.run = async (client, msg, [target, ...reason]) => {
     //Making sure target is fetched, and setting the executor
-    target = await client.fetchUser(target.id);
+    target = await client.users.resolve(target.id);
     const executor = msg.author;
     const action = "Ban";
-    reason = reason.toString().split(",").join(" ");
+    reason = reason.join(" ");
 
     //Checking to see if executor can act on target
     const canMod = await client.funcs.hierarchyCheck(client, executor, target, msg.guild).catch((err) => {

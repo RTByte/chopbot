@@ -2,7 +2,7 @@ exports.run = async (client, guildMember) => {
 
     //Stop the bot from trying to post if it's the one leaving the server
     if (guildMember.id === client.user.id) {
-        //Sending a message to dev log that bot is on a new guild
+        //Sending a message to dev log that bot was removed from a guild
         try {
             const newGuild = new client.methods.Embed()
                 .setAuthor(`${guildMember.guild.name} (${guildMember.guild.id})`, guildMember.guild.iconURL())

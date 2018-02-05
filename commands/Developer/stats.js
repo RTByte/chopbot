@@ -15,6 +15,7 @@ exports.run = async (client, msg) => {
     `• Channels   :: ${client.channels.size.toLocaleString()}`,
     `• Komada     :: v${komadaVersion}`,
     `• Discord.js :: v${discordVersion}`,
+    `• Node.js    :: ${process.version}`,
   ]);
 };
 
@@ -23,13 +24,14 @@ exports.conf = {
   runIn: ["text", "dm", "group"],
   aliases: ["details", "what"],
   permLevel: 10,
-  botPerms: [],
+  botPerms: ["SEND_MESSAGES"],
   requiredFuncs: [],
+  requiredSettings: [],
 };
 
 exports.help = {
   name: "stats",
-  description: "Provides bot statistics, such as memory usage, uptime, and versions.",
+  description: "Provides some details about the bot and stats.",
   usage: "",
   usageDelim: "",
 };

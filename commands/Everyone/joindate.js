@@ -13,7 +13,7 @@ exports.run = async (client, msg, [target = msg.author]) => {
 exports.conf = {
     enabled: true,
     runIn: ["text"],
-    aliases: ["me", "myself"],
+    aliases: ["me", "myself", "age"],
     permLevel: 0,
     botPerms: [],
     requiredFuncs: []

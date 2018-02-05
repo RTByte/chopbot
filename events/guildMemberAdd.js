@@ -1,56 +1,46 @@
 exports.run = async (client, guildMember) => {
-    const userExists = await client.funcs.userCache.userExists(guildMember.user);
+    //Currently stripped user tracking because we haven't been using it 
+    //for literally anything until I can invest the time to properly write the whole system
+    
+    //Auto-Selener (Automatically change names of users with blacklisted words)
+    const inappropriateName = await client.funcs.wordBlacklist.check(client, guildMember.displayName);
 
-    if (!userExists) {
-        await client.funcs.userCache.newUser(guildMember);
-        await client.funcs.userCache.newServer(guildMember);
-        return userJoined(client, guildMember, true);
-    }
+    if (inappropriateName) await client.funcs.autoSelener(client, guildMember);
 
-    const serverExists = await client.funcs.userCache.serverExists(guildMember);
+    //Exiting if bot is not fully initialized (No log channel to send the embed to)
+    if (!guildMember.guild.settings.logChannel) return;
 
-    if (!serverExists) {
-        await client.funcs.userCache.newServer(guildMember);
-        return userJoined(client, guildMember, true);
-    }
+    //New User log
+    const newUser = new client.methods.Embed()
+        .setAuthor(`${guildMember.user.tag} (${guildMember.user.id})`, guildMember.user.avatarURL())
+        .setColor("#00ff00")
+        .setTimestamp()
+        .setFooter(`User joined`);
 
-    const hasFilteredWord = await client.funcs.wordBlacklist.check(client, guildMember.displayName);
+    const logChannel = await client.channels.get(guildMember.guild.settings.logChannel);
 
-    if (!hasFilteredWord) {
-        return userJoined(client, guildMember, false);
-    }
+    await logChannel.send('', { disableEveryone: true, embed: newUser });
+    
+    //Exit if we're not welcoming a user
+    if (!guildMember.guild.settings.welcomeUsers) return;
 
-    await client.funcs.autoSelener(client, guildMember);
+    //Exit if there's not welcome message set
+    if (!guildMember.guild.settings.welcomeMessage) return;
 
-    return userJoined(client, guildMember, false);
-
+    return welcomeUser(guildMember);
 };
 
-userJoined = async (client, guildMember, firstTime = true) => {
-    if (firstTime && guildMember.guild.settings.welcomeUsers) {
-        await welcomeUser(guildMember);
-    }
-
-    try {
-        const newUser = new client.methods.Embed()
-            .setAuthor(`${guildMember.user.tag} (${guildMember.user.id})`, guildMember.user.avatarURL())
-            .setColor("#00ff00")
-            .setTimestamp()
-            .setFooter(`User joined`);
-        
-        if(!firstTime){
-            newUser.setFooter(`User re-joined`);
-        }
-
-        const logChannel = await client.channels.get(guildMember.guild.settings.logChannel);
-
-        return logChannel.send('', { disableEveryone: true, embed: newUser });
-    } catch (err) {
-        return client.emit("log", err, "error");
-    }
-}
-
 welcomeUser = async (guildMember) => {
-    //TODO: Welcome users on first join
-    return;
+    const welcomeMessage = guildMember.guild.settings.welcomeMessage;
+
+    //TODO: regex so that we can have tags for users in the welcome message
+
+    const welcomeEmbed = new client.methods.Embed()
+        .setAuthor(guildMember.displayName, guildMember.user.avatarURL())
+        .setThumbnail(msg.guild.iconURL(), 50, 50)
+        .setColor("#00ff00")
+        .setDescription(welcomeMessage)
+        .setTimestamp();
+
+    return guildMember.guild.channels.default.send('', { disableEveryone: true, embed: welcomeEmbed });
 };

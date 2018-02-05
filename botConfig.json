@@ -1,12 +1,11 @@
 {
-	"botToken": "",
-	"ownerID": [""],
-	"prefix": "",
-	"ytKey": "",
-	"devLogging": false,
-	"devLogChannel": "",
+	"botToken": "MjcwNzg0OTgwMzA3ODA0MTc3.DVLN8A.bedC-0Q2xekghOhn5nDsWLjYeyw",
+	"ownerID": "109004714934300672",
+	"prefix": "+",
+	"devLogging": true,
+	"devLogChannel": "402990291281379328",
 	"dmManagerServer": "",
-	"playing": "",
+	"playing": "with Shoppy's Emotions",
 	"status": "online",
-	"wordBlacklist": [""]
+	"wordBlacklist": ["nigger"]
 }

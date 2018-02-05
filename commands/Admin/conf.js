@@ -59,14 +59,14 @@ exports.conf = {
   runIn: ["text"],
   aliases: [],
   permLevel: 3,
-  botPerms: [],
+  botPerms: ["SEND_MESSAGES"],
   requiredFuncs: [],
   requiredSettings: [],
 };
 
 exports.help = {
   name: "conf",
-  description: "Defines per-server configuration.",
-  usage: "<set|get|reset|list|remove> [key:string] [value:string]",
+  description: "Define per-server configuration.",
+  usage: "<set|get|reset|list|remove> [key:string] [value:string] [...]",
   usageDelim: " ",
 };

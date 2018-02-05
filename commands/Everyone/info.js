@@ -1,7 +1,6 @@
 exports.run = async (client, msg) => {
 const { version: komadaVersion } = require("komada");
 const { version: discordVersion } = require("discord.js");
-const { version: yamdbfDMVersion } = require("yamdbf-addon-dm-manager");
 
   const infoEmbed = new client.methods.Embed()
       .setTitle("ChopBot Information")
@@ -11,7 +10,7 @@ const { version: yamdbfDMVersion } = require("yamdbf-addon-dm-manager");
       .addField("Libraries", `[Discord.js](https://discord.js.org/#/) v${discordVersion}\n[Komada](https://www.npmjs.com/package/komada) v${komadaVersion}\n[YAMDBF DM Manager](https://www.npmjs.com/package/yamdbf-addon-dm-manager) v0.1.3`)
       .setThumbnail("http://i.imgur.com/7lSighC.png", 50, 50)
       .setTimestamp()
-      .setFooter(`Requested by ${msg.author.username}#${msg.author.discriminator}`, msg.author.avatarURL());
+      .setFooter(`Requested by ${msg.author.tag}`, msg.author.avatarURL());
   return msg.channel.send('', { disableEveryone: true, embed: infoEmbed });
 };
 

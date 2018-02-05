@@ -2,7 +2,7 @@ exports.run = async (client, msg, [target = null, amount, all = null]) => {
   //TODO: Make purging >100 messages possible (Loop?)
 
   //Fetching <amount> of messages in this channel
-  let messages = await msg.channel.fetchMessages({ limit: amount });
+  let messages = await msg.channel.messages.fetch({ limit: amount });
 
   //Filtering out messages that weren't sent by target user, if one is specified
   if (target) {
@@ -23,6 +23,8 @@ exports.run = async (client, msg, [target = null, amount, all = null]) => {
     //Purging <3 messages at a time
     await messages.deleteAll();
   }
+
+  if (all === "all") return;
 
   return msg.react("✅");
 

@@ -1,14 +1,16 @@
-exports.run = async (client, msg) => msg.sendMessage("Rebooting...")
-    .then(() => process.exit())
-    .catch(err => client.emit("error", err));
+exports.run = async (client, msg) => {
+  await msg.sendMessage("Rebooting...").catch(err => client.emit("error", err));
+  process.exit();
+};
 
 exports.conf = {
-  enabled: false,
+  enabled: true,
   runIn: ["text", "dm", "group"],
   aliases: [],
   permLevel: 10,
-  botPerms: [],
+  botPerms: ["SEND_MESSAGES"],
   requiredFuncs: [],
+  requiredSettings: [],
 };
 
 exports.help = {

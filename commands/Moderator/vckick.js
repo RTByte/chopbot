@@ -1,9 +1,9 @@
 exports.run = async (client, msg, [target, ...reason]) => {
     //Making sure target is fetched, and setting the executor
-    target = await client.fetchUser(target.id);
+    target = await client.users.resolve(target.id);
     const executor = msg.author;
     const action = "VC Kick";
-    reason = reason.toString().split(",").join(" ");
+    reason = reason.join(" ");
 
     //Checking to see if executor can act on target
     const canMod = await client.funcs.hierarchyCheck(client, executor, target, msg.guild).catch((err) => {
@@ -27,7 +27,7 @@ exports.run = async (client, msg, [target, ...reason]) => {
 
     /**  ~~~~   Action-specific Code starts here   ~~~~  **/
 
-    const targetMember = await guild.fetchMember(target);
+    const targetMember = await msg.guild.members.fetch(target);
 
     //Kick user from voice channel if they're in one
     if (targetMember.voiceChannel) {
