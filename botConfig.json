@@ -1,11 +1,11 @@
 {
-	"botToken": "MjcwNzg0OTgwMzA3ODA0MTc3.DVLN8A.bedC-0Q2xekghOhn5nDsWLjYeyw",
+	"botToken": "",
 	"ownerID": "109004714934300672",
 	"prefix": "+",
 	"devLogging": true,
 	"devLogChannel": "402990291281379328",
-	"dmManagerServer": "",
-	"playing": "with Shoppy's Emotions",
+	"dmManagerServer": "271111564826902528",
+	"playing": "MOO! -help",
 	"status": "online",
-	"wordBlacklist": ["nigger"]
+	"wordBlacklist": ["nigger", "faggot", "𒐪", "▲"]
 }
