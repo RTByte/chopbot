@@ -11,6 +11,7 @@ exports.run = async (client, msg, [user]) => {
         .addField("Highest Role", targetMember.highestRole, true)
         .addField("Joined Discord", target.createdAt, true)
         .addField("Joined Server", targetMember.joinedAt, true)
+        .addField("Last message", target.lastMessage.content, true)
 
         .setThumbnail("http://i.imgur.com/7lSighC.png", 50, 50)
         .setTimestamp()
