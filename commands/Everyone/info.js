@@ -6,8 +6,8 @@ const { version: discordVersion } = require("discord.js");
       .setTitle("ChopBot Information")
       .setColor("#4286f4")
       .addField("About", "ChopBot, a Discord bot built for the RT Family Discord servers.", true)
-      .addField("Authors", "• <@106061111605878784> \n• <@171366637969211392> \n• <@109004714934300672>", true)
-      .addField("Libraries", `[Discord.js](https://discord.js.org/#/) v${discordVersion}\n[Komada](https://www.npmjs.com/package/komada) v${komadaVersion}\n[YAMDBF DM Manager](https://www.npmjs.com/package/yamdbf-addon-dm-manager) v0.1.3`)
+      .addField("Authors", "• <@106061111605878784> \n• <@109004714934300672> \n• <@171366637969211392>", true)
+      .addField("Libraries", `[Komada v${komadaVersion}](https://github.com/dirigeants/komada)\n[Discord.JS v${discordVersion}](https://github.com/discordjs/discord.js)\n[NodeJS ${process.version}](https://nodejs.org/)`, true)
       .setThumbnail("http://i.imgur.com/7lSighC.png", 50, 50)
       .setTimestamp()
       .setFooter(`Requested by ${msg.author.tag}`, msg.author.avatarURL());

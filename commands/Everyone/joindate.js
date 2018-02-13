@@ -3,7 +3,7 @@ exports.run = async (client, msg, [target = msg.author]) => {
 
     const me = new client.methods.Embed()
         .setAuthor(target.tag, target.avatarURL())
-        .setColor("#ffffff")
+        .setColor("#4286f4")
         .addField("Joined Discord", target.createdAt, true)
         .addField("Joined Server", targetMember.joinedAt, true)
         .setThumbnail("http://i.imgur.com/7lSighC.png", 50, 50)
