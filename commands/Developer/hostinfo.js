@@ -1,8 +1,10 @@
 exports.run = async (client, msg) => {
     const os = require('os');
+    const moment = require("moment");
+    require("moment-duration-format");
 
     const hostinfoEmbed = new client.methods.Embed()
-      .setAuthor(target.username, target.avatarURL())
+      .setAuthor("ChopBot Host Info", "https://i.imgur.com/RDW1r3T.png")
       .setColor("#ffffff")
       .addField("Hostname", os.hostname(), true)
       .addField("Running on", os.type(), true)
