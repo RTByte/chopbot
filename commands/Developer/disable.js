@@ -3,7 +3,7 @@ const longTypes = { command: "commands", inhibitor: "commandInhibitors", monitor
 exports.run = async (client, msg, [type, name]) => {
   let toDisable = client[longTypes[type]].get(name);
   if (!toDisable && type === "command") toDisable = client.commands.get(client.aliases.get(name));
-  if (!toDisable) return msg.sendCode("diff", `- Cannot find the ${type} ${name}.`);
+  if (!toDisable) return msg.sendCode(`❌ Cannot find the ${type} ${name}.`);
   toDisable.conf.enabled = false;
   return msg.sendCode("diff", `+ Successfully disabled ${type} ${name}.`);
 };
