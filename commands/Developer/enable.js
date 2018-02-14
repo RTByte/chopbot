@@ -3,9 +3,9 @@ const longTypes = { command: "commands", inhibitor: "commandInhibitors", monitor
 exports.run = async (client, msg, [type, name]) => {
   let toEnable = client[longTypes[type]].get(name);
   if (!toEnable && type === "command") toEnable = client.commands.get(client.aliases.get(name));
-  if (!toEnable) return msg.sendCode("diff", `- I cannot find the ${type} ${name}.`);
+  if (!toEnable) return msg.send(`<:cbotX:413463891998146560> Cannot find the ${type} ${name}.`);
   toEnable.conf.enabled = true;
-  return msg.sendCode("diff", `+ Successfully enabled ${type} ${name}.`);
+  return msg.send(`<:cbotCheckmark:413464351467634689> Successfully enabled the ${type} \`${name}\`.`);
 };
 
 exports.conf = {

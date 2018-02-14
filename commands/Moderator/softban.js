@@ -8,13 +8,13 @@ exports.run = async (client, msg, [target, ...reason]) => {
     //Checking to see if executor can act on target
     const canMod = await client.funcs.hierarchyCheck(client, executor, target, msg.guild).catch((err) => {
         msg.delete();
-        return msg.reply(`It looks like you don't have permission to moderate ${target}. Are they in this server?`);
+        return msg.reply(`<:cbotX:413463891998146560> It looks like you don't have permission to moderate ${target}. Are they in this server?`);
     });
 
     //Notify if user can't moderate target
     if (!canMod) {
         msg.delete();
-        return msg.reply(`You don't have permission to moderate ${target}.`);
+        return msg.reply(`<:cbotX:413463891998146560> You don't have permission to moderate ${target}.`);
     }
 
     if (msg.content.includes ("-s")) {
@@ -29,12 +29,12 @@ exports.run = async (client, msg, [target, ...reason]) => {
 
     //Banning the target user
     await msg.guild.member(target).ban(1, reason)
-        .catch((err) => msg.reply(`There was an error trying to ban ${target}: ${err}.`));
+        .catch((err) => msg.reply(`⚠️ There was an error trying to ban ${target}: ${err}.`));
 
     //Unbanning User after 1 second (Putting the 'soft' in 'softban')
     setTimeout(() => {
         return msg.guild.members.unban(target)
-            .catch((err) => msg.reply(`There was an error trying to unban ${target}: ${err}.`));
+            .catch((err) => msg.reply(`⚠️ There was an error trying to unban ${target}: ${err}.`));
     }, 1000);
 
 };

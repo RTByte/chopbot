@@ -18,7 +18,7 @@ const func = async (client, guildMember) => {
     const blacklistEmbed = new client.methods.Embed()
         .setAuthor(`#${guildMember.guild.name}`, guildMember.guild.iconURL())
         .setColor("#ff0000")
-        .addField("Blacklisted word in username detected. Changing name of user.", `${originalDisplayName} ➡️ ${newName}`, true)
+        .addField("Blacklisted word in username detected. Changing name of user.", `${originalDisplayName} <:cbotArrowRight:413474657833058305> ${newName}`, true)
         .setTimestamp()
         .setFooter(guildMember.user.tag, guildMember.user.avatarURL())
     return client.channels.get(guildMember.guild.settings.logChannel).send('', { disableEveryone: true, embed: blacklistEmbed });

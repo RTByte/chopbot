@@ -8,11 +8,11 @@ exports.run = async (client, msg, [target]) => {
 
     if (!canMod) {
         //Notify user of command cancellation
-        return msg.react("❌");
+        return msg.react("413463891998146560");
     }
 
     //Perform command operations
-    return msg.react("✅");
+    return msg.react("413464351467634689");
 
 };
 

@@ -11,8 +11,8 @@ exports.run = async (client, msg, [action, key, ...value]) => {
   const configs = msg.guild.settings;
   switch (action) {
     case "set": {
-      if (!key) return msg.sendMessage("❌ You must provide a key.");
-      if (!value[0]) return msg.sendMessage("❌ You must provide a value.");
+      if (!key) return msg.sendMessage("<:cbotX:413463891998146560> You must provide a key.");
+      if (!value[0]) return msg.sendMessage("<:cbotX:413463891998146560> You must provide a value.");
       if (client.settings.guilds.schema[key].array) {
         await client.settings.guilds.updateArray(msg.guild, "add", key, value.join(" "));
         return msg.sendMessage(`✏️ Successfully added \`${value.join(" ")}\` to **${key}**.`);
@@ -21,20 +21,20 @@ exports.run = async (client, msg, [action, key, ...value]) => {
       return msg.sendMessage(`✏️ Successfully updated the key **${key}**: \`${response[key]}\``);
     }
     case "remove": {
-      if (!key) return msg.sendMessage("❌ You must provide a key.");
-      if (!value[0]) return msg.sendMessage("❌ You must provide a value.");
-      if (!client.settings.guilds.schema[key].array) return msg.sendMessage("❌ This key is not an array. Use \`-conf reset\` instead.");
+      if (!key) return msg.sendMessage("<:cbotX:413463891998146560> You must provide a key.");
+      if (!value[0]) return msg.sendMessage("<:cbotX:413463891998146560> You must provide a value.");
+      if (!client.settings.guilds.schema[key].array) return msg.sendMessage("<:cbotX:413463891998146560> This key is not an array. Use \`-conf reset\` instead.");
       return client.settings.guilds.updateArray(msg.guild, "remove", key, value.join(" "))
         .then(() => msg.sendMessage(`🗑️ Successfully removed \`${value.join(" ")}\` from **${key}**.`))
         .catch(e => msg.sendMessage(e));
     }
     case "get": {
-      if (!key) return msg.sendMessage("❌ You must provide a key.");
+      if (!key) return msg.sendMessage("<:cbotX:413463891998146560> You must provide a key.");
       if (!(key in configs)) return msg.sendMessage(`🔎 **${key}** does not seem to exist.`);
       return msg.sendMessage(`🔎 The value for the key **${key}** is \`${inspect(configs[key])}\`.`);
     }
     case "reset": {
-      if (!key) return msg.sendMessage("❌ You must provide a key.");
+      if (!key) return msg.sendMessage("<:cbotX:413463891998146560> You must provide a key.");
       const response = await client.settings.guilds.reset(msg.guild, key);
       return msg.sendMessage(`♻️ **${key}** has been reset to \`${response}\`.`);
     }

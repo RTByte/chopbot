@@ -1,6 +1,6 @@
 exports.run = async (client, msg) => {
-  const message = await msg.sendMessage("Ping?");
-  return msg.sendMessage(`Pong! \`${Math.round(client.ping)}ms\``);
+  const message = await msg.sendMessage("🏓 Ping?");
+  return msg.sendMessage(`🏓 Pong! \`${Math.round(client.ping)}ms\``);
 };
 
 exports.conf = {

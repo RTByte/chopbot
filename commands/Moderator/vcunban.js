@@ -8,13 +8,13 @@ exports.run = async (client, msg, [target, ...reason]) => {
     //Checking to see if executor can act on target
     const canMod = await client.funcs.hierarchyCheck(client, executor, target, msg.guild).catch((err) => {
         msg.delete();
-        return msg.reply(`It looks like you don't have permission to moderate ${target}. Are they in this server?`);
+        return msg.reply(`<:cbotX:413463891998146560> It looks like you don't have permission to moderate ${target}. Are they in this server?`);
     });
 
     //Notify if user can't moderate target
     if (!canMod) {
         msg.delete();
-        return msg.reply(`You don't have permission to moderate ${target}.`);
+        return msg.reply(`<:cbotX:413463891998146560> You don't have permission to moderate ${target}.`);
     }
 
     if (msg.content.includes ("-s")) {
@@ -29,7 +29,7 @@ exports.run = async (client, msg, [target, ...reason]) => {
 
     //Nothing to do here as warning messages are handled by modNotification function
     return msg.guild.member(target).roles.remove(msg.guild.settings.voiceBannedRole)
-        .catch((err) => msg.reply(`There was an error trying to unban ${target} from voice chat: ${err}.`));
+        .catch((err) => msg.reply(`⚠️ There was an error trying to unban ${target} from voice chat: ${err}.`));
 
 };
 
