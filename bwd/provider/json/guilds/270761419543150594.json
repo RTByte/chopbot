@@ -1,0 +1,18 @@
+{
+  "prefix": "-",
+  "modRole": "332415572887207946",
+  "adminRole": "332415571763265536",
+  "logChannel": null,
+  "whitelistedRole": "332415574154149888",
+  "eventRole": "332415576863408130",
+  "mutedRole": "332415579640168450",
+  "voiceBannedRole": "332415578109378560",
+  "disabledCommands": [],
+  "joinableRoles": [],
+  "macros": {},
+  "macroPrefix": "!",
+  "welcomeUsers": false,
+  "welcomeMessage": false,
+  "levelUpNotification": false,
+  "id": "270761419543150594"
+}
