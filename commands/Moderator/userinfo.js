@@ -8,7 +8,7 @@ exports.run = async (client, msg, [user]) => {
         .addField("ID", target.id, true)
         .addField("Name & Discriminator", target.tag, true)
         .addField("Status", target.presence.status, true)
-        .addField("Highest Role", targetMember.highestRole, true)
+        .addField("Game", target.presence.game ? target.presence.game.name : 'None', true)
         .addField("Joined Discord", target.createdAt, true)
         .addField("Joined Server", targetMember.joinedAt, true)
         .addField("Last message", target.lastMessage.content, true)

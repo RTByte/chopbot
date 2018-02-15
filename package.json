@@ -21,6 +21,7 @@
     "bufferutil": "^3.0.3",
     "discord.js": "github:hydrabolt/discord.js",
     "komada": "^0.21.1",
+    "short-number": "^1.0.6",
     "yamdbf-addon-dm-manager": "^0.1.3"
   }
 }
