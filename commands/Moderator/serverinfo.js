@@ -12,6 +12,7 @@ exports.run = (client, msg) => {
         .addField("Region", `${msg.guild.region}`, true)
         .addField("Created on", `${msg.guild.createdAt}`, true)
         .setThumbnail("http://i.imgur.com/7lSighC.png", 50, 50)
+        .setImage(msg.guild.splashURL)
         .setTimestamp()
         .setFooter(`Requested by ${msg.author.tag}`, msg.author.avatarURL());
     return msg.channel.send('', { disableEveryone: true, embed: serverInfo });
@@ -20,7 +21,7 @@ exports.run = (client, msg) => {
 exports.conf = {
     enabled: true,
     runIn: ["text"],
-    aliases: ["sinfo"],
+    aliases: ["sinfo", "guildinfo"],
     permLevel: 2,
     botPerms: [],
     requiredFuncs: []
