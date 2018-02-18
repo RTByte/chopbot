@@ -1,7 +1,7 @@
 exports.run = async (client, channel) => {
   const channelCreate = new client.methods.Embed()
       .setAuthor(`#${channel.name}`, channel.guild.iconURL())
-      .setColor("#60fe60")
+      .setColor("#fff")
       .setTimestamp()
       .setFooter(`Channel created`);
 

@@ -1,7 +1,7 @@
 exports.run = async (client, channel) => {
   const channelDelete = new client.methods.Embed()
       .setAuthor(`#${channel.name}`, channel.guild.iconURL())
-      .setColor("#ff9b9b")
+      .setColor("#fff")
       .setTimestamp()
       .setFooter(`Channel deleted`);
 

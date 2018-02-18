@@ -1,7 +1,7 @@
 exports.run = async (client, role) => {
   const roleCreate = new client.methods.Embed()
-      .setAuthor(role.name, role.guild.iconURL())
-      .setColor("#60fe60")
+      .setAuthor(`@${role.name}`, role.guild.iconURL())
+      .setColor("#fff")
       .setTimestamp()
       .setFooter(`Role created`);
 
