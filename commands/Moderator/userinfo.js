@@ -2,8 +2,9 @@ exports.run = async (client, msg, [user]) => {
     const target = msg.mentions.users.first() || msg.author;
     const targetMember = await msg.guild.members.fetch(target);
 
+
     const userInfo = new client.methods.Embed()
-        .setAuthor(target.username, target.avatarURL())
+        .setAuthor(target.username, target.displayAvatarURL())
         .setColor("#ffffff")
         .addField("ID", target.id, true)
         .addField("Name & Discriminator", target.tag, true)

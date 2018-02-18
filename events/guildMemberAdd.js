@@ -1,7 +1,7 @@
 exports.run = async (client, guildMember) => {
-    //Currently stripped user tracking because we haven't been using it 
+    //Currently stripped user tracking because we haven't been using it
     //for literally anything until I can invest the time to properly write the whole system
-    
+
     //Auto-Selener (Automatically change names of users with blacklisted words)
     const inappropriateName = await client.funcs.wordBlacklist.check(client, guildMember.displayName);
 
@@ -13,14 +13,14 @@ exports.run = async (client, guildMember) => {
     //New User log
     const newUser = new client.methods.Embed()
         .setAuthor(`${guildMember.user.tag} (${guildMember.user.id})`, guildMember.user.avatarURL())
-        .setColor("#00ff00")
+        .setColor("#60fe60")
         .setTimestamp()
         .setFooter(`User joined`);
 
     const logChannel = await client.channels.get(guildMember.guild.settings.logChannel);
 
     await logChannel.send('', { disableEveryone: true, embed: newUser });
-    
+
     //Exit if we're not welcoming a user
     if (!guildMember.guild.settings.welcomeUsers) return;
 
@@ -38,7 +38,7 @@ welcomeUser = async (guildMember) => {
     const welcomeEmbed = new client.methods.Embed()
         .setAuthor(guildMember.displayName, guildMember.user.avatarURL())
         .setThumbnail(msg.guild.iconURL(), 50, 50)
-        .setColor("#00ff00")
+        .setColor("#60fe60")
         .setDescription(welcomeMessage)
         .setTimestamp();
 
