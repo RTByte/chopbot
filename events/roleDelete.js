@@ -1,7 +1,7 @@
 exports.run = async (client, role) => {
   const roleDelete = new client.methods.Embed()
       .setAuthor(`@${role.name}`, role.guild.iconURL())
-      .setColor("#fff")
+      .setColor("#ffffff")
       .setTimestamp()
       .setFooter(`Role deleted`);
 
