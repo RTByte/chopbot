@@ -59,7 +59,7 @@ module.exports = async (client, executor, target, msg, action, reason, silent = 
 
     	await target.send(actionMessage);
 
-			await msg.react("✅");
+			await msg.react("413464351467634689");
     }
 
     //TODO: add mod actions in client.funcs.userCache

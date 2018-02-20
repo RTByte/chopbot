@@ -5,7 +5,10 @@ const alternateNames = [
 	"Nope.",
 	"Try again, bud",
 	"Nice try",
-	"Bad person"
+	"Bad person",
+	"I nevah freeze",
+	"enjincoin the minecraft crypto",
+	"big mood"
 ];
 
 const func = async (client, guildMember) => {
