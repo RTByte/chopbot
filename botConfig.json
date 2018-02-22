@@ -1,11 +1,11 @@
 {
 	"botToken": "",
-	"ownerID": "106061111605878784",
+	"ownerID": "",
 	"prefix": "-",
-	"devLogging": true,
-	"devLogChannel": "413321079877271571",
-	"dmManagerServer": "271111564826902528",
-	"playing": "MOO! -help",
+	"devLogging": false,
+	"devLogChannel": "",
+	"dmManagerServer": "",
+	"playing": "",
 	"status": "online",
 	"wordBlacklist": ["nigger", "faggot", "𒐪", "▲", "▼"]
 }
