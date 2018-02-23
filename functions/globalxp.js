@@ -60,11 +60,13 @@ exports.updateLevel = async (client, user) => {
 	const cache = await this.getCache(client, user);
 
 	//Return if no level up happens
-	if (!(cache.xp>cache.levelXP)) return(false);
+	if (!(cache.xp>=cache.levelXP)) return(false);
 
-	//Update level and set next xp milestone
-	cache.level++;
-	cache.levelXP = (5*((cache.level)**2)+50*cache.level+100);
+	//Update level and set next XP milestone
+	while (cache.xp>=cache.levelXP) {
+		cache.level++;
+		cache.levelXP += (5*((cache.level)**2)+50*cache.level+100);
+	}
 
 	//Update cache
 	await this.provider.update("globalxp", user.id, cache);
