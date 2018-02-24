@@ -43,9 +43,9 @@ exports.run = async (client, msg, [target = msg.author, ...roleName]) => {
 
     }
 
-    const targetMember = await msg.guild.fetchMember(target);
+    const targetMember = await msg.guild.members.resolve(target);
 
-    targetMember.addRole(targetRole);
+    targetMember.roles.add(targetRole);
 
     return msg.send(`<:cbotCheckmark:413464351467634689> Added ${targetRole.name} role to ${target}.`);
 

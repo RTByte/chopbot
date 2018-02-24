@@ -1,6 +1,6 @@
 exports.run = async (client, msg, [user]) => {
     const target = msg.mentions.users.first() || msg.author;
-    const targetMember = await msg.guild.members.fetch(target);
+    const targetMember = await msg.guild.members.resolve(target);
 
 
     const userInfo = new client.methods.Embed()

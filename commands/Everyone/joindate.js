@@ -1,5 +1,5 @@
 exports.run = async (client, msg, [target = msg.author]) => {
-    const targetMember = await msg.guild.fetchMember(target);
+    const targetMember = await msg.guild.members.resolve(target);
 
     const me = new client.methods.Embed()
         .setAuthor(target.tag, target.avatarURL())

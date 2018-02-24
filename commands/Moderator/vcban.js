@@ -27,7 +27,7 @@ exports.run = async (client, msg, [target, ...reason]) => {
 
     /**  ~~~~   Action-specific Code starts here   ~~~~  **/
 
-    const targetMember = await guild.members.fetch(target);
+    const targetMember = await guild.members.resolve(target);
 
     //Kick user from voice channel if they're in one
     if (targetMember.voiceChannel) {

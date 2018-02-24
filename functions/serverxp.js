@@ -76,7 +76,7 @@ exports.updateLevel = async (client, guildMember) => {
 	await this.updateUser(client, guildMember, userCache);
 
 	//Return true and the new level
-	return(true, cache.level);
+	return(true, userCache.level);
 };
 
 exports.ranks = async (client, guild) => {
