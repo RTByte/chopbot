@@ -1,0 +1,10 @@
+{
+	"id": 0,
+	"initTimestamp": 0,
+	"levelUpNotify": false,
+	"levelUpNotifyType": "REPLY",
+	"levelUpNotifyChannel": "",
+	"levelUpMessage": "",
+	"rewards": [],
+	"users": []
+}
