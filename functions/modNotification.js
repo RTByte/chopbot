@@ -1,4 +1,4 @@
-const boilerplate = "This action was performed manually by a moderator. If you are confused, or need help, feel free to respond to this message and someone will get back to you soon.";
+const boilerplate = `This action was performed manually by a moderator. If you are confused, or need help, feel free to DM the the owner of the server, listed below.\n${msg.guild.owner}`;
 
 module.exports = async (client, executor, target, msg, action, reason, silent = false) => {
 	const channel = client.channels.get(msg.channel.id);
