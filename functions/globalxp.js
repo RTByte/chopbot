@@ -1,3 +1,4 @@
+exports.tableName = "globalxp";
 exports.providerEngine = "json";
 exports.defaultTemplate = require("./defaultGlobalXP.json");
 exports.cooldown = 60000;
@@ -5,9 +6,9 @@ exports.cooldown = 60000;
 exports.init = async (client) => {
 	if (client.providers.has(this.providerEngine)) this.provider = client.providers.get(this.providerEngine);
 	else throw new Error(`The Provider ${this.providerEngine} does not seem to exist.`);
-	if (!(await this.provider.hasTable("globalxp"))) {
+	if (!(await this.provider.hasTable(this.tableName))) {
 		const SQLCreate = ["id TEXT NOT NULL UNIQUE", "xp BIGINT NOT NULL DEFAULT 0", "level BIGINT NOT NULL DEFAULT 0", "messages BIGINT NOT NULL DEFAULT 0"];
-		await this.provider.createTable("globalxp", SQLCreate);
+		await this.provider.createTable(this.tableName, SQLCreate);
 	}
 };
 
@@ -41,7 +42,7 @@ exports.addxp = async (client, user, xp = 0) => {
 	cache.xpTimestamp = Date.now();
 
 	//Pushing new values to the cache
-	return this.provider.update("globalxp", user.id, cache);
+	return this.provider.update(this.tableName, user.id, cache);
 };
 
 exports.addMessage = async (client, msg) => {
@@ -52,7 +53,7 @@ exports.addMessage = async (client, msg) => {
 	cache.messages++;
 
 	//Updating the Cache
-	return this.provider.update("globalxp", msg.author.id, cache);
+	return this.provider.update(this.tableName, msg.author.id, cache);
 };
 
 exports.updateLevel = async (client, user) => {
@@ -69,7 +70,7 @@ exports.updateLevel = async (client, user) => {
 	}
 
 	//Update cache
-	await this.provider.update("globalxp", user.id, cache);
+	await this.provider.update(this.tableName, user.id, cache);
 
 	//Return true and the new level
 	return(true, cache.level);
@@ -77,7 +78,7 @@ exports.updateLevel = async (client, user) => {
 
 exports.newUser = async (client, user) => {
 	//Double Checking to make sure we're not accidentally writing over an existing cache
-	if ((await this.provider.has("globalxp", user.id))) return;
+	if ((await this.provider.has(this.tableName, user.id))) return;
 
 	//Copying the default template
 	const cleanTemplate = this.defaultTemplate;
@@ -86,13 +87,13 @@ exports.newUser = async (client, user) => {
 	cleanTemplate.id = user.id;
 	
 	//Pushing the new cache out
-	return this.provider.set("globalxp", user.id, cleanTemplate);
+	return this.provider.set(this.tableName, user.id, cleanTemplate);
 };
 
 exports.getCache = async (client, user) => {
 	//If a cache for this user doesn't exist, create one
-	if (!(await this.provider.has("globalxp", user.id))) await this.newUser(client, user);
+	if (!(await this.provider.has(this.tableName, user.id))) await this.newUser(client, user);
 
 	//Return the cache of this user
-	return(await this.provider.get("globalxp", user.id));
+	return(await this.provider.get(this.tableName, user.id));
 };

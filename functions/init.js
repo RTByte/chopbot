@@ -1,5 +1,4 @@
 const botConfig = require("../botConfig.json");
-const {DMManager} = require("yamdbf-addon-dm-manager");
 
 exports.init = (client) => {
 	//Setting global vars
@@ -7,7 +6,6 @@ exports.init = (client) => {
     client.devLogChannel = botConfig.devLogChannel;
     client.user.setActivity(botConfig.playing);
     client.user.setStatus(botConfig.status);
-    client.dmManager = new DMManager(client, botConfig.dmManagerServer);
 
     //Don't send restart notification if we're not using the dev log
     if (!client.devLogging) return;

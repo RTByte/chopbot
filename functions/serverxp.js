@@ -1,3 +1,4 @@
+exports.tableName = "serverxp";
 exports.providerEngine = "json";
 exports.defaultTemplate = require("./defaultServerXP.json");
 exports.defaultUserTemplate = require("./defaultServerXPUser.json");
@@ -6,9 +7,9 @@ exports.cooldown = 60000;
 exports.init = async (client) => {
 	if (client.providers.has(this.providerEngine)) this.provider = client.providers.get(this.providerEngine);
 	else throw new Error(`The Provider ${this.providerEngine} does not seem to exist.`);
-	if (!(await this.provider.hasTable("serverxp"))) {
+	if (!(await this.provider.hasTable(this.tableName))) {
 		const SQLCreate = ["id TEXT NOT NULL UNIQUE", "xp BIGINT NOT NULL DEFAULT 0", "level BIGINT NOT NULL DEFAULT 0", "levelXP BIGINT NOT NULL DEFAULT 0", "xpTimestamp BIGINT NOT NULL DEFAULT 0", "messages BIGINT NOT NULL DEFAULT 0"];
-		await this.provider.createTable("serverxp", SQLCreate);
+		await this.provider.createTable(this.tableName, SQLCreate);
 	}
 };
 
@@ -97,7 +98,7 @@ exports.rank = async (client, guildMember) => {
 
 exports.newServer = async (client, guild) => {
 	//Double Checking to make sure we're not accidentally writing over an existing cache
-	if ((await this.provider.has("serverxp", guild.id))) return;
+	if ((await this.provider.has(this.tableName, guild.id))) return;
 
 	//Copying the default template
 	const cleanTemplate = this.defaultTemplate;
@@ -107,7 +108,7 @@ exports.newServer = async (client, guild) => {
 	cleanTemplate.initTimestamp = Date.now();
 	
 	//Pushing the new cache out
-	return this.provider.set("serverxp", guild.id, cleanTemplate);
+	return this.provider.set(this.tableName, guild.id, cleanTemplate);
 };
 
 exports.newUser = async (client, guildMember) => {
@@ -126,7 +127,7 @@ exports.newUser = async (client, guildMember) => {
 	serverCache.users.push(cleanTemplate);
 
 	//Pushing the new cache out
-	await this.provider.update("serverxp", guildMember.guild.id, serverCache);
+	await this.provider.update(this.tableName, guildMember.guild.id, serverCache);
 
 	//Returning new user cache
 	return(cleanTemplate);
@@ -160,13 +161,13 @@ exports.updateUser = async (client, guildMember, userCache) => {
 	serverCache.users[userCacheIndex] = userCache;
 
 	//Pushing updated server cache
-	return this.provider.update("serverxp", guildMember.guild.id, serverCache);
+	return this.provider.update(this.tableName, guildMember.guild.id, serverCache);
 };
 
 exports.getServerCache = async (client, guild) => {
 	//If a cache for this guild doesn't exist, create one
-	if (!(await this.provider.has("serverxp", guild.id))) await this.newServer(client, guild);
+	if (!(await this.provider.has(this.tableName, guild.id))) await this.newServer(client, guild);
 
 	//Return the cache of this guild
-	return(await this.provider.get("serverxp", guild.id));
+	return(await this.provider.get(this.tableName, guild.id));
 };
