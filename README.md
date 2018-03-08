@@ -5,7 +5,8 @@ A Discord bot for the RT Family Discord servers.
 Find us here:  
 [Rooster Teeth Community](https://https//discord.gg/roosterteeth)  
 [Cow Chop Community](https://discord.gg/cowchop)  
-[Achievement Hunter Community](https://discord.gg/P8cJ9vC)  
+[Achievement Hunter Community](https://discord.gg/achievementhunter)  
+[Sugar Pine 7 Community](https://discord.gg/HUHExdK)
 [Kinda Funny](https://discord.gg/kindafunny)  
 [FunHaus Community](https://discord.gg/ecWNNZx)  
 [The Creatures Community](https://discord.gg/d5YjjdP)  
