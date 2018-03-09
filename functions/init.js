@@ -4,6 +4,7 @@ exports.init = (client) => {
 	//Setting global vars
     client.devLogging = botConfig.devLogging;
     client.devLogChannel = botConfig.devLogChannel;
+    client.confirmReaction = botConfig.confirmReaction;
     client.user.setActivity(botConfig.playing);
     client.user.setStatus(botConfig.status);
 

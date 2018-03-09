@@ -60,7 +60,7 @@ module.exports = async (client, executor, target, msg, action, reason, silent = 
 
     	await target.send(actionMessage);
 
-		if (msg) await msg.react("413464351467634689");
+		if (msg) await msg.react(client.confirmReaction);
     }
 
     if (guild.settings.logChannel) await client.channels.get(guild.settings.logChannel).send('', { disableEveryone: true, embed: modLog });

@@ -60,6 +60,14 @@ exports.addMessage = async (client, msg) => {
 	return this.updateUser(client, msg.member, userCache);
 };
 
+exports.levelInfo = async (client, guildMember) => {
+	let cache = await this.getUserCache(client, guildMember);
+
+	cache.rank = await this.rank(client, guildMember);
+
+	return(cache);
+};
+
 exports.updateLevel = async (client, guildMember) => {
 	//Grab cache
 	const userCache = await this.getUserCache(client, guildMember);
@@ -94,6 +102,22 @@ exports.rank = async (client, guildMember) => {
 	const userCache = await ranks.find(obj => obj.id === guildMember.id);
 
 	return((await ranks.indexOf(userCache))+1);
+};
+
+exports.mee6Import = async (client, guildMember, mee6XP) => {
+	const userCache = await this.getUserCache(client, guildMember);
+
+	if (userCache.mee6Import) return(false);
+
+	await this.addxp(client, guildMember, mee6XP);
+
+	let newUserCache = await this.getUserCache(client, guildMember);
+
+	newUserCache.mee6Import = true;
+
+	await this.updateUser(client, guildMember, newUserCache);
+
+	return(true);
 };
 
 exports.newServer = async (client, guild) => {
