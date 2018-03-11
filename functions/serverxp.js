@@ -91,13 +91,13 @@ exports.updateLevel = async (client, guildMember) => {
 exports.ranks = async (client, guild) => {
 	const serverCache = await this.getServerCache(client, guild);
 
-	return(await serverCache.users.sort((user1, user2) => user1.xp > user2.xp));
+	return(await serverCache.users.sort((user1, user2) => user1.xp < user2.xp));
 };
 
 exports.rank = async (client, guildMember) => {
 	const serverCache = await this.getServerCache(client, guildMember.guild);
 
-	const ranks = await serverCache.users.sort((user1, user2) => user1.xp > user2.xp);
+	const ranks = await serverCache.users.sort((user1, user2) => user1.xp < user2.xp);
 
 	const userCache = await ranks.find(obj => obj.id === guildMember.id);
 
