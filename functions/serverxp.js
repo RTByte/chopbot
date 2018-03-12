@@ -117,6 +117,8 @@ exports.mee6Import = async (client, guildMember, mee6XP) => {
 
 	await this.updateUser(client, guildMember, newUserCache);
 
+	await this.updateLevel(client, guildMember);
+
 	return(true);
 };
 
