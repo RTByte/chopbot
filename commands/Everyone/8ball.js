@@ -79,7 +79,18 @@ const answers = [
   "Why would you do that? Stop.",
   "Address me as master and then I'll answer you.",
   "wtf u weirdo",
-  "wtf, get away from me you freak"
+  "wtf, get away from me you freak",
+  "Ask your parents.",
+  "ya",
+  "If you promise you'll love me, yes.",
+  "If you promise you'll love me, no.",
+  "As long as you're not a jerk about it.",
+  "Just as long as you're not a dick about it.",
+  "Whenever, wherever.",
+  "If you say so.",
+  "Yes, my dude.",
+  "No, my dude.",
+  "Never, ever, ever, ever. Ever.",
 ];
 
 const noQuestion = [
