@@ -3,9 +3,9 @@ const longTypes = { command: "commands", inhibitor: "commandInhibitors", monitor
 exports.run = async (client, msg, [type, name]) => {
   let toDisable = client[longTypes[type]].get(name);
   if (!toDisable && type === "command") toDisable = client.commands.get(client.aliases.get(name));
-  if (!toDisable) return msg.send(`<:cbotX:413463891998146560> Cannot find the ${type} \`${name}\`.`);
+  if (!toDisable) return msg.send(`${client.denyEmoji} Cannot find the ${type} \`${name}\`.`);
   toDisable.conf.enabled = false;
-  return msg.send(`<:cbotCheckmark:413464351467634689> Successfully disabled the ${type} \`${name}\`.`);
+  return msg.send(`${client.confirmEmoji} Successfully disabled the ${type} \`${name}\`.`);
 };
 
 exports.conf = {

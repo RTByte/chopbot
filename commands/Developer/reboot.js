@@ -1,5 +1,5 @@
 exports.run = async (client, msg) => {
-  await msg.react("413467699671203840").catch(err => client.emit("error", err));
+  await msg.react(client.confirmEmoji);
   process.exit();
 };
 

@@ -7,12 +7,12 @@ exports.run = async (client, msg, [type, name]) => {
           if (client.funcs[key].init) return client.funcs[key].init(client);
           return true;
         }));
-        return msg.sendMessage("<:cbotCheckmark:413464351467634689> Reloaded all functions.");
+        return msg.sendMessage(`${client.confirmEmoji} Reloaded all functions.`);
       }
       await msg.sendMessage(`Attempting to reload function ${name}`);
       return client.funcs.reloadFunction(name)
-        .then(mes => msg.sendMessage(`<:cbotCheckmark:413464351467634689> ${mes}`))
-        .catch(err => msg.sendMessage(`<:cbotX:413463891998146560> ${err}`));
+        .then(mes => msg.sendMessage(`${client.confirmEmoji} ${mes}`))
+        .catch(err => msg.sendMessage(`${client.denyEmoji} ${err}`));
 
     case "inhibitor":
       if (name === "all") {
@@ -21,12 +21,12 @@ exports.run = async (client, msg, [type, name]) => {
           if (piece.init) return piece.init(client);
           return true;
         }));
-        return msg.sendMessage("<:cbotCheckmark:413464351467634689> Reloaded all inhibitors.");
+        return msg.sendMessage(`${client.confirmEmoji} Reloaded all inhibitors.`);
       }
       await msg.sendMessage(`Attempting to reload inhibitor ${name}`);
       return client.funcs.reloadInhibitor(name)
-        .then(mes => msg.sendMessage(`<:cbotCheckmark:413464351467634689> ${mes}`))
-        .catch(err => msg.sendMessage(`<:cbotX:413463891998146560> ${err}`));
+        .then(mes => msg.sendMessage(`${client.confirmEmoji} ${mes}`))
+        .catch(err => msg.sendMessage(`${client.denyEmoji} ${err}`));
 
     case "finalizer":
       if (name === "all") {
@@ -35,22 +35,22 @@ exports.run = async (client, msg, [type, name]) => {
           if (piece.init) return piece.init(client);
           return true;
         }));
-        return msg.sendMessage("<:cbotCheckmark:413464351467634689> Reloaded all finalizers.");
+        return msg.sendMessage(`${client.confirmEmoji} Reloaded all finalizers.`);
       }
       await msg.sendMessage(`Attempting to reload finalizer ${name}`);
       return client.funcs.reloadFinalizer(name)
-        .then(mes => msg.sendMessage(`<:cbotCheckmark:413464351467634689> ${mes}`))
-        .catch(err => msg.sendMessage(`<:cbotX:413463891998146560> ${err}`));
+        .then(mes => msg.sendMessage(`${client.confirmEmoji} ${mes}`))
+        .catch(err => msg.sendMessage(`${client.denyEmoji} ${err}`));
 
     case "event":
       if (name === "all") {
         await client.funcs.loadEvents();
-        return msg.sendMessage("<:cbotCheckmark:413464351467634689> Reloaded all events.");
+        return msg.sendMessage(`${client.confirmEmoji} Reloaded all events.`);
       }
       await msg.sendMessage(`Attempting to reload event: ${name}`);
       return client.funcs.reloadEvent(name)
-        .then(mes => msg.sendMessage(`<:cbotCheckmark:413464351467634689> ${mes}`))
-        .catch(err => msg.sendMessage(`<:cbotX:413463891998146560> ${err}`));
+        .then(mes => msg.sendMessage(`${client.confirmEmoji} ${mes}`))
+        .catch(err => msg.sendMessage(`${client.denyEmoji} ${err}`));
 
     case "monitor":
       if (name === "all") {
@@ -59,12 +59,12 @@ exports.run = async (client, msg, [type, name]) => {
           if (piece.init) return piece.init(client);
           return true;
         }));
-        return msg.sendMessage("<:cbotCheckmark:413464351467634689> Reloaded all monitors.");
+        return msg.sendMessage(`${client.confirmEmoji} Reloaded all monitors.`);
       }
       await msg.sendMessage(`Attempting to reload monitor: ${name}`);
       return client.funcs.reloadMessageMonitor(name)
-        .then(mes => msg.sendMessage(`<:cbotCheckmark:413464351467634689> ${mes}`))
-        .catch(err => msg.sendMessage(`<:cbotX:413463891998146560> ${err}`));
+        .then(mes => msg.sendMessage(`${client.confirmEmoji} ${mes}`))
+        .catch(err => msg.sendMessage(`${client.denyEmoji} ${err}`));
 
     case "provider":
       if (name === "all") {
@@ -73,12 +73,12 @@ exports.run = async (client, msg, [type, name]) => {
           if (piece.init) return piece.init(client);
           return true;
         }));
-        return msg.sendMessage("<:cbotCheckmark:413464351467634689> Reloaded all providers.");
+        return msg.sendMessage(`${client.confirmEmoji} Reloaded all providers.`);
       }
       await msg.sendMessage(`Attempting to reload provider: ${name}`);
       return client.funcs.reloadProvider(name)
-        .then(mes => msg.sendMessage(`<:cbotCheckmark:413464351467634689> ${mes}`))
-        .catch(err => msg.sendMessage(`<:cbotX:413463891998146560> ${err}`));
+        .then(mes => msg.sendMessage(`${client.confirmEmoji} ${mes}`))
+        .catch(err => msg.sendMessage(`${client.denyEmoji} ${err}`));
 
     case "command":
       if (name === "all") {
@@ -87,12 +87,12 @@ exports.run = async (client, msg, [type, name]) => {
           if (piece.init) return piece.init(client);
           return true;
         }));
-        return msg.sendMessage("<:cbotCheckmark:413464351467634689> Reloaded all commands.");
+        return msg.sendMessage(`${client.confirmEmoji} Reloaded all commands.`);
       }
       await msg.sendMessage(`Attempting to reload command ${name}`);
       return client.funcs.reloadCommand(name)
-        .then(mes => msg.sendMessage(`<:cbotCheckmark:413464351467634689> ${mes}`))
-        .catch(err => msg.sendMessage(`<:cbotX:413463891998146560> ${err}`));
+        .then(mes => msg.sendMessage(`${client.confirmEmoji} ${mes}`))
+        .catch(err => msg.sendMessage(`${client.denyEmoji} ${err}`));
 
     default:
       return msg.sendMessage("never going to happen");

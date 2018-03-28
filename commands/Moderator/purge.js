@@ -26,7 +26,7 @@ exports.run = async (client, msg, [target = null, amount, all = null]) => {
 
   if (all === "all") return;
 
-  return msg.react("<:cbotCheckmark:413464351467634689>");
+  return msg.react(client.confirmEmoji);
 
 };
 

@@ -14,11 +14,11 @@ exports.run = async (client, msg, [type, name]) => {
   };
   if (type === "command") name = `System/${name}`;
   const fileLocation = resolve(coreDir, `${type}s`, `${name}.js`);
-  await fs.access(fileLocation).catch(() => { throw "<:cbotX:413463891998146560> That file has been transfered already or never existed."; });
+  await fs.access(fileLocation).catch(() => { throw `${client.denyEmoji} That file has been transfered already or never existed.`; });
   return fs.copy(fileLocation, resolve(clientDir, `${type}s`, `${name}.js`))
     .then(() => {
-      reload[type].call(client.funcs, `${name}`).catch((response) => { throw `<:cbotX:413463891998146560> ${response}`; });
-      return msg.sendMessage(`<:cbotCheckmark:413464351467634689> Successfully Transferred ${type}: ${name}`);
+      reload[type].call(client.funcs, `${name}`).catch((response) => { throw `${client.denyEmoji} ${response}`; });
+      return msg.sendMessage(`${client.confirmEmoji} Successfully Transferred ${type}: ${name}`);
     })
     .catch((err) => {
       client.emit("error", err.stack);

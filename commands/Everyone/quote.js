@@ -15,13 +15,13 @@ exports.run =  async (client, msg, [messageID, origin]) => {
                 return msg.channel.sendEmbed(quoteEmbed, '', {disableEveryone:true});
             } catch (err){
                 client.emit("log", err, "error");
-                return msg.reply(`<:cbotX:413463891998146560> Could not find a message with ID of ${messageID} in ${origin}. Check to make sure I can see that channel.`);
+                return msg.reply(`${client.denyEmoji} Could not find a message with ID of ${messageID} in ${origin}. Check to make sure I can see that channel.`);
             }
         } else if((origin.constructor.name === "User")){
             //TODO: Allow quoting by user(?) Probably just quote newest message?
 
         } else{
-            return msg.reply(`<:cbotX:413463891998146560> It looks like ${origin} is not a valid channel.`);
+            return msg.reply(`${client.denyEmoji} It looks like ${origin} is not a valid channel.`);
         }
     } else {
         //Grabbing Message from this channel
@@ -37,7 +37,7 @@ exports.run =  async (client, msg, [messageID, origin]) => {
             return msg.channel.sendEmbed(quoteEmbed, '', {disableEveryone:true});
         } catch (err){
             client.emit("log", err, "error");
-            return msg.reply(`<:cbotX:413463891998146560> Could not find message with ID of ${messageID} in this channel.`);
+            return msg.reply(`${client.denyEmoji} Could not find message with ID of ${messageID} in this channel.`);
         }
     }
 };

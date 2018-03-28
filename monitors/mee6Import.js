@@ -19,7 +19,7 @@ exports.run = async (client, msg) => {
 
     if (!imported) return;
 
-    return(await msg.react(client.confirmReaction));
+    return(await msg.react(client.confirmEmoji));
 };
 
 exports.conf = {

@@ -1,6 +1,6 @@
 exports.run = async (client, msg, [target, ...reason]) => {
     if (!reason) {
-        return msg.reply("<:cbotX:413463891998146560> You must enter a reason for your report.");
+        return msg.reply(`${client.denyEmoji} You must enter a reason for your report.`);
     }
 
     reason = reason.join(" ");
