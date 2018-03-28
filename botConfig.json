@@ -4,7 +4,8 @@
 	"prefix": "-",
 	"devLogging": false,
 	"devLogChannel": "",
-	"confirmReaction": "413464351467634689",
+	"confirmEmoji": "413464351467634689",
+	"denyEmoji": "413463891998146560",
 	"playing": "",
 	"status": "online",
 	"wordBlacklist": ["nigger", "faggot", "𒐪", "▲", "▼"]
