@@ -1,4 +1,5 @@
 exports.run = async (client, channel) => {
+  if (!channel.guild) return;
   const channelCreate = new client.methods.Embed()
       .setAuthor(`#${channel.name}`, channel.guild.iconURL())
       .setColor("#ffffff")
