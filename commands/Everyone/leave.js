@@ -3,7 +3,7 @@ exports.run = async (client, msg, [target = msg.author, ...roleName]) => {
         var roleNames = await getJoinableNames(msg);
 
         if (roleNames.length) {
-            return msg.send(`🔎 ${msg.author}, ain't nothing here to show you. There are no joinable roles on this server.`);
+            return msg.send(`🔎 ${msg.author}, ain't nothing here to show you. Run \`-join\` for a list of roles to leave if you have them.`);
         }
 
         return msg.send(`🔎 ${msg.author}, there are no joinable roles to leave on this server.`);
