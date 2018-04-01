@@ -3,10 +3,10 @@ exports.run = async (client, msg, [target = msg.author, ...roleName]) => {
         var roleNames = await getJoinableNames(msg);
 
         if (roleNames.length) {
-            return msg.send(`🔎 ${msg.author}, here are the joinable roles on this server:\n${roleNames.join(" ,")}`);
+            return msg.send(`🔎 ${msg.author}, ain't nothing here to show you. There are no joinable roles on this server.`);
         }
 
-        return msg.send(`🔎 ${msg.author}, there are no joinable roles on this server.`);
+        return msg.send(`🔎 ${msg.author}, there are no joinable roles to leave on this server.`);
     }
 
     //Making the role name searchable
@@ -22,13 +22,13 @@ exports.run = async (client, msg, [target = msg.author, ...roleName]) => {
 
     //Checking to see that this role is marked as joinable
     if (!msg.guild.settings.joinableRoles.includes(targetRole.id)) {
-        return msg.send(`${client.denyEmoji} Nice try, ${msg.author}. ${targetRole.name} isn't joinable in this server.`);
+        return msg.send(`${client.denyEmoji} Funny, ${msg.author}. ${targetRole.name} isn't joinable in this server, so you can't leave it.`);
     }
 
     if (target.id !== msg.author.id) {
         //Checking to see if the executor is a moderator
         if (!msg.member.roles.has(msg.guild.settings.modRole) && !msg.member.roles.has(msg.guild.settings.adminRole)) {
-            return msg.send(`${client.denyEmoji} ${msg.author}, You don't have permissions to add roles to other users.`);
+            return msg.send(`${client.denyEmoji} ${msg.author}, You don't have permissions to remove roles from other users.`);
         }
 
         //Checking to see if executor should be able to moderate target
@@ -45,9 +45,9 @@ exports.run = async (client, msg, [target = msg.author, ...roleName]) => {
 
     const targetMember = await msg.guild.members.resolve(target);
 
-    targetMember.roles.add(targetRole);
+    targetMember.roles.remove(targetRole);
 
-    return msg.send(`${client.confirmEmoji} Added ${targetRole.name} to ${target}.`);
+    return msg.react(client.confirmEmoji);
 
 };
 
@@ -67,15 +67,15 @@ getJoinableNames = async (msg) => {
 exports.conf = {
     enabled: true,
     runIn: ["text"],
-    aliases: ["addrole"],
+    aliases: ["removerole", "rrole"],
     permLevel: 0,
     botPerms: [],
     requiredFuncs: ["hierarchyCheck"]
 };
 
 exports.help = {
-    name: "join",
-    description: "Allows you to join a role by name that's been specified as joinable by the server staff. Lists joinable roles if none specified.",
+    name: "leave",
+    description: "Allows you to leave joinable roles.",
     usage: "[target:mention] [roleName:string] [...]",
     usageDelim: " "
 };
