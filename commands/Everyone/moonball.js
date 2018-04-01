@@ -14,7 +14,7 @@ exports.run = async (client, msg) => {
   	if (game && (await client.funcs.moonball.gameOver(client, guildMember)) >= 0) {
   		await client.funcs.moonball.forceEndGame(client, guildMember);
   		game = false;
-  	}
+  	} 
 
   	//If there is no game, we start a new one
   	if (!game) {
@@ -23,7 +23,7 @@ exports.run = async (client, msg) => {
 	}
 
 	//If the executor is not the current catcher/holder, we quit because they can't throw the ball
-	if (msg.member.id != game.catcher) return;
+	if (msg.member.id != game.catcher) return(msg.channel.send(`<@${game.catcher}> currently has the ball!`));
 
 	//Throwing the ball, and getting the new game state
 	const gameState = await client.funcs.moonball.throw(client, guildMember);
@@ -36,8 +36,8 @@ exports.run = async (client, msg) => {
 	}
 
 	//Sending the updated info to the channel
-	await msg.channel.send(`🏀<@${gameState.thrower}> throws the ball to <@${gameState.catcher}>!\nCurrent Reward: **${gameState.reward}**xp`);
-
+	await msg.channel.send(`ðŸ€<@${gameState.thrower}> throws the ball to <@${gameState.catcher}>!\nCurrent Reward: **${gameState.reward}**xp`);
+  
   	return (await setTimeout(async () => {
     	const endGame = await client.funcs.moonball.endGame(client, guildMember);
 
