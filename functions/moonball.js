@@ -15,13 +15,18 @@ exports.init = async (client) => {
 exports.throw = async (client, guildMember, target = null) => {
 	let game = await this.getGame(client, guildMember);
 
-	if (!target || !(target.presence.status === "online")) target = await this.getTarget(client, guildMember);
+	if (!target || !(target.presence.status === "online")){
+		
+		target = await this.getTarget(client, guildMember);
+	}
 
 	game.thrower = guildMember.id;
 	game.catcher = target.id;
 	game.gameEnd = (Date.now() + this.cooldown);
 	game.throws = game.throws += 1;
 	game.reward = game.reward += Math.floor(Math.random() * 5) + 1;
+
+	if (target.id === client.user.id) game.gameEnd = 0; 
 
 	await this.provider.update(this.tableName, guildMember.guild.id, game);
 
@@ -33,7 +38,9 @@ exports.getTarget = async (client, guildMember) => {
 	const stripThrower = await onlinePlayers.filter(member => (member.id != guildMember.id));
 	const playersArray = await stripThrower.array();
 
-	const target = playersArray[Math.floor(Math.random() * (playersArray.length - 1))];
+	let target = playersArray[Math.floor(Math.random() * (playersArray.length))];
+
+	if (!target) target = guildMember.guild.members.fetch(client.user.id);
 
 	return target;
 };
@@ -66,12 +73,16 @@ exports.endGame = async (client, guildMember) => {
 	return(game);
 };
 
+exports.forceEndGame = async (client, guildMember) => {
+	return await this.provider.delete(this.tableName, guildMember.guild.id);
+};
+
 exports.newGame = async (client, guildMember) => {
 	//Double Checking to make sure we're not accidentally writing over an existing cache
 	if ((await this.provider.has(this.tableName, guildMember.guild.id))) return;
 
 	//Copying the default template
-	const cleanTemplate = this.defaultTemplate;
+	var cleanTemplate = this.defaultTemplate;
 	
 	//Inserting the new variables
 	cleanTemplate.id = guildMember.guild.id;
@@ -82,8 +93,16 @@ exports.newGame = async (client, guildMember) => {
 	cleanTemplate.catcher = guildMember.id;
 
 	//Pushing the new cache out
-	return this.provider.set(this.tableName, guildMember.guild.id, cleanTemplate);
+	await this.provider.set(this.tableName, guildMember.guild.id, cleanTemplate);
+
+	return(cleanTemplate);
 };
+
+exports.isCatcher = async (client, guildMember) => {
+	const game = await this.getGame(client, guildMember);
+
+	return(guildMember.id === game.catcher);
+}
 
 exports.getGame = async (client, guildMember) => {
 	//If a cache for this guild doesn't exist, create one
