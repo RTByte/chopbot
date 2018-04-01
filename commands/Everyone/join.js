@@ -14,7 +14,7 @@ exports.run = async (client, msg, [target = msg.author, ...roleName]) => {
 
     //Seeing if this role exists
     if (!msg.guild.roles.exists("name", roleName)) {
-        return msg.send(`${client.denyEmoji} Sorry, the role ${roleName} does not exist in this server.`);
+        return msg.send(`${client.denyEmoji} Sorry, the role ${roleName} does not exist in this server. Did you check the spelling and capitalization?`);
     }
 
     //Grabbing the role object
