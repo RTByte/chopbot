@@ -11,14 +11,15 @@ exports.run = async (client, msg, [target = msg.author, ...roleName]) => {
 
     //Making the role name searchable
     roleName = roleName.join(" ");
+    roleName = roleName.toLowerCase();
 
     //Seeing if this role exists
-    if (!msg.guild.roles.exists("name", roleName)) {
-        return msg.send(`${client.denyEmoji} Sorry, the role ${roleName} does not exist in this server. Did you check the spelling and capitalization?`);
+    if (!msg.guild.roles.exists(role => role.name.toLowerCase() === roleName)) {
+        return msg.send(`${client.denyEmoji} Sorry, the role ${roleName} does not exist in this server.`);
     }
 
     //Grabbing the role object
-    const targetRole = await msg.guild.roles.find("name", roleName);
+    const targetRole = await msg.guild.roles.find(role => role.name.toLowerCase() === roleName);
 
     //Checking to see that this role is marked as joinable
     if (!msg.guild.settings.joinableRoles.includes(targetRole.id)) {
@@ -47,7 +48,7 @@ exports.run = async (client, msg, [target = msg.author, ...roleName]) => {
 
     targetMember.roles.add(targetRole);
 
-    return msg.send(`${client.confirmEmoji} Added ${targetRole.name} to ${target}.`);
+    return msg.react(client.confirmEmoji);
 
 };
 
