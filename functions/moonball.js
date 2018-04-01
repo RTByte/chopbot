@@ -36,7 +36,8 @@ exports.throw = async (client, guildMember, target = null) => {
 exports.getTarget = async (client, guildMember) => {
 	const onlinePlayers = await this.onlinePlayers(client, guildMember);
 	const stripThrower = await onlinePlayers.filter(member => (member.id != guildMember.id));
-	const playersArray = await stripThrower.array();
+	const purgeInactives = await stripThrower.filter(member => (member.lastMessage.createdTimestamp - (Date.Now() - 300000)));
+	const playersArray = await purgeInactives.array();
 
 	let target = playersArray[Math.floor(Math.random() * (playersArray.length))];
 
