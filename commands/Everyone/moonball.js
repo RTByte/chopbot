@@ -42,13 +42,13 @@ exports.run = async (client, msg) => {
     let gameCounter = 0;
 
     //Incrementing by one on each loop.
-    while (gameCounter < 6) {
+    while (gameCounter < 10) {
       gameCounter++;
       await client.funcs.moonball.throw(client, guildMember);
     }
 
     //Ending the game if gameCounter is greater to or equal to 6.
-    if (gameCounter >= 6) {
+    if (gameCounter > 10) {
       await client.funcs.moonball.forceEndGame(client, guildMember);
       return(msg.channel.send(`Not enough players available, please try again later.`));
 
