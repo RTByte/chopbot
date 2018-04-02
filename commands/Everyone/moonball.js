@@ -19,11 +19,11 @@ exports.run = async (client, msg) => {
   	//If there is no game, we start a new one
   	if (!game) {
   		game = await client.funcs.moonball.newGame(client, guildMember);
-  		msg.channel.send(`<@${game.initiator}> has started a game of Moonball!`);
+  		msg.channel.send(`🏀 <@${game.initiator}> has started a game of Moonball!`);
 	}
 
 	//If the executor is not the current catcher/holder, we quit because they can't throw the ball
-	if (msg.member.id != game.catcher) return(msg.channel.send(`<@${game.catcher}> currently has the ball!`));
+	if (msg.member.id != game.catcher) return(msg.channel.send(`🏀 <@${game.catcher}> currently has the ball!`));
 
 	//Throwing the ball, and getting the new game state
 	const gameState = await client.funcs.moonball.throw(client, guildMember);
@@ -45,14 +45,14 @@ exports.run = async (client, msg) => {
 
     	const duration = moment.unix(endGame.gameStart/1000).fromNow("m:s");
 
-    	return msg.channel.send(`Game Over!\n<@${endGame.thrower}> wins **${endGame.reward}**xp for being the last to throw the ball!\nThe game lasted ${duration}, and the ball was passed ${endGame.throws} times.`);
+    	return msg.channel.send(`🏀 Game Over!\n<@${endGame.thrower}> wins **${endGame.reward}**xp for being the last to throw the ball!\nThe game lasted ${duration}, and the ball was passed ${endGame.throws} times.`);
 
   	}, client.funcs.moonball.cooldown));
 
 };
 
 exports.conf = {
-  enabled: true,
+  enabled: false,
   runIn: ["text"],
   aliases: ["throw", "toss", "yeet"],
   permLevel: 0,
