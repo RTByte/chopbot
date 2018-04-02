@@ -35,19 +35,41 @@ exports.run = async (client, msg) => {
 		return(msg.channel.send(`Game Over!\nNo Players Available!`));
 	}
 
-	//Sending the updated info to the channel
-	await msg.channel.send(`🏀 <@${gameState.thrower}> throws the ball to <@${gameState.catcher}>!\nCurrent Reward: **${gameState.reward}**xp`);
+  //Checking if the catcher is the same user as the thrower.
+  //If the catcher is the thrower, try again 6 times.
+  //If a new catcher hasn't been found, end the game.
+  if (gameState.catcher === msg.author.id) {
+    let gameCounter = 0;
 
-  	return (await setTimeout(async () => {
-    	const endGame = await client.funcs.moonball.endGame(client, guildMember);
+    //Incrementing by one on each loop.
+    while (gameCounter < 6) {
+      gameCounter++;
+      await client.funcs.moonball.throw(client, guildMember);
+    }
 
-    	if (!endGame) return;
+    //Ending the game if gameCounter is greater to or equal to 6.
+    if (gameCounter >= 6) {
+      await client.funcs.moonball.forceEndGame(client, guildMember);
+      return(msg.channel.send(`Not enough players available, please try again later.`));
 
-    	const duration = moment.unix(endGame.gameStart/1000).fromNow("m:s");
+      //Resetting gameCounter to 0.
+      gameCounter = 0;
+    }
+  } else {
+    //Sending the updated info to the channel
+  	await msg.channel.send(`🏀 <@${gameState.thrower}> throws the ball to <@${gameState.catcher}>!\nCurrent Reward: **${gameState.reward}**xp`);
 
-    	return msg.channel.send(`Game Over!\n<@${endGame.thrower}> wins **${endGame.reward}**xp for being the last to throw the ball!\nThe game lasted ${duration}, and the ball was passed ${endGame.throws} times.`);
+    	return (await setTimeout(async () => {
+      	const endGame = await client.funcs.moonball.endGame(client, guildMember);
 
-  	}, client.funcs.moonball.cooldown));
+      	if (!endGame) return;
+
+      	const duration = moment.unix(endGame.gameStart/1000).fromNow("m:s");
+
+      	return msg.channel.send(`Game Over!\n<@${endGame.thrower}> wins **${endGame.reward}**xp for being the last to throw the ball!\nThe game lasted ${duration}, and the ball was passed ${endGame.throws} times.`);
+
+    	}, client.funcs.moonball.cooldown));
+  }
 
 };
 
