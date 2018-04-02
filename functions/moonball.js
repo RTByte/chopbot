@@ -35,9 +35,15 @@ exports.throw = async (client, guildMember, target = null) => {
 
 exports.getTarget = async (client, guildMember) => {
 	const onlinePlayers = await this.onlinePlayers(client, guildMember);
-	const stripThrower = await onlinePlayers.filter(member => (member.id != guildMember.id));
-	const purgeInactives = await stripThrower.filter(member => (member.lastMessage.createdTimestamp - (Date.Now() - 300000)));
-	const playersArray = await purgeInactives.array();
+	const potentialTargets = await onlinePlayers.filter(async (member) => {
+		member = await member.guild.members.fetch(member.id);
+		if (member.id == guildMember.id) return(false);
+		if (member.user.bot) return(false);
+		
+		return(true);
+	});
+
+	const playersArray = await potentialTargets.array();
 
 	let target = playersArray[Math.floor(Math.random() * (playersArray.length))];
 
@@ -48,9 +54,6 @@ exports.getTarget = async (client, guildMember) => {
 
 exports.onlinePlayers = async (client, guildMember) => {
 	let playerList = await guildMember.guild.members.filter(member => member.roles.has(guildMember.guild.settings.eventRole));
-
-	await playerList.filter(member => member.id != guildMember.id);
-
 	return(await playerList.filter(member => member.presence.status === "online"));
 };
 
