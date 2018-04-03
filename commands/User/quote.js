@@ -4,43 +4,40 @@ exports.run =  async (client, msg, [messageID, origin]) => {
         if((origin.constructor.name === "TextChannel")){
             //Grabbing message from specified channel
             try{
-                client.channels.get(origin.id).fetchMessage(messageID).then(quotedMessage => {
-                        let quoteEmbed = new client.methods.Embed()
-                            .setAuthor(`${quotedMessage.author.username}#${quotedMessage.author.discriminator}`, quotedMessage.author.avatarURL())
-                            .setColor("#ffffff")
-                            .addField("Message:", `${quotedMessage.content}`, true)
-                            .setFooter(`Originally sent on ${quotedMessage.createdAt} in #${quotedMessage.channel.name} on the ${quotedMessage.guild.name} Discord`);
-                        return msg.channel.sendEmbed(quoteEmbed, '', {disableEveryone:true});
-                    })
-                    .catch((err) => client.emit("log", err, "error"));
-
+                const quotedMessage = await client.channels.get(origin.id).messages.fetch(messageID);
+                
+                let quoteEmbed = new client.methods.Embed()
+                    .setAuthor(quotedMessage.author.tag, quotedMessage.author.avatarURL())
+                    .setColor("#ffffff")
+                    .addField("Message:", `${quotedMessage.content}`, true)
+                    .setFooter(`Originally sent on ${quotedMessage.createdAt} in #${quotedMessage.channel.name} on the ${quotedMessage.guild.name} Discord`);
+                
+                return msg.channel.sendEmbed(quoteEmbed, '', {disableEveryone:true});
             } catch (err){
                 client.emit("log", err, "error");
-                return msg.reply(`Could not find a message with ID of ${messageID} in ${origin}. Check to make sure I can see that channel.`);
+                return msg.reply(`${client.denyEmoji} Could not find a message with ID of ${messageID} in ${origin}. Check to make sure I can see that channel.`);
             }
         } else if((origin.constructor.name === "User")){
             //TODO: Allow quoting by user(?) Probably just quote newest message?
 
         } else{
-            return msg.reply(`It looks like ${origin} is not a valid channel.`);
+            return msg.reply(`${client.denyEmoji} It looks like ${origin} is not a valid channel.`);
         }
     } else {
         //Grabbing Message from this channel
         try{
-
-            msg.channel.fetchMessage(messageID)
-                .then(quotedMessage => {
-                    let quoteEmbed = new client.methods.Embed()
-                        .setAuthor(`${quotedMessage.author.username}#${quotedMessage.author.discriminator}`, quotedMessage.author.avatarURL())
-                        .setColor("#ffffff")
-                        .addField("Message:", `${quotedMessage.content}`, true)
-                        .setFooter(`Originally Sent on ${quotedMessage.createdAt}`);
-                    return msg.channel.sendEmbed(quoteEmbed, '', {disableEveryone:true});
-                })
-                .catch((err) => client.emit("log", err, "error"));
+            const quotedMessage = await msg.channel.messages.fetch(messageID);
+            
+            let quoteEmbed = new client.methods.Embed()
+                .setAuthor(quotedMessage.author.tag, quotedMessage.author.avatarURL())
+                .setColor("#ffffff")
+                .addField("Message:", `${quotedMessage.content}`, true)
+                .setFooter(`Originally Sent on ${quotedMessage.createdAt}`);
+            
+            return msg.channel.sendEmbed(quoteEmbed, '', {disableEveryone:true});
         } catch (err){
             client.emit("log", err, "error");
-            return msg.reply(`Could not find message with ID of ${messageID} in this channel.`);
+            return msg.reply(`${client.denyEmoji} Could not find message with ID of ${messageID} in this channel.`);
         }
     }
 };

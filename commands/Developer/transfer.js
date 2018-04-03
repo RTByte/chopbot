@@ -1,7 +1,6 @@
 const fs = require("fs-nextra");
-const path = require("path");
+const { resolve } = require("path");
 
-/* eslint-disable no-throw-literal */
 exports.run = async (client, msg, [type, name]) => {
   const coreDir = client.coreBaseDir;
   const clientDir = client.clientBaseDir;
@@ -14,10 +13,12 @@ exports.run = async (client, msg, [type, name]) => {
     monitor: client.funcs.reloadMessageMonitor,
   };
   if (type === "command") name = `System/${name}`;
-  return fs.copy(path.resolve(`${coreDir}/${type}s/${name}.js`), path.resolve(`${clientDir}/${type}s/${name}.js`))
+  const fileLocation = resolve(coreDir, `${type}s`, `${name}.js`);
+  await fs.access(fileLocation).catch(() => { throw `${client.denyEmoji} That file has been transfered already or never existed.`; });
+  return fs.copy(fileLocation, resolve(clientDir, `${type}s`, `${name}.js`))
     .then(() => {
-      reload[type].call(client.funcs, `${name}`).catch((response) => { throw `❌ ${response}`; });
-      return msg.sendMessage(`✅ Successfully Transferred ${type}: ${name}`);
+      reload[type].call(client.funcs, `${name}`).catch((response) => { throw `${client.denyEmoji} ${response}`; });
+      return msg.sendMessage(`${client.confirmEmoji} Successfully Transferred ${type}: ${name}`);
     })
     .catch((err) => {
       client.emit("error", err.stack);
@@ -26,17 +27,18 @@ exports.run = async (client, msg, [type, name]) => {
 };
 
 exports.conf = {
-  enabled: false,
+  enabled: true,
   runIn: ["text", "dm", "group"],
   aliases: [],
   permLevel: 10,
-  botPerms: [],
+  botPerms: ["SEND_MESSAGES"],
   requiredFuncs: [],
+  requiredSettings: [],
 };
 
 exports.help = {
   name: "transfer",
-  description: "Transfers a core piece to its respected folder.",
+  description: "Transfers a core piece to its respective folder",
   usage: "<command|function|inhibitor|event|monitor|finalizer> <name:str>",
   usageDelim: " ",
 };

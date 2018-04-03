@@ -41,7 +41,56 @@ const answers = [
   "I'm sorry, but no.",
   "What?",
   "Sorry, what was that?",
-  "ban rasmus"
+  "i can be your angle...or yuor devil.",
+  "*dude don't even talk to me rn*",
+  "🙅", //person crossing arms
+  "🛑", //stop sign emoji
+  "🛑 STOP 🛑",
+  "👌", //ok hand emoji
+  "👍", //thumbs up emoji
+  "👎", //thumbs down emoji
+  "👀", //eyes emoji
+  "I wouldn't think so.",
+  "Awhh naaaah dude",
+  "don't",
+  "Why would you even think to ask that?",
+  "What now?",
+  "What do you mean?",
+  "Not happening.",
+  "You betcha.",
+  "Yes, daddy 😭👋",
+  "Who are you again?",
+  "YAAASSSS QUEEEN",
+  "no u",
+  "Are you sure you should be asking *me* this?",
+  "Maybe, if you take me to dinner first.",
+  "get rekt my duder",
+  "If you tell me I'm pretty, maybe you'll find out ;)",
+  "I'd answer but I'm having a rough day. Nobody asks how I'm doing and its tiresome.",
+  "Not my job.",
+  "Nothing really matters, anyone can see.",
+  "Nothing really matters, to meeeeeeeeee.",
+  "Yes, no, maybe. I don’t know, can you repeat the question?",
+  "Does a hat take ten gallons?",
+  "We're all going to hell anyway, so yes.",
+  "We're all going to hell anyway, so no.",
+  "I don't get paid enough for this.",
+  "Why do you keep asking me?",
+  "Why would you do that? Stop.",
+  "Address me as master and then I'll answer you.",
+  "wtf u weirdo",
+  "wtf, get away from me you freak",
+  "Ask your parents.",
+  "ya",
+  "If you promise you'll love me, yes.",
+  "If you promise you'll love me, no.",
+  "As long as you're not a jerk about it.",
+  "Just as long as you're not a dick about it.",
+  "Whenever, wherever.",
+  "If you say so.",
+  "Yes, my dude.",
+  "No, my dude.",
+  "Never, ever, ever, ever. Ever.",
 ];
 
 const noQuestion = [
@@ -49,7 +98,9 @@ const noQuestion = [
   "That's not a question, silly. Use a question mark.",
   "I don't know why the developers set me to only respond to 8ball prompts that end in a question mark, but they did, so use one.",
   "No '?', no answer.",
-  "\nQuestion mark = 👍\nNo question mark = 👎"
+  "\nQuestion mark = 👍\nNo question mark = 👎",
+  "Use a question mark, bud",
+  "Edit your message and add a question mark at the end :)"
 ];
 
 

@@ -1,9 +1,7 @@
 exports.run = async (client, msg) => {
-    const newMessage = await msg.channel.fetchMessage(msg.id);
+    const newMessage = await msg.channel.messages.fetch(msg.id);
 
-    if(msg.content === newMessage.content){
-        return;
-    }
+    if(msg.content === newMessage.content) return;
 
     try {
         const editEmbed = new client.methods.Embed()

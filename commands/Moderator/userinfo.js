@@ -1,16 +1,18 @@
 exports.run = async (client, msg, [user]) => {
     const target = msg.mentions.users.first() || msg.author;
-    const targetMember = await msg.guild.fetchMember(target);
+    const targetMember = await msg.guild.members.resolve(target);
+
 
     const userInfo = new client.methods.Embed()
-        .setAuthor(target.username, target.avatarURL())
+        .setAuthor(target.username, target.displayAvatarURL())
         .setColor("#ffffff")
         .addField("ID", target.id, true)
         .addField("Name & Discriminator", target.tag, true)
         .addField("Status", target.presence.status, true)
-        .addField("Highest Role", targetMember.highestRole, true)
+        .addField("Game", target.presence.game ? target.presence.game.name : 'None', true)
         .addField("Joined Discord", target.createdAt, true)
         .addField("Joined Server", targetMember.joinedAt, true)
+        .addField("Last message", target.lastMessage.content, true)
 
         .setThumbnail("http://i.imgur.com/7lSighC.png", 50, 50)
         .setTimestamp()

@@ -21,17 +21,18 @@ exports.run = async (client, msg, [link, piece, folder = "Downloaded"]) => {
 };
 
 exports.conf = {
-  enabled: false,
+  enabled: true,
   runIn: ["text", "dm", "group"],
   aliases: [],
   permLevel: 10,
-  botPerms: [],
+  botPerms: ["SEND_MESSAGES"],
   requiredFuncs: [],
+  requiredSettings: [],
 };
 
 exports.help = {
   name: "download",
-  description: "Downloads a piece, either from a link or the Komada Pieces Repository, and installs it.",
+  description: "Downloads a piece, either from a link or our Pieces Repository, and installs it.",
   usage: "<commands|functions|monitors|inhibitors|providers|finalizers|extendables|url:url> [location:str] [folder:str]",
   usageDelim: " ",
 };
@@ -43,7 +44,7 @@ const process = async (client, msg, text, link, folder) => {
     return client.emit("log", err, "error");
   }
 
-  const name = mod.exports.help.name;
+  const { name } = mod.exports.help;
   const description = mod.exports.help.description || "No description provided.";
   const type = mod.exports.help.type || link;
   const modules = mod.exports.conf.requiredModules || "No required modules.. Yay!";

@@ -2,17 +2,17 @@ exports.run = async (client, msg, [target]) => {
     const executor = msg.author;
     const canMod = await client.funcs.hierarchyCheck(client, executor, target, msg.guild).catch((err) => {
         if(err){
-            fail("User not in guild.", msg);
+            fail("User is not in guild.", msg);
         }
     });
 
     if (!canMod) {
         //Notify user of command cancellation
-        return msg.react("❌");
+        return msg.react(client.denyEmoji);
     }
 
     //Perform command operations
-    return msg.react("✅");
+    return msg.react(client.confirmEmoji);
 
 };
 

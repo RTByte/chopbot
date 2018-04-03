@@ -5,7 +5,7 @@ exports.run = async (client, msg, [target, ...message]) => {
             return target.send(message.join(" "));
         } catch (err) {
             await client.emit("log", err, "error");
-            return msg.channel.send(`It looks like ${target} is not a valid user or channel.`);
+            return msg.channel.send(`${client.denyEmoji} It looks like ${target} is not a valid user or channel.`);
         }
     }
 

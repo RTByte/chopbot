@@ -1,6 +1,6 @@
 exports.run = async (client, msg) => {
-  const message = await msg.sendMessage("Ping?");
-  return msg.sendMessage(`Pong! \`${Math.round(client.ping)}ms\``);
+  const message = await msg.send("🏓 Ping?");
+  return msg.send(`🏓 Pong! \`${Math.round(client.ping)}ms\``);
 };
 
 exports.conf = {
@@ -8,8 +8,9 @@ exports.conf = {
   runIn: ["text", "dm", "group"],
   aliases: [],
   permLevel: 0,
-  botPerms: [],
+  botPerms: ["SEND_MESSAGES"],
   requiredFuncs: [],
+  requiredSettings: [],
 };
 
 exports.help = {

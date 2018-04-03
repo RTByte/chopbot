@@ -21,7 +21,7 @@ exports.run = async (client, msg, [amount = 1, type = "d6"]) => {
 
   //Exiting if the args aren't valid
   if (!valid) {
-    return msg.reply(`Sorry, I can only roll up to 10 of these dice:\n d20, d12, d10, d8, d6, d4.`);
+    return msg.reply(`${client.denyEmoji} Sorry, I can only roll up to 10 of these dice:\n d20, d12, d10, d8, d6, d4.`);
   }
 
   //Rolling the dice

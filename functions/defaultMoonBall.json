@@ -1,0 +1,10 @@
+{
+	"id": 0,
+	"initiator": 0,
+	"thrower": 0,
+	"catcher": 0,
+	"gameStart": 0,
+	"gameEnd": 0,
+	"throws": 0,
+	"reward": 0
+}
