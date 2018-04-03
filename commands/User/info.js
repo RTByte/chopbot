@@ -1,7 +1,6 @@
 exports.run = async (client, msg) => {
 const { version: komadaVersion } = require("komada");
 const { version: discordVersion } = require("discord.js");
-const { version: yamdbfDMVersion } = require("yamdbf-addon-dm-manager");
 
   const infoEmbed = new client.methods.Embed()
       .setTitle("ChopBot Information")

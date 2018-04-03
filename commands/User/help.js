@@ -1,37 +1,63 @@
 exports.run = async (client, msg, [cmd]) => {
-  const method = client.user.bot ? "author" : "channel";
+  const prefix = msg.guildSettings.prefix || client.config.prefix;
+
+  //If the message includes a specific command, show that instead.
   if (cmd) {
     cmd = client.commands.get(cmd) || client.commands.get(client.aliases.get(cmd));
-    if (!cmd) return msg.sendMessage("Unknown command. Try running the command with no arguments to get a list of all commands.");
-    const info = [
-      `= ${cmd.help.name} = `,
-      cmd.help.description,
-      `usage :: ${cmd.usage.fullUsage(msg)}`,
-      "Extended Help ::",
-      cmd.help.extendedHelp || "No extended help available.",
-    ].join("\n");
-    return msg.sendMessage(info, { code: "asciidoc" });
+
+    //If the command doesn't exist, tell the user so.
+    if (!cmd) return msg.send(`${client.denyEmoji} Unknown command, please run \`-help\` for a list of commands.`);
+    if (!this.runCommandInhibitors(client, msg, cmd)) return;
+
+    const cmdHelp = new client.methods.Embed()
+      .setAuthor(`${prefix}${cmd.help.name}`, client.user.avatarURL())
+      .setColor("#ffffff")
+      .addField(`Description`, `${cmd.help.description}`)
+      .addField(`Usage`, `\`${cmd.usage.fullUsage(msg)}\``)
+      .setThumbnail("http://i.imgur.com/7lSighC.png", 50, 50)
+      .setFooter(`For a full list of commands, run -help.`)
+      .setTimestamp();
+
+    return msg.channel.send('', { disableEveryone: true, embed: cmdHelp });
   }
-  const help = this.buildHelp(client, msg);
-  const categories = Object.keys(help);
-  const helpMessage = [];
-  for (let cat = 0; cat < categories.length; cat++) {
-    helpMessage.push(`**${categories[cat]} Commands**: \`\`\`asciidoc`);
-    const subCategories = Object.keys(help[categories[cat]]);
-    for (let subCat = 0; subCat < subCategories.length; subCat++) helpMessage.push(`= ${subCategories[subCat]} =`, `${help[categories[cat]][subCategories[subCat]].join("\n")}\n`);
-    helpMessage.push("```\n\u200b");
-  }
-  return msg[method].send(helpMessage, { split: { char: "\u200b" } })
-    .then(() => { if (msg.channel.type !== "dm" && client.user.bot) msg.react("📨"); })
-    .catch(() => { if (msg.channel.type !== "dm" && client.user.bot) msg.sendMessage("Looks like you have DMs from non-friends disabled, DM not sent."); });
+
+  const helpLanding = new client.methods.Embed()
+    .setAuthor(`ChopBot Help`, client.user.avatarURL())
+    .setColor("#ffffff")
+    .setTitle(`You can also visit the ChopBot website, for easier navigation.`)
+    .setURL(`https://www.chopbot.xyz`)
+    .addField(`${client.admEmoji} Admin Commands`, '​', true)
+    .addField(`${client.modEmoji} Moderator Commands`, '​', true)
+    .addField(`${client.uEmoji} User Commands`, '​', true)
+    .setThumbnail("http://i.imgur.com/7lSighC.png", 50, 50)
+    .setFooter(`React with the emoji representing the category you'd like to view.`)
+    .setTimestamp();
+
+  const admin1 = new client.methods.Embed()
+  .setAuthor(`Admin Commands`, client.user.avatarURL())
+  .setColor("#ffffff")
+  .setURL(`https://www.chopbot.xyz`)
+  .addField(`${prefix}guide`, 'A guide on how to set the bot up for usage on your server.', true)
+  .addField(`${prefix}conf <set/get/reset/list/remove> [key] [value]`, 'Define per-server configuration via commmand.​', true)
+  .setThumbnail("http://i.imgur.com/7lSighC.png", 50, 50)
+  .setFooter(`Press the home reaction to go back to the landing page.`)
+  .setTimestamp();
+
+  const message = await msg.send('', { disableEveryone: true, embed: helpLanding })
+  .then(function(msg) {
+    msg.react(client.admEmoji)
+    msg.react(client.modEmoji)
+    msg.react(client.uEmoji)
+    msg.react(client.deleteEmoji)
+  }).catch(console.error);
 };
 
 exports.conf = {
   enabled: true,
   runIn: ["text", "dm", "group"],
-  aliases: ["commands"],
+  aliases: ["commands", "helpme", "call911"],
   permLevel: 0,
-  botPerms: [],
+  botPerms: ["SEND_MESSAGES"],
   requiredFuncs: [],
   requiredSettings: [],
 };
@@ -41,26 +67,6 @@ exports.help = {
   description: "Displays a list of commands, or extended help for a specified command.",
   usage: "[command:str]",
   usageDelim: "",
-};
-
-/* eslint-disable no-restricted-syntax, no-prototype-builtins */
-exports.buildHelp = (client, msg) => {
-  const help = {};
-
-  const commandNames = Array.from(client.commands.keys());
-  const longest = commandNames.reduce((long, str) => Math.max(long, str.length), 0);
-
-  for (const command of client.commands.values()) {
-    if (this.runCommandInhibitors(client, msg, command)) {
-      const cat = command.help.category;
-      const subcat = command.help.subCategory;
-      if (!help.hasOwnProperty(cat)) help[cat] = {};
-      if (!help[cat].hasOwnProperty(subcat)) help[cat][subcat] = [];
-      help[cat][subcat].push(`${msg.guildSettings.prefix}${command.help.name.padEnd(longest)} :: ${command.help.description}`);
-    }
-  }
-
-  return help;
 };
 
 exports.runCommandInhibitors = (client, msg, command) => !client.commandInhibitors.some((inhibitor) => {
