@@ -1,53 +1,54 @@
 exports.run = async (client, msg, [target = msg.author, ...roleName]) => {
     if (!roleName.length || roleName === " ") {
         var roleNames = await getJoinableNames(msg);
-        
+
         if (roleNames.length) {
-            return msg.send(`${msg.author}, here are the joinable roles on this server:\n${roleNames.join(" ,")}`);
+            return msg.send(`🔎 ${msg.author}, here are the joinable roles on this server:\n${roleNames.join(" ,")}`);
         }
 
-        return msg.send(`${msg.author}, there are no joinable roles on this server.`);
+        return msg.send(`🔎 ${msg.author}, there are no joinable roles on this server.`);
     }
 
     //Making the role name searchable
     roleName = roleName.join(" ");
+    roleName = roleName.toLowerCase();
 
     //Seeing if this role exists
-    if (!msg.guild.roles.exists("name", roleName)) {
-        return msg.send(`Sorry, the role ${roleName} does not exist in this server.`);
+    if (!msg.guild.roles.exists(role => role.name.toLowerCase() === roleName)) {
+        return msg.send(`${client.denyEmoji} Sorry, the role ${roleName} does not exist in this server.`);
     }
 
     //Grabbing the role object
-    const targetRole = await msg.guild.roles.find("name", roleName);
+    const targetRole = await msg.guild.roles.find(role => role.name.toLowerCase() === roleName);
 
     //Checking to see that this role is marked as joinable
     if (!msg.guild.settings.joinableRoles.includes(targetRole.id)) {
-        return msg.send(`Nice try, ${msg.author}. ${targetRole.name} isn't joinable in this server.`);
+        return msg.send(`${client.denyEmoji} Nice try, ${msg.author}. ${targetRole.name} isn't joinable in this server.`);
     }
 
     if (target.id !== msg.author.id) {
         //Checking to see if the executor is a moderator
         if (!msg.member.roles.has(msg.guild.settings.modRole) && !msg.member.roles.has(msg.guild.settings.adminRole)) {
-            return msg.send(`${msg.author}, You don't have permissions to add roles to other users.`);
+            return msg.send(`${client.denyEmoji} ${msg.author}, You don't have permissions to add roles to other users.`);
         }
 
         //Checking to see if executor should be able to moderate target
         const canMod = await client.funcs.hierarchyCheck(client, msg.author, target, msg.guild).catch((err) => {
             msg.delete();
-            return msg.send(`${msg.author}, It looks like you don't have permission to moderate ${target}. Are they in this server?`);
+            return msg.send(`${client.denyEmoji} ${msg.author}, It looks like you don't have permission to moderate ${target}. Are they in this server?`);
         });
 
         if (!canMod) {
-            return msg.send(`${msg.author}, You don't have permission to moderate ${target}.`);
+            return msg.send(`${client.denyEmoji} ${msg.author}, You don't have permission to moderate ${target}.`);
         }
 
     }
 
-    const targetMember = await msg.guild.fetchMember(target);
+    const targetMember = await msg.guild.members.resolve(target);
 
-    targetMember.addRole(targetRole);
+    targetMember.roles.add(targetRole);
 
-    return msg.send(`Added ${targetRole.name} role to ${target}.`);
+    return msg.react(client.confirmEmoji);
 
 };
 

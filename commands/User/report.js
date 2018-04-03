@@ -1,15 +1,15 @@
 exports.run = async (client, msg, [target, ...reason]) => {
     if (!reason) {
-        return msg.reply("You must enter a reason for your report.");
+        return msg.reply(`${client.denyEmoji} You must enter a reason for your report.`);
     }
 
     reason = reason.join(" ");
 
-    target = await client.fetchUser(target.id);
+    target = await client.users.resolve(target.id);
 
     msg.delete();
 
-    msg.reply("Report received.");
+    msg.reply("📝 Report received.");
 
     try {
         const modChat = new client.methods.Embed()

@@ -2,76 +2,80 @@
   "prefix": {
     "type": "String",
     "default": "-",
-    "array": false
+    "array": false,
+    "sql": "TEXT NOT NULL DEFAULT '-'"
   },
   "modRole": {
     "type": "Role",
     "default": null,
-    "array": false
+    "array": false,
+    "sql": "TEXT"
   },
   "adminRole": {
     "type": "Role",
     "default": null,
-    "array": false
+    "array": false,
+    "sql": "TEXT"
   },
   "logChannel": {
     "type": "Channel",
     "default": null,
-    "array": false
+    "array": false,
+    "sql": "TEXT"
   },
   "whitelistedRole": {
   	"type": "Role",
   	"default": null,
-  	"array": false
+  	"array": false,
+    "sql": "TEXT"
   },
   "eventRole": {
   	"type": "Role",
   	"default": null,
-  	"array": false
+  	"array": false,
+    "sql": "TEXT"
   },
   "mutedRole": {
     "type": "Role",
     "default": null,
-    "array": false
+    "array": false,
+    "sql": "TEXT"
   },
   "voiceBannedRole": {
     "type": "Role",
     "default": null,
-    "array": false
+    "array": false,
+    "sql": "TEXT"
   },
   "disabledCommands": {
     "type": "Command",
     "default": [],
-    "array": true
+    "array": true,
+    "sql": "TEXT DEFAULT '[]'"
   },
   "joinableRoles": {
     "type": "Role",
     "default": [],
-    "array": true
-  },
-  "macros": {
-  	"type": "Object",
-  	"default": {},
-  	"array": false
-  },
-  "macroPrefix": {
-  	"type": "String",
-  	"default": "!",
-  	"array": false
+    "array": true,
+    "sql": "TEXT DEFAULT '[]'"
   },
   "welcomeUsers": {
     "type": "Boolean",
     "default": false,
-    "array": false
+
+    "array": false,
+    "sql": "TEXT"
   },
   "welcomeMessage": {
     "type": "String",
-    "default": false,
-    "array": false
+    "default": null,
+    "array": false,
+    "sql": "TEXT"
   },
   "levelUpNotification": {
     "type": "Boolean",
     "default": false,
-    "array": false
+    "array": false,
+    "sql": "TEXT"
   }
 }

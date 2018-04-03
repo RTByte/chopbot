@@ -1,5 +1,5 @@
 exports.run = async (client, msg, [...args]) => {
-    const discography = require(".../discography.json");
+    const discography = require("./discography.json");
 
     let song = discography.songs[Math.floor(Math.random() * discography.songs.length)];
     let lyric = song.lyrics[Math.floor(Math.random() * song.lyrics.length)];

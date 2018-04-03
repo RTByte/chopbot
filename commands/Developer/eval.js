@@ -6,9 +6,9 @@ exports.run = async (client, msg, [code]) => {
     let evaled = eval(code);
     if (evaled instanceof Promise) evaled = await evaled;
     if (typeof evaled !== "string") evaled = inspect(evaled, { depth: 0 });
-    msg.sendCode("xl", client.funcs.clean(client, evaled));
+    msg.sendCode("js", client.funcs.clean(client, evaled));
   } catch (err) {
-    msg.sendMessage(`\`ERROR\` \`\`\`xl\n${client.funcs.clean(client, err)}\n\`\`\``);
+    msg.sendMessage(`\`ERROR\` \`\`\`js\n${client.funcs.clean(client, err)}\n\`\`\``);
     if (err.stack) client.emit("error", err.stack);
   }
 };
@@ -18,13 +18,14 @@ exports.conf = {
   runIn: ["text", "dm", "group"],
   aliases: ["ev"],
   permLevel: 10,
-  botPerms: [],
+  botPerms: ["SEND_MESSAGES"],
   requiredFuncs: [],
+  requiredSettings: [],
 };
 
 exports.help = {
   name: "eval",
-  description: "Evaluates arbitrary Javascript. Reserved for bot owner(s).",
+  description: "Evaluates arbitrary Javascript. Reserved for bot owner.",
   usage: "<expression:str>",
   usageDelim: "",
 };

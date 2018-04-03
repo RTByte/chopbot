@@ -1,26 +1,11 @@
+const longTypes = { command: "commands", inhibitor: "commandInhibitors", monitor: "messageMonitors", finalizer: "commandFinalizers" };
+
 exports.run = async (client, msg, [type, name]) => {
-  switch (type) {
-    case "inhibitor": {
-      const inhibitor = client.commandInhibitors.get(name);
-      if (!inhibitor) return msg.sendCode("diff", `- Inhibitor not found: ${name}.`);
-      inhibitor.conf.enabled = false;
-      return msg.sendCode("diff", `+ Successfully disabled the ${name} inhibitor.`);
-    }
-    case "monitor": {
-      const monitor = client.messageMonitors.get(name);
-      if (!monitor) return msg.sendCode("diff", `- Monitor not found: ${name}.`);
-      monitor.conf.enabled = false;
-      return msg.sendCode("diff", `+ Successfully disabled the ${name} monitor.`);
-    }
-    case "command": {
-      const command = client.commands.get(name) || client.commands.get(client.aliases.has(name));
-      if (!command) return msg.sendCode("diff", `- Command not found: ${name}.`);
-      command.conf.enabled = false;
-      return msg.sendCode("diff", `+ Successfully disabled the ${name} command.`);
-    }
-    default:
-      return msg.sendMessage("This will never happen.");
-  }
+  let toDisable = client[longTypes[type]].get(name);
+  if (!toDisable && type === "command") toDisable = client.commands.get(client.aliases.get(name));
+  if (!toDisable) return msg.send(`${client.denyEmoji} Cannot find the ${type} \`${name}\`.`);
+  toDisable.conf.enabled = false;
+  return msg.send(`${client.confirmEmoji} Successfully disabled the ${type} \`${name}\`.`);
 };
 
 exports.conf = {
@@ -28,13 +13,14 @@ exports.conf = {
   runIn: ["text", "dm", "group"],
   aliases: [],
   permLevel: 10,
-  botPerms: [],
+  botPerms: ["SEND_MESSAGES"],
   requiredFuncs: [],
+  requiredSettings: [],
 };
 
 exports.help = {
   name: "disable",
-  description: "Temporarily disables an inhibitor/monitor/command. Resets upon reboot.",
-  usage: "<inhibitor|monitor|command> <name:str>",
+  description: "Re-disables or temporarily disables a command/inhibitor/monitor/finalizer. Default state restored on reboot.",
+  usage: "<command|inhibitor|monitor|finalizer> <name:str>",
   usageDelim: " ",
 };
