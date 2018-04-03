@@ -33,7 +33,7 @@ module.exports = async (client, executor, target, msg, action, reason, silent = 
     }
 
     if (!silent) {
-        var actionMessage = "";
+      var actionMessage = "";
 
 			switch (action.toLowerCase()) {
     		case "ban": actionMessage = `You have been banned from the ${guild.name} Discord. \n **Reason:** ${reason}\n\n` + boilerplate + guild.owner
@@ -58,7 +58,7 @@ module.exports = async (client, executor, target, msg, action, reason, silent = 
     			break;
     	}
 
-        await target.send(actionMessage);
+      await target.send(actionMessage);
 
 		  if (msg) await msg.react(client.confirmEmoji);
     }
