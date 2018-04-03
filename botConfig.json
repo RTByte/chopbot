@@ -4,9 +4,16 @@
 	"prefix": "-",
 	"devLogging": false,
 	"devLogChannel": "",
-	"confirmEmoji": "413464351467634689",
-	"denyEmoji": "413463891998146560",
+	"confirmEmoji": "430770919745781771",
+	"denyEmoji": "430771025546969099",
+	"leftEmoji": "430770960262627331",
+	"rightEmoji": "430770986401529867",
+	"homeEmoji": "430768853862187018",
+	"admEmoji": "430486940635103248",
+	"modEmoji": "430486939666481161",
+	"uEmoji": "430486940656205834",
+	"deleteEmoji": "430697456393781250",
 	"playing": "",
 	"status": "online",
-	"wordBlacklist": ["nigger", "faggot", "𒐪", "▲", "▼"]
+	"wordBlacklist": ["nigger", "nigga", "faggot", "𒐪", "▲", "▼"]
 }
