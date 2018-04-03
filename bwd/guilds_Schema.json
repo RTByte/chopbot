@@ -62,6 +62,7 @@
   "welcomeUsers": {
     "type": "Boolean",
     "default": false,
+
     "array": false,
     "sql": "TEXT"
   },
