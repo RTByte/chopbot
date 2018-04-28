@@ -6,7 +6,7 @@ const alternateNames = [
 	"Try again, bud",
 	"Nice try",
 	"Bad person",
-	"I nevah freeze",
+	"I neva freeze",
 	"enjincoin the minecraft crypto",
 	"big mood"
 ];
