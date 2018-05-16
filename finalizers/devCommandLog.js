@@ -3,7 +3,7 @@ exports.run = async (client, msg, mes, start) => {
 
     const devLogger = new client.methods.Embed()
         .setColor("#ffffff")
-        .addField("Command Content", msg.content, true)
+        .addField("Command Content", msg.cleanContent, true)
         .setTimestamp()
         .setFooter(msg.author.tag, msg.author.avatarURL());
 
