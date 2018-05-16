@@ -1,4 +1,4 @@
-const boilerplate = `This action was performed manually by a moderator. If you are confused, or need help, feel free to DM the the owner of the server, listed below.`;
+const boilerplate = `This action was performed manually by a moderator. If you are confused, or need help, feel free to DM the the owner of the server, listed below.\n`;
 
 module.exports = async (client, executor, target, msg, action, reason, silent = false, guild = null) => {
     if (!msg && !guild) return;
@@ -36,17 +36,17 @@ module.exports = async (client, executor, target, msg, action, reason, silent = 
       var actionMessage = "";
 
 			switch (action.toLowerCase()) {
-    		case "ban": actionMessage = `You have been banned from the ${guild.name} Discord. \n **Reason:** ${reason}\n\n` + boilerplate + guild.owner
+    		case "ban": actionMessage = `You have been banned from the ${guild.name} Discord. \n **Reason:** ${reason}\n\n` + boilerplate + `<@${guild.owner}>`
     			break;
-    		case "kick": actionMessage = `You have been kicked from the ${guild.name} Discord. \n **Reason:** ${reason}\n\n` + boilerplate + guild.owner
+    		case "kick": actionMessage = `You have been kicked from the ${guild.name} Discord. \n **Reason:** ${reason}\n\n` + boilerplate + `<@${guild.owner}>`
     			break;
-    		case "mute": actionMessage = `You have been muted in the ${guild.name} Discord. \n **Reason:** ${reason}\n\n` + boilerplate + guild.owner
+    		case "mute": actionMessage = `You have been muted in the ${guild.name} Discord. \n **Reason:** ${reason}\n\n` + boilerplate + `<@${guild.owner}>`
     			break;
-    		case "warning": actionMessage = `You have recieved a warning in the ${guild.name} Discord. \n **Reason:** ${reason}\n\n` + boilerplate + guild.owner
+    		case "warning": actionMessage = `You have recieved a warning in the ${guild.name} Discord. \n **Reason:** ${reason}\n\n` + boilerplate + `<@${guild.owner}>`
     			break;
-    		case "vc kick": actionMessage = `You have been kicked from voice chat in the ${guild.name} Discord. \n **Reason:** ${reason}\n\n` + boilerplate + guild.owner
+    		case "vc kick": actionMessage = `You have been kicked from voice chat in the ${guild.name} Discord. \n **Reason:** ${reason}\n\n` + boilerplate + `<@${guild.owner}>`
     			break;
-    		case "vc ban": actionMessage = `You have been banned from voice chat in the ${guild.name} Discord. \n **Reason:** ${reason}\n\n` + boilerplate + guild.owner
+    		case "vc ban": actionMessage = `You have been banned from voice chat in the ${guild.name} Discord. \n **Reason:** ${reason}\n\n` + boilerplate + `<@${guild.owner}>`
     			break;
     		case "softban": actionMessage = `You have been kicked from the ${guild.name} Discord, and your messages from the past 24 hours have been removed. \n **Reason:** ${reason}\n\n` + boilerplate + guild.owner
     			break;
