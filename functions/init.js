@@ -4,15 +4,15 @@ exports.init = (client) => {
 	//Setting global vars
     client.devLogging = botConfig.devLogging;
     client.devLogChannel = botConfig.devLogChannel;
-    client.confirmEmoji = client.emojis.find('id', botConfig.confirmEmoji);
-    client.denyEmoji = client.emojis.find('id', botConfig.denyEmoji);
-    client.leftEmoji = client.emojis.find('id', botConfig.leftEmoji);
-    client.rightEmoji = client.emojis.find('id', botConfig.rightEmoji);
-    client.homeEmoji = client.emojis.find('id', botConfig.homeEmoji);
-    client.admEmoji = client.emojis.find('id', botConfig.admEmoji);
-    client.modEmoji = client.emojis.find('id', botConfig.modEmoji);
-    client.uEmoji = client.emojis.find('id', botConfig.uEmoji);
-    client.deleteEmoji = client.emojis.find('id', botConfig.deleteEmoji)
+    client.confirmEmoji = client.emojis.get(botConfig.confirmEmoji);
+    client.denyEmoji = client.emojis.get(botConfig.denyEmoji);
+    client.leftEmoji = client.emojis.get(botConfig.leftEmoji);
+    client.rightEmoji = client.emojis.get(botConfig.rightEmoji);
+    client.homeEmoji = client.emojis.get(botConfig.homeEmoji);
+    client.admEmoji = client.emojis.get(botConfig.admEmoji);
+    client.modEmoji = client.emojis.get(botConfig.modEmoji);
+    client.uEmoji = client.emojis.get(botConfig.uEmoji);
+    client.deleteEmoji = client.emojis.get(botConfig.deleteEmoji)
     client.user.setActivity(`${botConfig.playing}`);
     client.user.setStatus(botConfig.status);
 
