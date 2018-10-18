@@ -1,15 +1,15 @@
 exports.run = async (client, msg, [...args]) => {
-    const discography = require("./kendrick.json");
+    const discography = require("tyler.json");
 
     let song = discography.songs[Math.floor(Math.random() * discography.songs.length)];
     let lyric = song.lyrics[Math.floor(Math.random() * song.lyrics.length)];
 
-    const kendrickEmbed = new client.methods.Embed()
-        .setAuthor(`Kendrick Lamar - ${song.title}`)
+    const tylerEmbed = new client.methods.Embed()
+        .setAuthor(`Tyler, The Creator - ${song.title}`)
         .setDescription(`${lyric}`)
         .setFooter(`${song.album} - ${song.year}`);
 
-    return msg.channel.send("", { embed: kendrickEmbed });
+    return msg.channel.send("", { embed: tylerEmbed });
 };
 
 exports.conf = {
@@ -22,8 +22,8 @@ exports.conf = {
 };
 
 exports.help = {
-    name: "kendrick",
-    description: "kendrick",
+    name: "tyler",
+    description: "tyler",
     usage: "",
     usageDelim: ""
 };
